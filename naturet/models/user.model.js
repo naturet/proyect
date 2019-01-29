@@ -24,10 +24,6 @@ const userSchema = new mongoose.Schema({
   address: {
     type: String
   },
-  location: {
-    type: { type: String },
-    coordinates: [Number]
-  },
   photo: {
     path: String
   },
@@ -43,13 +39,14 @@ const userSchema = new mongoose.Schema({
 
 userSchema.index({ location: '2dsphere' });
 
-userSchema.pre('save', function(next) {
-  if (this.email === FIRST_ADMIN_EMAIL || SECOND_ADMIN_EMAIL) {
-    this.role = constants.ROLE_ADMIN;
-  } else {
-    next();
-  }
-});
+// userSchema.pre('save', function(next) {
+//   if (this.email === FIRST_ADMIN_EMAIL || SECOND_ADMIN_EMAIL) {
+//     this.role = constants.ROLE_ADMIN;
+//   } else {
+//     next();
+//   }
+// });
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
+

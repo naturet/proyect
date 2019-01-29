@@ -33,7 +33,8 @@ function authenticateOAuthUser(accessToken, refreshToken, profile, next) {
             password: Math.random().toString(36).substring(7),
             social: {
               [socialId]: profile.id
-            }
+            },
+            photo: profile.picture,
           })
           return user.save()
             .then ( user => {
