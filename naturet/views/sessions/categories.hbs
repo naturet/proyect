@@ -1,1 +1,27 @@
 <h1>categories</h1>
+
+  
+<div class="form-group">
+  <div class="btn-group" data-toggle="buttons">
+    <form action="/{{user.id}}/edit" method="post">
+      <div class="input-group mb-2">
+        <input type="text" class="form-control" name="categories" value="{{ user.categories }}"/>
+      </div>
+      {{!-- <label class="btn btn-default">
+          <input type="checkbox" id="tequila">tequila
+      </label>
+      <label class="btn btn-default">
+          <input type="checkbox" id="jagger">jagger
+      </label>
+      <label class="btn btn-default">
+          <input type="checkbox" id="thunder">thunderbitch
+      </label>
+      <label class="btn btn-default">
+          <input type="checkbox" id="mezcal">mezcal
+      </label> --}}
+      <div class="form-actions">
+        <button class="btn btn-primary btn-block" type="submit" >Submit</button>
+      </div>
+    </form>
+  </div>
+</div> 
