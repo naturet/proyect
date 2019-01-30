@@ -36,7 +36,7 @@ module.exports.doProfile = (req, res, next) => {
         if (!user) {
           next(createError(404, 'User not found'));
         } else {
-          res.redirect('/');
+          res.redirect('/')
         }
       })
       .catch(error => next(error));

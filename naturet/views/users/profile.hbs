@@ -1,21 +1,24 @@
 <h1>profile uncompleted</h1>
 
 
-
-<div class="form-group ">
-    {{#if errors.error }}
-    <div class="">
-        <h1>{{ errors.error }}</h1>
-        <h2>{{ finalCategories.[0] }}</h2>
+<div class="container">
+  <h1>categories</h1>
+  <form class="" method="POST">
+  <div class="row">
+    {{#each allCategories as |category| }}
+   
+      <div class="col-xl-2 col-md-3 col-6">
+         <input type='checkbox' name="categories" class="input-category" id="{{ category.id }}" value="{{ category.id }}" {{#isCategorySelected ../session category ../categories }}{{/isCategorySelected}}/>
+        <div class="category-card">
+          {{!-- <span class='icon-{{category.fontnum}}'></span> --}} <!-- descomentar esto par añadir estilo --> 
+          <p class="category-name">{{ category.name }}  </p>
+        </div>
     </div>
-    {{/if}}
-    <form action="/profile" method="POST">
-        {{#each allCategories as |category| }}
-        <label class="btn btn-default" for="{{ category.id }}">
-            {{ category.name }}
-            <input type="checkbox" name="categories" id="{{ category.id }}" value="{{ category.id }}" {{#isCategorySelected ../session category ../categories }}{{/isCategorySelected}}/>
-        </label>
-        {{/each}}
-        <button class="btn btn-primary btn-block" type="submit">Submit</button>
+    </input>
+    
+    {{/each}}
+     <button class="btn btn-primary btn-block" type="submit">Submit</button>
     </form>
+  </div>
 </div>
+

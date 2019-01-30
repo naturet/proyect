@@ -9,6 +9,16 @@ module.exports.isAuthenticated = (req, res, next) => {
   }
 }
 
+module.exports.isNotAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) { 
+    res.redirect('/profile');
+  } else {
+    res.status(401)
+    next();
+  }
+}
+
+
 module.exports.isProfileCompleted = (req, res, next) => {
   if (req.user.categories && req.user.categories.length > 3) {
     next();
