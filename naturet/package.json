@@ -1,22 +1,29 @@
 {
-  "name": "naturet",
-  "version": "0.0.0",
+  "name": "naturapp",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "DEBUG=naturet:* nodemon -e hbs,js --inspect ./bin/www"
+    "dev": "DEBUG=naturapp:* nodemon -e hbs,js --inspect ./bin/www",
+    "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^3.0.0",
+    "connect-mongo": "^2.0.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^6.2.0",
     "express": "~4.16.0",
-    "hbs": "~4.0.1",
+    "express-session": "^1.15.6",
+    "hbs": "^4.0.1",
     "http-errors": "~1.6.2",
-    "mongoose": "^5.4.7",
+    "mongoose": "^5.2.2",
     "morgan": "~1.9.0",
-    "nodemon": "^1.18.9",
     "passport": "^0.4.0",
-    "passport-google-oauth": "^1.0.0"
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
   }
 }
