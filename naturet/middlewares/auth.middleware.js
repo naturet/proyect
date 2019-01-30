@@ -6,7 +6,15 @@ module.exports.isAuthenticated = (req, res, next) => {
   } else {
     res.status(401)
       .redirect('/sessions/create');
+  }
 }
+
+module.exports.isProfileCompleted = (req, res, next) => {
+  if (req.user.categories && req.user.categories.length > 3) {
+    next();
+  } else {
+    res.redirect('/profile');
+  }
 }
 
 module.exports.checkRole = (role) => {
@@ -16,5 +24,5 @@ module.exports.checkRole = (role) => {
     } else {
       next(createError(403, 'Insufficient privileges'))
     }
-}
+  }
 }

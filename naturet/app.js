@@ -9,6 +9,7 @@ const session = require('express-session');
 const MongoStore = require("connect-mongo")(session);
 const passport = require('passport');
 const mongoose = require('mongoose');
+const categories = require('./data/categories');
 
 require('./configs/db.config');
 require('./configs/hbs.config');
@@ -22,6 +23,8 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+require('./helpers/category.helpers');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -49,12 +52,13 @@ app.use(passport.session());
 
 app.use((req, res, next) => {
   res.locals.session = req.user;
+  res.locals.allCategories = categories;
   next();
 })
 
-app.use('/users', usersRouter);
+app.use('/', usersRouter);
 app.use('/sessions', sessionsRouter);
-app.use('/', (req, res, next) => res.redirect('/users/categories'));
+// app.use('/', (req, res, next) => res.redirect('/users/categories'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

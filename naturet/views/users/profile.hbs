@@ -1,1 +1,21 @@
-<h1>puto {{user.name}}</h1>
+<h1>profile uncompleted</h1>
+
+
+
+<div class="form-group ">
+    {{#if errors.error }}
+    <div class="">
+        <h1>{{ errors.error }}</h1>
+        <h2>{{ finalCategories.[0] }}</h2>
+    </div>
+    {{/if}}
+    <form action="/profile" method="POST">
+        {{#each allCategories as |category| }}
+        <label class="btn btn-default" for="{{ category.id }}">
+            {{ category.name }}
+            <input type="checkbox" name="categories" id="{{ category.id }}" value="{{ category.id }}" {{#isCategorySelected ../session category ../categories }}{{/isCategorySelected}}/>
+        </label>
+        {{/each}}
+        <button class="btn btn-primary btn-block" type="submit">Submit</button>
+    </form>
+</div>

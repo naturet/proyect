@@ -2,6 +2,7 @@
 const constants = require('../constants');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const categories = require('../data/categories');
 const SALT_WORK_FACTOR = 10;
 const FIRST_ADMIN_EMAIL = process.env.FIRST_ADMIN_EMAIL;
 
@@ -30,7 +31,9 @@ const userSchema = new mongoose.Schema({
     path: String
   },
   categories: {
-    type: Array,
+    type: [String],
+    enum: categories.map((c) => c.id),
+    default: []
   },
   role: {
     type: String,
