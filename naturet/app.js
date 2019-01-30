@@ -27,6 +27,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize()); 
 app.use(passport.session());
 
+app.use((req, res, next) => {
+  res.locals.session = req.user;
+  next();
+})
+
 app.use('/sessions', sessionsRouter);
 
 // catch 404 and forward to error handler

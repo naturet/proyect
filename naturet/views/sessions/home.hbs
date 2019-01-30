@@ -1,1 +1,24 @@
 <h1>profile completed</h1>
+
+<div class="form-group">
+    <form action="/sessions/{{ user._id }}/edit" method="post">
+      {{!-- <div class="input-group mb-2">
+        <input type="text" class="form-control" name="categories" placeholder="{{user.id}}"/>
+      </div> --}}
+      <label class="btn btn-default">
+          <input type="checkbox" id="tequila" name="categories" value="tequila">
+      </label>
+      <label class="btn btn-default">
+          <input type="checkbox" id="jagger" name="categories" value="jagger">
+      </label>
+      <label class="btn btn-default">
+          <input type="checkbox" id="thunder" name="categories" value="thunderbitch">
+      </label>
+      <label class="btn btn-default">
+          <input type="checkbox" id="mezcal" name="categories" value="mezcal">
+      </label>
+      
+        <button class="btn btn-primary btn-block" type="submit" >Submit</button>
+    
+    </form>
+</div> 
