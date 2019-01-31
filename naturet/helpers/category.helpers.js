@@ -7,6 +7,6 @@ module.exports = (hbs) => {
     console.log('assertion', categories && categories[category.id]);
 
     return user.categories.indexOf(category.id) !== -1 || 
-      (categories && categories.indexOf(category.id)) ? 'checked' : '';
+      (categories && categories.indexOf(category.id) !== -1) ? 'checked' : '';
   })
 }
