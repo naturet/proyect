@@ -17,7 +17,7 @@ module.exports.profile = (req, res, next) => {
 module.exports.doProfile = (req, res, next) => {
   const categories = typeof(req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;
 
-  if (!categories || categories.length < 3) {
+  if (!categories || categories.length <= 3) {
     console.log(categories);
     res.render('users/profile', {
       categories: categories,

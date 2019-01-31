@@ -60,6 +60,7 @@ function authenticateOAuthUser(accessToken, refreshToken, profile, next) {
         next(null, user);
       } else {
         user = new User({
+          
           name: profile.displayName,
           email: profile.emails[0].value,
           photo: profile.photos[0].value,

@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema({
   },
   social: {
     googleId: String,
+    facebookId: String,
   },
   address: {
     type: String

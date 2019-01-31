@@ -3,6 +3,9 @@
 
 <div class="container">
   <h1>categories</h1>
+  {{#if errors.error }}
+    <h2>{{ errors.error }}</h2>
+  {{/if}}
   <form class="" method="POST">
   <div class="row">
     {{#each allCategories as |category| }}
