@@ -48,7 +48,7 @@ passport.use('facebook-auth', new FBStrategy({
   clientID: process.env.FB_AUTH_CLIENT_ID || 'todo',
   clientSecret: process.env.FB_AUTH_CLIENT_SECRET || 'todo',
   callbackURL: process.env.FB_AUTH_CB || '/sessions/facebook/cb',
-  profileFields: ['displayName', 'emails']
+  profileFields: ['displayName', 'emails', 'picture']
 }, authenticateOAuthUser));
 
 function authenticateOAuthUser(accessToken, refreshToken, profile, next) {
@@ -62,6 +62,7 @@ function authenticateOAuthUser(accessToken, refreshToken, profile, next) {
         user = new User({
           name: profile.displayName,
           email: profile.emails[0].value,
+          photo: profile.photos[0].value,
           password: Math.random().toString(36).substring(7),
           social:{
             [socialID] : profile.id // para meter una clave de un objeto de una variable, se mete dentro de corchetes.

@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   photo: {
-    path: String
+    type: String
   },
   categories: {
     type: [String],
