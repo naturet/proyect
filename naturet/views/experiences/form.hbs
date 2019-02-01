@@ -1,0 +1,70 @@
+{{#if experience.isNew }}
+  <form action="/experiences/create" method="post">
+  <h1>New experience</h1>
+{{else}}
+  <form action="/experience/{{experience.id}}/edit" method="post">
+  <h1>Edit experience</h1>
+{{/if}}
+
+  <div class="form-group">
+    <label for="name">Nombre de la actividad</label>
+    <input type="text" class="form-control" id="name" name="name" value="{{experience.name}}">
+  </div>
+
+  <div class="form-group">
+    <label for="categories">Tipo de expereriencia</label>
+    <input type="text" class="form-control" id="categories" name="categories" value="{{experience.categories}}">
+  </div>
+  <div class="form-group">
+    <label for="price">Precio</label>
+    <input type="Number" class="form-control" id="price" name="price" value="{{experience.price}}">
+  </div>
+  <div class="form-group">
+    <label for="languages">Idiomas</label>
+    <select>
+      {{#each experience.languages}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+    
+  
+  </div>
+  <div class="form-group">
+    <label for="duration">Duración</label>
+    <input type="Number" class="form-control" id="duration" name="duration" value="{{experience.duration}}">
+  </div>
+  <div class="form-group">
+    <label for="includes">¿Que incluye?</label>
+    <input type="text" class="form-control" id="includes" name="includes" value="{{experience.includes}}">
+  </div>
+  <div class="form-group">
+    <label for="description">Descripción</label>
+    <textarea class="form-control" name="description" rows=3>{{experience.description}}</textarea>
+  </div>
+  <div class="form-group">
+    <label for="anymore">¿Que debes saber?</label>
+    <textarea class="form-control" name="anymore" rows=2>{{experience.anymore}}</textarea>
+  </div>
+  <div class="form-group">
+    <label for="photos">Fotos</label>
+    <input type="Number" class="form-control" id="photos" name="photos" value="{{experience.photos}}">
+  </div>
+  <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-map-marker"></i> </span>
+        </div>
+        <input type="text" id="latitude" class="form-control" name="latitude" placeholder="Latitude"/>
+      </div>
+
+  <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fas fa-map-marker"></i> </span>
+        </div>
+        <input type="text" id="longitude" class="form-control" name="longitude" placeholder="Longitude"/>
+  </div>
+
+
+  
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form> 

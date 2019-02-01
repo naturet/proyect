@@ -1,22 +1,28 @@
 const mongoose = require('mongoose');
+const categories = require('../data/categories');
 
 const schema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  title: {
+  name: {
     type: String,
     required: true,
     unique: true,
   },
-  genre: {
-    type: String,
+  categories: {
+    type: [String],
+    enum: categories.map((c) => c.id),
+    default: [],
     required: true,
   },
   description: {
     type: String,
     required: true,
+  },
+  anymore: {
+    type: String,
   },
   location: {
     type: { type: String },
@@ -30,6 +36,16 @@ const schema = new mongoose.Schema({
   },
   languages: {
     type: String,
+    enum: ["Español", "Inglés", "Francés", "Alemán","Chino"],
+    required: true,
+  },
+  duration: {
+    type: Number,
+    required: true,
+  },
+  includes: {
+    type: String,
+    enum: ["Bebidas", "Comida", "Aperitivo", "Equipo"]
   }
  
 }, {

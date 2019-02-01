@@ -16,6 +16,7 @@ require('./configs/hbs.config');
 require('./configs/passport.config');
 
 const usersRouter = require('./routes/users.routes');
+const experiencesRouter = require('./routes/experiences.routes');
 const sessionsRouter = require('./routes/sessions.routes');
 
 const app = express();
@@ -32,8 +33,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'SuperSecret - (Change it)',
-  resave: false,
+  secret: 'SuperArgo',
+  resave: true,
   saveUninitialized: true,
   cookie: {
     secure: false,
@@ -57,7 +58,9 @@ app.use((req, res, next) => {
 })
 
 app.use('/', usersRouter);
+app.use('/experiences', experiencesRouter);
 app.use('/sessions', sessionsRouter);
+
 // app.use('/', (req, res, next) => res.redirect('/users/categories'));
 
 // catch 404 and forward to error handler
