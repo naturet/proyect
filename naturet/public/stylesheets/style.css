@@ -17,6 +17,10 @@ body{
   margin: 0;
 }
 
+.profile-navigation{
+position: fixed;
+}
+
 /* Descomentar esto para añadir estilo
 
 
