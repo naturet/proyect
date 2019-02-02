@@ -35,8 +35,8 @@ const schema = new mongoose.Schema({
     path: String,
   },
   languages: {
-    type: String,
-    enum: ["Español", "Inglés", "Francés", "Alemán","Chino"],
+    type: [String],
+    default:["Español", "Inglés", "Francés", "Alemán", "Chino"],
     required: true,
   },
   duration: {

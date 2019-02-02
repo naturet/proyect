@@ -42,6 +42,7 @@ passport.use('google-auth', new GoogleStrategy({
   clientID: process.env.GOOGLE_AUTH_CLIENT_ID || 'todo',
   clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET || 'todo',
   callbackURL: process.env.GOOGLE_AUTH_CB || '/sessions/google/cb',
+  profileFields: ["birthday", "email", "first_name", "last_name"]
 }, authenticateOAuthUser));
 
 passport.use('facebook-auth', new FBStrategy({
@@ -64,6 +65,7 @@ function authenticateOAuthUser(accessToken, refreshToken, profile, next) {
           name: profile.displayName,
           email: profile.emails[0].value,
           photo: profile.photos[0].value,
+          birth: profile.birthday,
           password: Math.random().toString(36).substring(7),
           social:{
             [socialID] : profile.id // para meter una clave de un objeto de una variable, se mete dentro de corchetes.

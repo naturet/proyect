@@ -39,3 +39,7 @@ $('.category-card').on('click', function (e) {
     $(this).siblings('.input-category').prop('checked', false)
   }
 });
+
+$("#creator").on("change", () => {
+  $("#rol").toggle();
+})

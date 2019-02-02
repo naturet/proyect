@@ -24,6 +24,13 @@ const userSchema = new mongoose.Schema({
     googleId: String,
     facebookId: String,
   },
+  birth: {
+    type: String,
+  },
+  languages: {
+    type: [String],
+    default:["Español", "Inglés", "Francés", "Alemán", "Chino"]
+  },
   address: {
     type: String
   },
@@ -34,6 +41,10 @@ const userSchema = new mongoose.Schema({
     type: [String],
     enum: categories.map((c) => c.id),
     default: []
+  },
+  creator: {
+    type: Boolean,
+    default: false
   },
   role: {
     type: String,

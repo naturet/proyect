@@ -15,6 +15,8 @@ module.exports.profile = (req, res, next) => {
 // }
 
 module.exports.doProfile = (req, res, next) => {
+  console.log(req.body)
+
   const categories = typeof(req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;
 
   if (!categories || categories.length <= 3) {
@@ -26,17 +28,22 @@ module.exports.doProfile = (req, res, next) => {
       }
     })
   } else {
+    if (req.body.creator === undefined) {
+      req.body.creator = false;
+    }
+
     User.findByIdAndUpdate(req.user.id, 
-      { $addToSet: { categories: req.body.categories } }, 
+      { $set : req.body },
       {
         safe: true,
         upsert: true,
         new: true
       }).then(user => {
+        console.log(user)
         if (!user) {
           next(createError(404, 'User not found'));
         } else {
-          res.redirect('/')
+          res.redirect('/profile')
         }
       })
       .catch(error => next(error));
