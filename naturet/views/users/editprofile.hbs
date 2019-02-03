@@ -7,8 +7,8 @@
           <a href="">Categories</a>
           <a href="">Some description</a>
           <a href="">User role</a>
-          <a href="">profile</a>
-          <a class="btn btn danger">View Profile</a>
+          <a href="/profile">profile</a>
+          <a class="btn btn danger" href="/profile">View Profile</a>
         </div>
       </div>
 
@@ -29,7 +29,7 @@
       {{#if errors.error }}
       <h2>{{ errors.error }}</h2>
       {{/if}}
-      <form class="" method="POST">
+      <form class="" method="POST" enctype="multipart/form-data">
         <div class="row">
           {{#each allCategories as |category| }}
 
@@ -64,7 +64,7 @@
 
           <div class="mb-2">
             <h4>Birth Date</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-            <input type="date" name="birth" class="d-table mt-2" value="{{session.birth}}" min='2000-01-01' max='2019-18-03'>
+            <input type="date" name="birth" class="d-table mt-2" value="{{session.birth}}">
           </div>
 
           <div class="mb-2">
@@ -81,14 +81,14 @@
           </div>
         </div>
 
-        <div class="form-group">
-         
-          <div class="mb-2">
-            <h4>Your Album</h4><small>Some photos that can tell something about you and your interests</small>
-            <input type="date" name="birth" class="d-table mt-2" value="{{session.birth}}" min='2000-01-01' max='2019-18-03'>
-          </div>
 
-        </div>
+     
+          <div class="input-group-prepend mb-2">
+            <h4>Your Album</h4><small>Some photos that can tell something about you and your interests</small>
+            <span class="input-group-text"> <i class="fas fa-image"></i> </span>
+          </div>
+          <input type="file" class="form-control" name="picture" placeholder="Picture"  value="string"/>
+
 
         <hr class="mt-5">
 

@@ -18,18 +18,14 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: 'Password is required',
+    required: 'Password is required'
   },
   social: {
     googleId: String,
-    facebookId: String,
+    facebookId: String
   },
   birth: {
-    type: String,
-  },
-  languages: {
-    type: [String],
-    default:["Español", "Inglés", "Francés", "Alemán", "Chino"]
+    type: String
   },
   about: {
     type: String
@@ -39,6 +35,10 @@ const userSchema = new mongoose.Schema({
   },
   phone: {
     type: String
+  },
+  picture: {
+    type: String,
+    default : 'https://...'
   },
   photo: {
     type: String

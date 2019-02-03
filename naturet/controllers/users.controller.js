@@ -8,14 +8,20 @@ module.exports.profile = (req, res, next) => {
   res.render('users/profile')
 }
 
-// module.exports.profile = (req, res, next) => {
-//   User.findById(req.params.id)
-//     .then( user => res.render('users/profile', { user }))
-
-// }
 
 module.exports.doProfile = (req, res, next) => {
   console.log('entra')
+
+
+  const bodyFields = {
+    birth: req.body.birth,
+    about: req.body.about,
+    country: req.body.country,
+    phone: req.body.phone,
+    categories: req.body.categories,
+    creator: req.body.creator,
+    picture: req.file.path
+  }
 
   const categories = typeof(req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;
 
@@ -24,7 +30,7 @@ module.exports.doProfile = (req, res, next) => {
     res.render('users/editprofile', {
       categories: categories,
       errors: {
-        error: 'at least 3 categories'
+        error: 'choose at least 4 categories'
       }
     })
   } else {
@@ -33,7 +39,7 @@ module.exports.doProfile = (req, res, next) => {
     }
 
     User.findByIdAndUpdate(req.user.id, 
-      { $set : req.body },
+      { $set : bodyFields },
       {
         safe: true,
         upsert: true,
@@ -44,6 +50,7 @@ module.exports.doProfile = (req, res, next) => {
           next(createError(404, 'User not found'));
         } else {
           res.redirect('/')
+          console.log(req.body)
         }
       })
       .catch(error => next(error));
