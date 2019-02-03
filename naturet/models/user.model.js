@@ -31,7 +31,13 @@ const userSchema = new mongoose.Schema({
     type: [String],
     default:["Español", "Inglés", "Francés", "Alemán", "Chino"]
   },
-  address: {
+  about: {
+    type: String
+  },
+  country: {
+    type: String
+  },
+  phone: {
     type: String
   },
   photo: {

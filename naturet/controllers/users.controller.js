@@ -15,13 +15,13 @@ module.exports.profile = (req, res, next) => {
 // }
 
 module.exports.doProfile = (req, res, next) => {
-  console.log(req.body)
+  console.log('entra')
 
   const categories = typeof(req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;
 
   if (!categories || categories.length <= 3) {
     console.log(categories);
-    res.render('users/profile', {
+    res.render('users/editprofile', {
       categories: categories,
       errors: {
         error: 'at least 3 categories'
@@ -43,7 +43,7 @@ module.exports.doProfile = (req, res, next) => {
         if (!user) {
           next(createError(404, 'User not found'));
         } else {
-          res.redirect('/profile')
+          res.redirect('/')
         }
       })
       .catch(error => next(error));

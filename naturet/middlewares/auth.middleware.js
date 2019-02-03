@@ -23,7 +23,7 @@ module.exports.isProfileCompleted = (req, res, next) => {
   if (req.user.categories && req.user.categories.length > 3) {
     next();
   } else {
-    res.redirect('/profile');
+    res.redirect('/profile/edit');
   }
 }
 

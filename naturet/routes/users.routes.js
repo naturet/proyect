@@ -4,8 +4,9 @@ const router = express.Router();
 const usersController = require('../controllers/users.controller');
 const authMiddleware = require('../middlewares/auth.middleware');
 
-router.get('/profile', authMiddleware.isAuthenticated, usersController.profile);
-router.post('/profile', authMiddleware.isAuthenticated, usersController.doProfile);
+router.get('/profile',authMiddleware.isProfileCompleted, authMiddleware.isAuthenticated, usersController.profile);
+router.get('/profile/edit', authMiddleware.isAuthenticated, usersController.doProfile);
+router.post('/profile/edit', authMiddleware.isAuthenticated, usersController.doProfile);
 
 
 router.get('/', 
