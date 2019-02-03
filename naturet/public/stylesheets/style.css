@@ -33,9 +33,16 @@ width: 100%;
   cursor: pointer;
 }
 
-/* Descomentar esto para añadir estilo
+/* .input-category{
+  visibility: hidden;
+}
+
+.noevent{
+  pointer-events: none;
+} */
 
 
+/* 
 @font-face {
   font-family: 'icomoon';
   src:  url('../fonts/icomoon.eot?67gml9');
@@ -212,8 +219,8 @@ width: 100%;
   color:black;
   outline: 4px solid var(--category-bg-color);
   background-color: white;
-}
-*/
+} */
+
 
 @media (max-width: 768px) {
 

@@ -8,10 +8,13 @@ module.exports.profile = (req, res, next) => {
   res.render('users/profile')
 }
 
+module.exports.edit = (req, res, next) => {
+  res.render('users/editprofile')
+}
 
-module.exports.doProfile = (req, res, next) => {
+
+module.exports.doEdit = (req, res, next) => {
   console.log('entra')
-
 
   const bodyFields = {
     birth: req.body.birth,
@@ -20,7 +23,7 @@ module.exports.doProfile = (req, res, next) => {
     phone: req.body.phone,
     categories: req.body.categories,
     creator: req.body.creator,
-    picture: req.file.path
+    picture: req.file.url
   }
 
   const categories = typeof(req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;

@@ -27,6 +27,14 @@ $(window).on("load", function () {
       $(this).siblings('.category-card').removeClass("category-selected")
     }
   }).change();
+
+  function changeGoogleImageUrl() {
+    var newSize="1000"
+    var str = $('.profile-image').attr('src')
+    var res = str.split("?sz=50")[0]+"?sz="+newSize;
+    $('.profile-image').attr("src", res);
+  }
+  changeGoogleImageUrl()
 });
 
 $('.category-card').on('click', function (e) {

@@ -7,7 +7,7 @@
           <a href="">Categories</a>
           <a href="">Some description</a>
           <a href="">User role</a>
-          <a href="/profile">profile</a>
+          <a href="">profile</a>
           <a class="btn btn danger" href="/profile">View Profile</a>
         </div>
       </div>
@@ -34,10 +34,11 @@
           {{#each allCategories as |category| }}
 
           <div class="col-xl-2 col-md-3 col-6">
-            <input type='checkbox' name="categories" class="input-category" id="{{ category.id }}" value="{{ category.id }}"
+               <input type='checkbox' name="categories" class="input-category" id="{{ category.id }}" value="{{ category.id }}"
               {{#isCategorySelected ../session category ../categories }} {{/isCategorySelected}} />
             <div class="category-card">
-              {{!-- <span class='icon-{{category.fontnum}}'></span> --}}
+           
+              <span class='icon-{{category.fontnum}}'></span>
               <!-- descomentar esto par añadir estilo -->
               <p class="category-name">{{ category.name }} </p>
             </div>
@@ -82,12 +83,12 @@
         </div>
 
 
-     
-          <div class="input-group-prepend mb-2">
-            <h4>Your Album</h4><small>Some photos that can tell something about you and your interests</small>
-            <span class="input-group-text"> <i class="fas fa-image"></i> </span>
-          </div>
-          <input type="file" class="form-control" name="picture" placeholder="Picture"  value="string"/>
+
+        <div class="input-group-prepend mb-2">
+          <h4>Your Album</h4><small>Some photos that can tell something about you and your interests</small>
+          <span class="input-group-text"> <i class="fas fa-image"></i> </span>
+        </div>
+        <input type="file" class="form-control" name="picture" placeholder="Picture" value="string" />
 
 
         <hr class="mt-5">

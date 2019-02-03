@@ -2,16 +2,23 @@
   <div class="row pb-5">
 
     <div class="col-xl-3 col-md-3 col-12 ">
-      <img src="{{session.photo}}" width="200px">
+    <div class=" profile-navigation d-flex flex-column mx-auto ">
+          <a href="">Categories</a>
+          <a href="">Some description</a>
+          <a href="">User role</a>
+          <a href="/profile">profile</a>
+          <a class="btn btn danger" href="/profile/edit">Edit Profile</a>
+        </div>
+     
       </div>
 
-    </div>
+   
     <div class="col-xl-9 col-md-9 col-12">
+      <div class="text-center">
+        <img class="profile-image" src="{{session.photo}}" width="250px">
+        <h3>{{session.name}}</h3>
+      </div>
 
-
-      <h1>Your Profile</h1>
-      <img src="{{session.photo}}">
-      <h3>{{session.name}}</h3>
       <hr>
       <h1>categories</h1>
       <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
@@ -26,11 +33,11 @@
         <div class="row">
           {{#each allCategories as |category| }}
 
-          <div class="col-xl-2 col-md-3 col-6">
-            <input type='checkbox' name="categories" class="input-category" id="{{ category.id }}" value="{{ category.id }}"
-              {{#isCategorySelected ../session category ../categories }} {{/isCategorySelected}} />
-            <div class="category-card">
-              {{!-- <span class='icon-{{category.fontnum}}'></span> --}}
+          <div class="col-xl-2 col-md-3 col-6 noevent not-shown" style="display:{{#containCategory ../session category ../categories }}{{/containCategory}}">
+            <input type='checkbox' name="categories" class="input-category no-event" id="{{ category.id }}" value="{{ category.id }}"
+              {{#isCategorySelected ../session category ../categories }} {{/isCategorySelected}} >
+            <div class="category-card noevent">
+              <span class='icon-{{category.fontnum}}'></span> 
               <!-- descomentar esto par añadir estilo -->
               <p class="category-name">{{ category.name }} </p>
             </div>
@@ -52,35 +59,44 @@
               elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
               tempor in</p>
             <h4>about you</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-            <input type="text" name="about" id="address" class="w-100 mt-1" value="{{session.about}}">
+            <h3>{{session.about}}</h3>
+            <hr>
           </div>
 
           <div class="mb-2">
             <h4>Birth Date</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-            <input type="date" name="birth" class="d-table mt-2" value="{{session.birth}}">
+            <h3>{{session.birth}}</h3>
+            <hr>
           </div>
 
           <div class="mb-2">
             <h4>From:</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-            <div class="autocomplete">
-              <input id="myInput" type="text" name="country" placeholder="Country" value='{{session.country}}'>
-            </div>
+            <h3>{{session.country}}</h3>
+            <hr>
           </div>
 
           <div class="mb-2">
             <h4>Your phone number</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
               sit amet, consectetur adipiscing elit</small>
-            <input type="text" name="phone" class="w-100 mt-1" value="{{session.phone}}">
+            <h3>{{session.phone}}</h3>
+            <hr>
           </div>
         </div>
-
-
      
-          <div class="input-group-prepend mb-2">
-            <h4>Your Album</h4><small>Some photos that can tell something about you and your interests</small>
-            <span class="input-group-text"> <i class="fas fa-image"></i> </span>
+          <div class=" mb-2">
+            <h4>      <span class="input-group-text"> <i class="fas fa-image"></i> </span>Your Album</h4>
+            <img src="{{session.picture}}" style="max-width: 200px;">
           </div>
-          <input type="file" class="form-control" name="picture" placeholder="Picture"  value="string"/>
+
+
+          <div class="mb-2 col-6">
+            <h4>Your Favourites Experiences</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
+          </div>
+          <div class="mb-2 col-6">
+            <h4>Your Purchased Experiences</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
+          </div>
+        
+        
 
 
         <hr class="mt-5">
@@ -160,6 +176,6 @@
       </form>
     </div>
   </div>
+  
 </div>
-
-<h2>{{session.name}}</h2>
+</div>
