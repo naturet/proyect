@@ -8,13 +8,11 @@ module.exports.profile = (req, res, next) => {
   res.render('users/profile')
 }
 
-module.exports.edit = (req, res, next) => {
-  res.render('users/editprofile')
+module.exports.create = (req, res, next) => {
+  res.render('users/create')
 }
 
-
-module.exports.doEdit = (req, res, next) => {
-  console.log('entra')
+module.exports.doCreate = (req, res, next) => {
 
   const bodyFields = {
     birth: req.body.birth,
@@ -22,15 +20,15 @@ module.exports.doEdit = (req, res, next) => {
     country: req.body.country,
     phone: req.body.phone,
     categories: req.body.categories,
-    creator: req.body.creator,
-    picture: req.file.url
+    creator: true,
+    logo: req.file ? req.file.url : ''
   }
 
   const categories = typeof(req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;
 
   if (!categories || categories.length <= 3) {
     console.log(categories);
-    res.render('users/editprofile', {
+    res.render('users/create', {
       categories: categories,
       errors: {
         error: 'choose at least 4 categories'
@@ -52,7 +50,58 @@ module.exports.doEdit = (req, res, next) => {
         if (!user) {
           next(createError(404, 'User not found'));
         } else {
-          res.redirect('/')
+          res.redirect('/profile')
+          console.log(req.body)
+        }
+      })
+      .catch(error => next(error));
+  }
+}
+
+module.exports.edit = (req, res, next) => {
+  res.render('users/edit')
+}
+
+
+module.exports.doEdit = (req, res, next) => {
+
+  const bodyFields = {
+    birth: req.body.birth,
+    about: req.body.about,
+    country: req.body.country,
+    phone: req.body.phone,
+    categories: req.body.categories,
+    creator: req.body.creator,
+    pictures: req.files ? req.files.map(file => file.secure_url) : ''
+  }
+
+  const categories = typeof(req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;
+
+  if (!categories || categories.length <= 3) {
+    console.log(categories);
+    res.render('users/edit', {
+      categories: categories,
+      errors: {
+        error: 'choose at least 4 categories'
+      }
+    })
+  } else {
+    if (req.body.creator === undefined) {
+      req.body.creator = false;
+    }
+
+    User.findByIdAndUpdate(req.user.id, 
+      { $set : bodyFields },
+      {
+        safe: true,
+        upsert: true,
+        new: true
+      }).then(user => {
+        console.log(user)
+        if (!user) {
+          next(createError(404, 'User not found'));
+        } else {
+          res.redirect('/profile')
           console.log(req.body)
         }
       })
@@ -74,42 +123,57 @@ module.exports.list = (req, res, next) => {
     .catch(error => next(error));
 }
 
-
-module.exports.create = (req, res, next) => {
-  res.render('users/create');
+module.exports.creator = (req, res, next) => {
+  res.render('users/creator') 
 }
 
-module.exports.doCreate = (req, res, next) => {
-  User.findOne({
-      email: req.body.email
-    })
-    .then(user => {
-      if (user) {
-        res.render('users/create', {
-          user: req.body,
-          errors: {
-            email: 'Email already registered'
-          }
-        });
-      } else {
-        user = new User(req.body);
-        return user.save()
-          .then(user => {
-            res.redirect('/sessions/create');
-          });
+module.exports.doCreator = (req, res, next) => {
+
+  const bodyFields = {
+    birth: req.body.birth,
+    about: req.body.about,
+    country: req.body.country,
+    phone: req.body.phone,
+    categories: req.body.categories,
+    creator: req.body.creator,
+    pictures: req.files ? req.files.map(file => file.secure_url) : ''
+  }
+
+  const categories = typeof(req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;
+
+  if (!categories || categories.length <= 3) {
+    console.log(categories);
+    res.render('users/create', {
+      categories: categories,
+      errors: {
+        error: 'choose at least 4 categories'
       }
     })
-    .catch(error => {
-      if (error instanceof mongoose.Error.ValidationError) {
-        res.render('users/create', {
-          user: req.body,
-          errors: error.errors
-        });
-      } else {
-        next(error);
-      }
-    })
+  } else {
+    if (req.body.creator === undefined) {
+      req.body.creator = false;
+    }
+
+    User.findByIdAndUpdate(req.user.id, 
+      { $set : bodyFields },
+      {
+        safe: true,
+        upsert: true,
+        new: true
+      }).then(user => {
+        console.log(user)
+        if (!user) {
+          next(createError(404, 'User not found'));
+        } else {
+          res.redirect('/profile')
+          console.log(req.body)
+        }
+      })
+      .catch(error => next(error));
+  }
 }
+
+
 
 module.exports.doDelete = (req, res, next) => {
   User.findByIdAndRemove(req.params.id)

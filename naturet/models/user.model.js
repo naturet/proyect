@@ -36,9 +36,9 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String
   },
-  picture: {
-    type: String,
-    default : 'https://...'
+  pictures: {
+    type: [String],
+    default: []
   },
   photo: {
     type: String

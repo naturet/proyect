@@ -1,0 +1,121 @@
+<div class="container profile-container">
+  <div class="row pb-5">
+
+    <div class="col-xl-3 col-md-3 col-12 ">
+      <div style="">
+        <div class=" profile-navigation d-flex flex-column  ">
+          <a href="">Categories</a>
+          <a href="">Some description</a>
+          <a href="">User role</a>
+          <a href="">profile</a>
+          <a class="btn btn danger" href="/profile">View Profile</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-xl-9 col-md-9 col-12">
+      <div class="text-center">
+        <img class="profile-image" src="{{session.photo}}" width="250px">
+        <h3>{{session.name}}</h3>
+      </div>
+
+      <hr>
+      <h5 class="mb-3">Become a Experience Creator with naturapp and join the community!</h5>
+      <p class="mb-5">Lit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
+        consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</p>
+      <form class="" method="POST" enctype="multipart/form-data">
+        <div id="rol">
+          <h1 class="mb-3">Let us know about you</h1>
+
+          <div class="row mt-4 d-flex ">
+
+            <div class='col-12 mt-4 mb-3 expertise-check-group'>
+              <hr>
+              <h4>Type of Expertise</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit</p>
+              <div class="mt-3 mb-2 expertise-checkbox">
+                <input value="enterprise" name="expertise" type="checkbox" class="regular-checkbox"> Empresa, Lorem
+                ipsum dolor sit amet,
+                consectetur
+              </div>
+              <div class="mb-2 expertise-checkbox">
+                <input value="proffesional" name="expertise" type="checkbox" class="regular-checkbox"> Profesional,
+                Lorem ipsum dolor sit amet,
+                consectetur
+              </div>
+              <div class="mb-2 expertise-checkbox">
+                <input value="organization" name="expertise" type="checkbox" class="regular-checkbox"> ONG, Lorem ipsum
+                dolor sit amet,
+                consectetur onsectetur
+              </div>
+            </div>
+
+            <div class='col-12 mt-4 mb-4'>
+              <hr>
+              <h4>Reservation polities</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum elit</p>
+              <div class="mt-3 mb-2 politics-checkbox">
+                <input name="politic" type="checkbox" class="regular-checkbox" value="Para obtener el reembolso íntegro de
+                las tarifas de alojamiento, la cancelación debe realizarse al menos 24 horas antes de la hora local de
+                entrada (o las 15:00 si no aparece especificada) del día de llegada."> Para obtener el reembolso íntegro de
+                las tarifas de alojamiento, la cancelación debe realizarse al menos 24 horas antes de la hora local de
+                entrada (o las 15:00 si no aparece especificada) del día de llegada.
+              </div>
+              <div class="mb-2 politics-checkbox">
+                <input name="politic" type="checkbox" class="regular-checkbox" value="Para obtener el reembolso íntegro de
+                las tarifas de alojamiento, la cancelación debe realizarse al menos cinco días completos antes de la
+                hora local de entrada (las 15:00, si no aparece especificada) del día de llegada"> Para obtener el reembolso íntegro de
+                las tarifas de alojamiento, la cancelación debe realizarse al menos cinco días completos antes de la
+                hora local de entrada (las 15:00, si no aparece especificada) del día de llegada
+              </div>
+              <div class="mb-2 politics-checkbox">
+                <input name="politic" type="checkbox" class="regular-checkbox" value="Para obtener un reembolso completo de
+                las tarifas de alojamiento, la cancelación debe realizarse durante las 48 horas siguientes al momento
+                de hacer la reserva y al menos 14 días completos antes del día y la hora local de la llegada al
+                alojamiento (o, si no se especifica, antes de las 15:00). En caso contrario, no recibirás un reembolso."> Para obtener un reembolso completo de
+                las tarifas de alojamiento, la cancelación debe realizarse durante las 48 horas siguientes al momento
+                de hacer la reserva y al menos 14 días completos antes del día y la hora local de la llegada al
+                alojamiento (o, si no se especifica, antes de las 15:00). En caso contrario, no recibirás un reembolso.
+              </div>
+              <hr>
+            </div>
+
+            <div class="col-12 mb-2">
+              <h4>Enterprise or Personal description:</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit,</small>
+              <input type="text" name="enterprise_email" class="w-100 mt-1">
+              <hr>
+            </div>
+
+            <div class="col-12 mb-2 mt-4">
+              <h4>Enterprise or Profesional email:</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
+              <input type="text" name="enterprise_email" class="w-100 mt-1">
+              <hr>
+            </div>
+
+            <div class="col-xl-12 col-md-12 col-12">
+              <h4>Your acreditation</h4>
+              <small>Lorem it amet, consectetur adipiscing elit, Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit</small>
+              <input type="text" class="w-100 mt-1">
+              <hr>
+            </div>
+
+            <div class="col-xl-12 col-md-12 col-12">
+              <h4>Your Enterprise Photo</h4>
+              <small class="mb-2">Upload your enterprise logo if you have it</small><br>
+              <span> <i class="fas fa-image"></i> </span>
+              <input class="mt-2" type="file" name="picture" placeholder="Picture" value="string" />
+            </div>
+
+            <hr>
+          </div>
+        </div>
+        <hr>
+        <button class="btn btn-primary btn-block p-3" type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -6,11 +6,17 @@ const authMiddleware = require('../middlewares/auth.middleware');
 const multer = require('multer');
 const uploadCloud = require('../configs/cloudinary.config.js');
 
-// const upload = multer({ dest: './uploads' })
 
 router.get('/profile',authMiddleware.isAuthenticated, authMiddleware.isProfileCompleted, usersController.profile);
-router.get('/profile/edit', authMiddleware.isAuthenticated, usersController.edit);
-router.post('/profile/edit', authMiddleware.isAuthenticated, uploadCloud.single('picture'), usersController.doEdit);
+
+router.get('/profile/create',authMiddleware.isProfileUncompleted, authMiddleware.isAuthenticated, usersController.create);
+router.post('/profile/create', authMiddleware.isAuthenticated, uploadCloud.array('picture'), usersController.doCreate);
+
+router.get('/creator/create',authMiddleware.isProfileCompleted, authMiddleware.isAuthenticated, usersController.creator);
+router.post('/creator/create',authMiddleware.isProfileCompleted, authMiddleware.isAuthenticated, uploadCloud.single('picture'), usersController.doCreator);
+
+router.get('/profile/edit', authMiddleware.isAuthenticated, authMiddleware.isProfileCompleted, usersController.edit);
+router.post('/profile/edit', authMiddleware.isAuthenticated, uploadCloud.array('picture'), usersController.doEdit);
 
 router.get('/', 
   authMiddleware.isAuthenticated,

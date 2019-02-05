@@ -2,22 +2,37 @@
   <div class="row pb-5">
 
     <div class="col-xl-3 col-md-3 col-12 ">
-    <div class=" profile-navigation d-flex flex-column mx-auto ">
-          <a href="">Categories</a>
-          <a href="">Some description</a>
-          <a href="">User role</a>
-          <a href="/profile">profile</a>
-          <a class="btn btn danger" href="/profile/edit">Edit Profile</a>
-        </div>
-     
+      <div class=" profile-navigation d-flex flex-column mx-auto ">
+        <a href="">Categories</a>
+        <a href="">Some description</a>
+        <a href="">User role</a>
+        <a href="/profile">profile</a>
+        <a class="btn btn-danger" href="/profile/edit">Edit Profile</a>
       </div>
 
-   
+    </div>
+
+
     <div class="col-xl-9 col-md-9 col-12">
       <div class="text-center">
         <img class="profile-image" src="{{session.photo}}" width="250px">
         <h3>{{session.name}}</h3>
+        {{#if session.creator}}
+        <h5>Creator<span class="icon-030"></span></h5>
+        {{else}}
+        <h5>Adventurous</h5>
+        {{/if}}
       </div>
+      {{#if session.creator}}
+
+      {{else}}
+      <hr>
+      <h5>Wanna become an Experiencer creator? Click and submit to our community!</h5>
+      <p>Lit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
+        consectetur adipiscinconsectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
+        consectetur adipiscin</p>
+      <a class="btn btn-primary p-2" href="creator/create">Become a creator</a>
+      {{/if}}
 
       <hr>
       <h1>categories</h1>
@@ -35,9 +50,9 @@
 
           <div class="col-xl-2 col-md-3 col-6 noevent not-shown" style="display:{{#containCategory ../session category ../categories }}{{/containCategory}}">
             <input type='checkbox' name="categories" class="input-category no-event" id="{{ category.id }}" value="{{ category.id }}"
-              {{#isCategorySelected ../session category ../categories }} {{/isCategorySelected}} >
+              {{#isCategorySelected ../session category ../categories }} {{/isCategorySelected}}>
             <div class="category-card noevent">
-              <span class='icon-{{category.fontnum}}'></span> 
+              <span class='icon-{{category.fontnum}}'></span>
               <!-- descomentar esto par añadir estilo -->
               <p class="category-name">{{ category.name }} </p>
             </div>
@@ -82,100 +97,34 @@
             <hr>
           </div>
         </div>
-     
-          <div class=" mb-2">
-            <h4>      <span class="input-group-text"> <i class="fas fa-image"></i> </span>Your Album</h4>
-            <img src="{{session.picture}}" style="max-width: 200px;">
-          </div>
 
+        <div class=" mb-2">
+          <h4> <span class="input-group-text"> <i class="fas fa-image"></i> </span>Your Album</h4>
+          {{#each_upto session.pictures 5}}
+          <img src="{{this}}" style="max-height: 200px;">
+          {{/each_upto}}
+        </div>
 
-          <div class="mb-2 col-6">
-            <h4>Your Favourites Experiences</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-          </div>
-          <div class="mb-2 col-6">
-            <h4>Your Purchased Experiences</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-          </div>
-        
-        
-
+        <hr>
+        <div class="mb-2 col-6">
+          <h4>Your Favourites Experiences</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
+        </div>
+        <hr>
+        <div class="mb-2 col-6">
+          <h4>Your Purchased Experiences</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
+        </div>
 
         <hr class="mt-5">
 
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="creator" name="creator" value="true" checked="{{session.creator}}">
-          <label class="form-check-label" for="creator">Creator</label>
-        </div>
-
         {{#if session.creator}}
-        <div id="rol">
-          <h1>User Rol</h1>
-          <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum
-            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor in</p>
-
-          <div class="row mt-4 d-flex ">
-
-            <div class='col-12 mt-4 mb-3'>
-              <h4>Type of Expertise</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
-                sit amet, consectetur adipiscing elit</p>
-              <div class="mt-3 mb-2">
-                <input value="empresa" name="expertise" type="checkbox"> Empresa, Lorem ipsum dolor sit amet,
-                consectetur
-              </div>
-              <div class="mb-2">
-                <input value="profesional" name="profesional" type="checkbox"> Profesional, Lorem ipsum dolor sit amet,
-                consectetur
-              </div>
-              <div class="mb-2">
-                <input value="organization" name="organization" type="checkbox"> ONG, Lorem ipsum dolor sit amet,
-                consectetur onsectetur
-              </div>
-            </div>
-
-            <div class='col-12 mt-4 mb-4'>
-              <h4>Reservation polities</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum elit</p>
-              <div class="mt-3 mb-2">
-                <input value="empresa" type="checkbox"> Empresa, Lorem ipsum dolor sit amet, consectetur
-              </div>
-              <div class="mb-2">
-                <input value="profesional" type="checkbox"> Profesional, Lorem ipsum dolor sit amet, consectetur
-              </div>
-              <div class="mb-2">
-                <input value="organization" type="checkbox"> ONG, Lorem ipsum dolor sit amet, consectetur onsectetur
-              </div>
-            </div>
-
-            <div class="col-12 mb-2">
-              <h4>Enterprise email:</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-              <input type="text" name="enterprise_email" class="w-100 mt-1">
-            </div>
-
-            <div class="col-xl-4 col-md-4 col-12">
-              <h4>Your credit card</h4><small></small>
-              <input type="text" name="card" class="w-100 mt-1">
-              <small>Lorem it amet, consectetur adipiscing elit, Lorem ipsum dolor
-                sit amet, consectetur adipiscing elit</small>
-            </div>
-
-            <div class="col-xl-8 col-md-8 col-12">
-              <h4>Your acreditation</h4>
-              <input type="text" class="w-100 mt-1">
-              <small>Lorem it amet, consectetur adipiscing elit, Lorem ipsum dolor
-                sit amet, consectetur adipiscing elit</small>
-            </div>
-
-          </div>
-        </div>
+        <h1>Your experiences created</h1>
+         <hr>
         {{/if}}
-        <hr>
+       
         <button class="btn btn-primary btn-block p-3" type="submit">Guardar</button>
       </form>
     </div>
   </div>
-  
+
 </div>
 </div>

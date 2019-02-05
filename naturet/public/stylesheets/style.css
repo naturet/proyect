@@ -36,13 +36,13 @@ width: 100%;
 /* .input-category{
   visibility: hidden;
 }
-
+*/
 .noevent{
   pointer-events: none;
-} */
+} 
 
 
-/* 
+/*
 @font-face {
   font-family: 'icomoon';
   src:  url('../fonts/icomoon.eot?67gml9');
@@ -66,7 +66,7 @@ width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+  
 .icon-001:before {
   content: "\e900";
 }
@@ -219,9 +219,13 @@ width: 100%;
   color:black;
   outline: 4px solid var(--category-bg-color);
   background-color: white;
-} */
+} 
 
+.icon-030:before {
+  content: "\e91d";
+}
 
+*/
 @media (max-width: 768px) {
 
 .profile-container{
