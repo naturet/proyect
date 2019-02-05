@@ -242,6 +242,19 @@ module.exports.doEditCreator = (req, res, next) => {
 
 
 
+module.exports.get = (req, res, next) => {
+  User.findById(req.params.id)
+    .then(user => {
+      if (!user) {
+        next(createError(404, 'User not found'));
+      } else {
+        res.render('users/detail',{
+          user
+        });
+      }
+    })
+    .catch(error => next(error));
+}
 
 
 module.exports.doDelete = (req, res, next) => {
