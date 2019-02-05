@@ -41,6 +41,10 @@ width: 100%;
   pointer-events: none;
 } 
 
+input[type=file]{
+  max-width: 100%;
+}
+
 
 /*
 @font-face {

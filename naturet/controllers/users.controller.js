@@ -8,6 +8,9 @@ module.exports.profile = (req, res, next) => {
   res.render('users/profile')
 }
 
+
+// First Create of user profile
+
 module.exports.create = (req, res, next) => {
   res.render('users/create')
 }
@@ -20,14 +23,13 @@ module.exports.doCreate = (req, res, next) => {
     country: req.body.country,
     phone: req.body.phone,
     categories: req.body.categories,
-    creator: true,
-    logo: req.file ? req.file.url : ''
+    creator: req.body.creator,
+    pictures: req.files ? req.files.map(file => file.secure_url) : ''
   }
 
   const categories = typeof(req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;
 
   if (!categories || categories.length <= 3) {
-    console.log(categories);
     res.render('users/create', {
       categories: categories,
       errors: {
@@ -46,22 +48,23 @@ module.exports.doCreate = (req, res, next) => {
         upsert: true,
         new: true
       }).then(user => {
-        console.log(user)
+
         if (!user) {
           next(createError(404, 'User not found'));
         } else {
           res.redirect('/profile')
-          console.log(req.body)
         }
       })
       .catch(error => next(error));
   }
 }
 
+
+// Edition of user profile
+
 module.exports.edit = (req, res, next) => {
   res.render('users/edit')
 }
-
 
 module.exports.doEdit = (req, res, next) => {
 
@@ -78,7 +81,6 @@ module.exports.doEdit = (req, res, next) => {
   const categories = typeof(req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;
 
   if (!categories || categories.length <= 3) {
-    console.log(categories);
     res.render('users/edit', {
       categories: categories,
       errors: {
@@ -97,12 +99,10 @@ module.exports.doEdit = (req, res, next) => {
         upsert: true,
         new: true
       }).then(user => {
-        console.log(user)
         if (!user) {
           next(createError(404, 'User not found'));
         } else {
           res.redirect('/profile')
-          console.log(req.body)
         }
       })
       .catch(error => next(error));
@@ -123,36 +123,48 @@ module.exports.list = (req, res, next) => {
     .catch(error => next(error));
 }
 
+
+// Create of user creator profile
+
 module.exports.creator = (req, res, next) => {
-  res.render('users/creator') 
+  res.render('users/creator/create')
 }
 
 module.exports.doCreator = (req, res, next) => {
+  console.log(req.body.politic)
 
   const bodyFields = {
-    birth: req.body.birth,
-    about: req.body.about,
-    country: req.body.country,
-    phone: req.body.phone,
-    categories: req.body.categories,
-    creator: req.body.creator,
-    pictures: req.files ? req.files.map(file => file.secure_url) : ''
+    expertise: req.body.expertise,
+    politic: req.body.politic,
+    enterpriseDescription: req.body.enterpriseDescription,
+    enterpriseEmail: req.body.enterpriseEmail,
+    acreditation: req.body.acreditation,
+    creator: true,
+    enterprise_picture: req.file ? req.file.secure_url : ''
   }
+  const enterpriseDescription = req.body.enterpriseDescription;
+  const expertise =  req.body.expertise;
+  const enterpriseEmail =  req.body.enterpriseEmail;
+  const acreditation = req.body.acreditation;
 
-  const categories = typeof(req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;
+  const politics =   typeof(req.body.politic) === 'string' ? [req.body.politic] : req.body.politic;
+ 
 
-  if (!categories || categories.length <= 3) {
-    console.log(categories);
-    res.render('users/create', {
-      categories: categories,
+  if (!expertise || !politics || !enterpriseEmail || !acreditation) {
+    res.render('users/creator/create', {
+      enterpriseDescription,
+      acreditation,
+      enterpriseEmail,
+      expertise,  
+      politics : politics,
       errors: {
-        error: 'choose at least 4 categories'
+        expertise: expertise ? undefined : 'Select one expertise field',
+        politic: politics ? undefined : 'Select one privacy politic field',
+        enterpriseEmail : enterpriseEmail ? undefined : 'Enterprise email is required',
+        acreditation: acreditation ? undefined : 'Write something in your acreditation field'
       }
-    })
+    }); 
   } else {
-    if (req.body.creator === undefined) {
-      req.body.creator = false;
-    }
 
     User.findByIdAndUpdate(req.user.id, 
       { $set : bodyFields },
@@ -161,17 +173,74 @@ module.exports.doCreator = (req, res, next) => {
         upsert: true,
         new: true
       }).then(user => {
-        console.log(user)
         if (!user) {
           next(createError(404, 'User not found'));
         } else {
           res.redirect('/profile')
-          console.log(req.body)
         }
       })
       .catch(error => next(error));
-  }
+    }
 }
+
+module.exports.editCreator = (req, res, next) => {
+  res.render('users/creator/edit')
+}
+
+module.exports.doEditCreator = (req, res, next) => {
+  console.log(req.body.politic)
+
+  const bodyFields = {
+    expertise: req.body.expertise,
+    politic: req.body.politic,
+    enterpriseDescription: req.body.enterpriseDescription,
+    enterpriseEmail: req.body.enterpriseEmail,
+    acreditation: req.body.acreditation,
+    creator: true,
+    enterprise_picture: req.file ? req.file.secure_url : ''
+  }
+  const enterpriseDescription = req.body.enterpriseDescription;
+  const expertise =  req.body.expertise;
+  const enterpriseEmail =  req.body.enterpriseEmail;
+  const acreditation = req.body.acreditation;
+
+  const politics =   typeof(req.body.politic) === 'string' ? [req.body.politic] : req.body.politic;
+ 
+
+  if (!expertise || !politics || !enterpriseEmail || !acreditation) {
+    res.render('users/creator/edit', {
+      enterpriseDescription,
+      acreditation,
+      enterpriseEmail,
+      expertise,  
+      politics : politics,
+      errors: {
+        expertise: expertise ? undefined : 'Select one expertise field',
+        politic: politics ? undefined : 'Select one privacy politic field',
+        enterpriseEmail : enterpriseEmail ? undefined : 'Enterprise email is required',
+        acreditation: acreditation ? undefined : 'Write something in your acreditation field'
+      }
+    }); 
+  } else {
+
+    User.findByIdAndUpdate(req.user.id, 
+      { $set : bodyFields },
+      {
+        safe: true,
+        upsert: true,
+        new: true
+      }).then(user => {
+        if (!user) {
+          next(createError(404, 'User not found'));
+        } else {
+          res.redirect('/profile')
+        }
+      })
+      .catch(error => next(error));
+    }
+}
+
+
 
 
 

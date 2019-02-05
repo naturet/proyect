@@ -3,6 +3,7 @@ const constants = require('../constants');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const categories = require('../data/categories');
+const politics = require('../data/politics')
 const SALT_WORK_FACTOR = 10;
 const FIRST_ADMIN_EMAIL = process.env.FIRST_ADMIN_EMAIL;
 
@@ -56,6 +57,26 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: [constants.ROLE_ADMIN, constants.ROLE_GUEST],
     default: constants.ROLE_GUEST
+  },
+  expertise: {
+    type: String
+  },
+  politic: {
+    type: String,
+    enum: politics.map((c) => c.name),
+    default: []
+  },
+  enterpriseDescription: {
+    type: String,
+  },
+  enterpriseEmail: {
+    type: String
+  },
+  acreditation: {
+    type: String
+  },
+  enterprise_picture: {
+    type: String
   }
 }, { timestamps: true });
 

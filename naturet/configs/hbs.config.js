@@ -6,3 +6,5 @@ require('../helpers/category.helpers')(hbs);
 require('../helpers/user.helpers')(hbs);
 require('../helpers/categoryshow.helpers')(hbs);
 require('../helpers/pictures.helpers')(hbs);
+require('../helpers/equalcheck.helpers')(hbs);
+require('../helpers/politic.helpers')(hbs);

@@ -8,6 +8,10 @@
         <a href="">User role</a>
         <a href="/profile">profile</a>
         <a class="btn btn-danger" href="/profile/edit">Edit Profile</a>
+          {{#if session.creator}}
+        <a class="btn btn-default" href="/creator/edit">Edit Creator Profile</a>
+        {{/if}}
+        
       </div>
 
     </div>
@@ -117,11 +121,17 @@
         <hr class="mt-5">
 
         {{#if session.creator}}
+         <h1>Your creator Data</h1>
+        <div>{{session.expertise}}</div>
+        <div>{{session.enterpriseEmail}}</div>
+        <div>{{session.politic}}</div>
+        <div>{{session.enterpriseDescription}}</div>
+        <div>{{session.acreditation}}</div>
+        <div><img src="{{session.enterprise_picture}}"></div>
         <h1>Your experiences created</h1>
          <hr>
         {{/if}}
        
-        <button class="btn btn-primary btn-block p-3" type="submit">Guardar</button>
       </form>
     </div>
   </div>

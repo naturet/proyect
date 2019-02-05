@@ -10,6 +10,7 @@ const MongoStore = require("connect-mongo")(session);
 const passport = require('passport');
 const mongoose = require('mongoose');
 const categories = require('./data/categories');
+const politics = require('./data/politics')
 
 require('./configs/db.config');
 require('./configs/hbs.config');
@@ -54,6 +55,7 @@ app.use(passport.session());
 app.use((req, res, next) => {
   res.locals.session = req.user;
   res.locals.allCategories = categories;
+  res.locals.allPolitics = politics;
   next();
 })
 

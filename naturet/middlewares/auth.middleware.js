@@ -18,6 +18,16 @@ module.exports.isNotAuthenticated = (req, res, next) => {
   }
 }
 
+module.exports.isCreator = (req, res, next) => {
+  if (req.user.creator) { 
+    res.redirect('/creator/edit');
+  } else {
+    res.status(401)
+    next();
+  }
+}
+
+
 
 module.exports.isProfileCompleted = (req, res, next) => {
   if (req.user.categories && req.user.categories.length > 3) {

@@ -1,0 +1,126 @@
+<div class="container profile-container">
+  <div class="row pb-5">
+
+    <div class="col-xl-3 col-md-3 col-12 ">
+      <div style="">
+        <div class=" profile-navigation d-flex flex-column  ">
+          <a href="">Categories</a>
+          <a href="">Some description</a>
+          <a href="">User role</a>
+          <a href="">profile</a>
+          <a class="btn btn danger" href="/profile">View Profile</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-xl-9 col-md-9 col-12">
+      <div class="text-center">
+        <img class="profile-image" src="{{session.photo}}" width="250px">
+        <h3>{{session.name}}</h3>
+      </div>
+
+      <hr>
+      <h5 class="mb-3">Become a Experience Creator with naturapp and join the community!</h5>
+      <p class="mb-5">Lit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
+        consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</p>
+      <form class="" method="POST" enctype="multipart/form-data">
+        <div id="rol">
+          <h1 class="mb-3">Let us know about you</h1>
+
+          <div class="row mt-4 d-flex ">
+
+            <div class='col-12 mt-4 mb-3 expertise-check-group'>
+              <hr>
+              <h4>Type of Expertise</h4>
+              
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit</p>
+              <div class="mt-3 mb-2 expertise-checkbox">
+                <input value="enterprise" name="expertise" type="checkbox" class="regular-checkbox" {{#ifCond "enterprise" expertise}}{{/ifCond}}  > Empresa, Lorem
+                ipsum dolor sit amet,
+                consectetur
+              </div>
+              <div class="mb-2 expertise-checkbox">
+                <input value="proffesional" name="expertise" type="checkbox" class="regular-checkbox" {{#ifCond "proffesional" expertise}}{{/ifCond}} > Profesional,
+                Lorem ipsum dolor sit amet,
+                consectetur
+              </div>
+              <div class="mb-2 expertise-checkbox">
+                <input value="organization" name="expertise" type="checkbox" class="regular-checkbox" {{#ifCond "organization" expertise}}{{/ifCond}} > ONG, Lorem ipsum
+                dolor sit amet,
+                consectetur onsectetur
+              </div>
+              {{#if errors.expertise}}
+                 <h3>{{errors.expertise}}</h3> 
+              {{/if}}
+               <hr>
+            </div>
+
+            <div class='col-12 mt-4 mb-4'>
+
+              <h4>Reservation polities</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum elit</p>
+
+              {{#each allPolitics as |politic|}}
+                <div class="mt-3 mb-2 politics-checkbox">
+                   <input name="politic" type="checkbox" class="regular-checkbox" value="{{politic.name}}"  {{#isPoliticSelected ../session politic ../politics }} {{/isPoliticSelected}} />  {{politic.name}}
+                </div>
+              {{/each}}
+
+      
+
+               {{#if errors.politic}}
+                 <h3>{{errors.politic}}</h3> 
+              {{/if}}
+              <hr>
+             
+            </div>
+
+            <div class="col-12 mb-2">
+              <h4>Enterprise or Personal description:</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit,</small>
+              <input type="text" name="enterpriseDescription" class="w-100 mt-1" value="{{enterpriseDescription}}">
+              <hr>
+            </div>
+
+            <div class="col-12 mb-2 mt-4">
+              <h4>Enterprise or Profesional email:</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
+              <input type="email" name="enterpriseEmail" class="w-100 mt-1" value="{{enterpriseEmail}}">
+                 {{#if errors.enterpriseEmail}}
+                 <h3>{{errors.enterpriseEmail}}</h3> 
+              {{/if}}
+              <hr>
+             
+            </div>
+
+            <div class="col-xl-12 col-md-12 col-12">
+              <h4>Your acreditation</h4>
+              <small>Lorem it amet, consectetur adipiscing elit, Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit</small>
+              <input name="acreditation" type="text" class="w-100 mt-1" value="{{acreditation}}">
+                   {{#if errors.acreditation}}
+                 <h3>{{errors.acreditation}}</h3> 
+              {{/if}}
+              <hr>
+            </div>
+
+       
+
+            
+
+            <div class="col-xl-12 col-md-12 col-12">
+              <h4>Your Enterprise Photo</h4>
+              <small class="mb-2">Upload your enterprise logo if you have it</small><br>
+              <span> <i class="fas fa-image"></i> </span>
+              <input class="mt-2" type="file" name="enterprise_picture" placeholder="Logo of your Enterprise" value="string" />
+            </div>
+            <hr>
+          </div>
+        </div>
+        <hr>
+        <button class="btn btn-primary btn-block p-3" type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
