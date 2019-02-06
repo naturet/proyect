@@ -10,7 +10,7 @@ module.exports.delete = (req, res, next) => {
 }
 
 module.exports.createWithIDPCallback = (req, res, next) => {
-  passport.authenticate (`${req.params.provider}-auth`, (errors, user) => {
+  passport.authenticate(`${req.params.provider}-auth`, (errors, user) => {
     if (errors) {
       next(errors);
     } else {

@@ -1,55 +1,58 @@
 const mongoose = require('mongoose');
-const categories = require('../data/categories');
+const categoriesExp = require('../data/categories');
 
-const schema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  name: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  categories: {
-    type: [String],
-    enum: categories.map((c) => c.id),
-    default: [],
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  anymore: {
-    type: String,
-  },
-  location: {
-    type: { type: String },
-    coordinates: [Number],
-  },
-  price: {
-    type: String,
-  },
-  photo: {
-    path: String,
-  },
-  languages: {
-    type: [String],
-    default:["Español", "Inglés", "Francés", "Alemán", "Chino"],
-    required: true,
-  },
-  duration: {
-    type: Number,
-    required: true,
-  },
-  includes: {
-    type: String,
-    enum: ["Bebidas", "Comida", "Aperitivo", "Equipo"]
-  }
- 
+const experienceSchema = new mongoose.Schema({
+ user: {
+   type: mongoose.Schema.Types.ObjectId,
+   ref: 'User'
+ },
+ name: {
+   type: String,
+  //  required: true,
+ },
+ categories: {
+   type: [String],
+   enum: categoriesExp.map((c) => c.id),
+   default: [],
+   // required: true,
+ },
+ description: {
+   type: String,
+   // required: true,
+ },
+ anymore: {
+   type: String,
+ },
+ location: {
+   type: { type: String, default: "LineString" },
+   coordinates: [[Number]]
+ },
+ price: {
+   type: String,
+   min: 0,
+ },
+ photo: {
+   path: String,
+ },
+ languages: {
+   type: [String],
+   enum:["Español", "Inglés", "Francés", "Alemán", "Chino"],
+   // required: true,
+ },
+ duration: {
+   type: Number,
+   min: 0,
+ },
+ includes: {
+   type: [String],
+   enum: ["Bebidas", "Comida", "Aperitivo", "Equipo"]
+ }
+
 }, {
-  timestamps: true
+ timestamps: true
 });
 
-module.exports = mongoose.model('Experience', schema);
+experienceSchema.index({ location: '2dsphere' });
+
+const Experience = mongoose.model('Experience', experienceSchema);
+module.exports = Experience;

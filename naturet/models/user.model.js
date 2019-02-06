@@ -1,4 +1,3 @@
-
 const constants = require('../constants');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -62,12 +61,12 @@ const userSchema = new mongoose.Schema({
     type: String
   },
   politic: {
-    type: String,
+    type: [String],
     enum: politics.map((c) => c.name),
     default: []
   },
   enterpriseDescription: {
-    type: String,
+    type: String
   },
   enterpriseEmail: {
     type: String
@@ -78,9 +77,27 @@ const userSchema = new mongoose.Schema({
   enterprise_picture: {
     type: String
   }
-}, { timestamps: true });
+}, {
+  timestamps: true,
+  toObject: {
+    virtuals: true
+  } 
+});
 
-userSchema.pre('save', function(next) {
+userSchema.virtual('experiences', {
+  ref: 'Experience', // The model to use
+  localField: '_id', // Find people where `localField`
+  foreignField: 'user', // is equal to `foreignField`
+  // If `justOne` is true, 'members' will be a single doc as opposed to
+  // an array. `justOne` is false by default.
+  justOne: false,
+  options: { sort: { createdAt: -1 } } // Query options, see http://bit.ly/mongoose-query-options
+});
+
+
+
+
+userSchema.pre('save', function (next) {
   if (this.email === FIRST_ADMIN_EMAIL) {
     this.role = constants.ROLE_ADMIN;
   }
@@ -100,7 +117,7 @@ userSchema.pre('save', function(next) {
   }
 });
 
-userSchema.methods.checkPassword = function(password) {
+userSchema.methods.checkPassword = function (password) {
   return bcrypt.compare(password, this.password);
 }
 

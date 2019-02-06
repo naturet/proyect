@@ -1,0 +1,107 @@
+<div class="container profile-container">
+  <div class="row pb-5">
+
+    <div class="col-xl-3 col-md-3 col-12 ">
+      <div class=" profile-navigation d-flex flex-column mx-auto ">
+        <a href="">Categories</a>
+        <a href="">Some description</a>
+        <a href="">map</a>
+        <a href="/profile">profile</a>
+        <a class="btn btn danger" href="/experiences/{{experience.id}}/edit">Edit experience</a>
+      </div>
+    </div>
+
+
+    <div class="col-xl-9 col-md-9 col-12">
+      <div class="text-center">
+        <img class="profile-image" src="http://prpop.org/wp-content/plugins/ajax-search-pro/img/default.jpg" width="250px">
+        <h3>{{experience.name}}</h3>
+      </div>
+
+      <hr>
+      <h1>categories</h1>
+      <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
+      <p class="mb-5">Lit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
+        consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</p>
+
+      <form class="" method="POST" enctype="multipart/form-data">
+        <div class="row">
+          {{#each allCategories as |category| }}
+
+          <div class="col-xl-2 col-md-3 col-6 noevent not-shown" style="display:{{#containCategoryexp ../experience category ../categories }}{{/containCategoryexp}}">
+
+            <div class="category-card noevent">
+              <span class='icon-{{category.fontnum}}'></span>
+              <!-- descomentar esto par añadir estilo -->
+              <p class="category-name">{{ category.name }} </p>
+            </div>
+          </div>
+          </input>
+
+          {{/each}}
+
+        </div>
+        <hr>
+        <div class="form-group">
+          <h1>Some description</h1>
+
+          <div class="mb-2">
+            <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
+            <h3>{{experience.description}}</h3>
+            <hr>
+          </div>
+
+          <div class="mb-2">
+            <h3>¿Que incluye?</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
+            <h4>{{experience.includes}}</h4>
+            <hr>
+          </div>
+
+          <div class="mb-2">
+            <h3>Idiomas</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
+            <h4>{{experience.languages}}</h4>
+            <hr>
+          </div>
+          <div class="mb-2">
+            <h3>Precio</h3><small></small>
+            <h4>{{experience.price}}€</h4>
+            <hr>
+          </div>
+          <div class="mb-2">
+            <h3>Duracion</h3><small>El tiempo de duración una vez comienza la actividad, siempre en minutos</small>
+            <h4>{{experience.duration}}'</h4>
+            <hr>
+          </div>
+
+          <div class="mb-2">
+            <h3>¿Que debes saber?</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit</small>
+            <h4>{{experience.anymore}}</h4>
+            <hr>
+          </div>
+          <div class="mb-2">
+            <h3>Mapa actividad</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit</small>
+            <div id="map"></div>
+            <hr>
+          </div>
+        </div>
+
+        <div class=" mb-2">
+          <h4> <span class="input-group-text"> <i class="fas fa-image"></i> </span>Fotos</h4>
+          {{!-- <img src="{{experience.photo}}" style="max-width: 200px;"> --}}
+        </div>
+
+
+        <hr class="mt-5">
+    </div>
+  </div>
+
+</div>
+</div>
+<script>
+  var decodedJson = decodeURIComponent("{{{pointsJSON}}}");
+  var jsonObj = JSON.parse(decodedJson);
+  window.points = jsonObj;
+</script>

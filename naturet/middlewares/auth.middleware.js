@@ -10,7 +10,7 @@ module.exports.isAuthenticated = (req, res, next) => {
 }
 
 module.exports.isNotAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) { 
+  if (req.isAuthenticated()) {
     res.redirect('/profile');
   } else {
     res.status(401)
@@ -19,14 +19,13 @@ module.exports.isNotAuthenticated = (req, res, next) => {
 }
 
 module.exports.isCreator = (req, res, next) => {
-  if (req.user.creator) { 
+  if (req.user.creator) {
     res.redirect('/creator/edit');
   } else {
     res.status(401)
     next();
   }
 }
-
 
 
 module.exports.isProfileCompleted = (req, res, next) => {

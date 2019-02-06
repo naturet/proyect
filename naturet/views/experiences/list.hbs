@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row pb-5">
+
+    <div class="col-xl-3 col-md-3 col-12 ">
+      <div style="">
+        <div class=" profile-navigation d-flex flex-column  ">
+          <a class="btn btn danger">View Profile</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-xl-9 col-md-9 col-12">
+
+
+      <h1>Your seller profile</h1>
+      <img src="{{session.photo}}">
+      <h3>{{session.name}}</h3>
+      <hr>
+      <a class="btn btn-primary mb-3" href="/experiences/create">New experience</a>
+      <ul class="list-group mt-5">
+
+        {{#each experiences as |experience|}}
+        <li class="list-group-item d-flex justify-content-between align-items-center experience-item" data-id="{{experience.id}}">
+          <form action="/experiences/{{experience.id}}/edit" method="get" class="float-left">
+            <button type="submit" class="btn btn-success">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+          </form>
+          <div>
+            <a href="/experiences/{{ experience._id }}">{{this.name}}</a>
+          </div>
+          <form action="/experiences/{{experience.id}}/delete" class="float-right">
+            <button type="submit" class="btn btn-danger">
+              <i class="fas fa-times"></i>
+            </button>
+          </form>
+        </li>
+        {{/each}}
+        
+      </ul>
+    </div>
+  </div>

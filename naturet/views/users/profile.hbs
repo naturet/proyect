@@ -8,10 +8,10 @@
         <a href="">User role</a>
         <a href="/profile">profile</a>
         <a class="btn btn-danger" href="/profile/edit">Edit Profile</a>
-          {{#if session.creator}}
+        {{#if session.creator}}
         <a class="btn btn-default" href="/creator/edit">Edit Creator Profile</a>
         {{/if}}
-        
+
       </div>
 
     </div>
@@ -48,7 +48,7 @@
       {{#if errors.error }}
       <h2>{{ errors.error }}</h2>
       {{/if}}
-      <form class="" method="POST" enctype="multipart/form-data">
+      <form enctype="multipart/form-data">
         <div class="row">
           {{#each allCategories as |category| }}
 
@@ -121,7 +121,7 @@
         <hr class="mt-5">
 
         {{#if session.creator}}
-         <h1>Your creator Data</h1>
+        <h1>Your creator Data</h1>
         <div>{{session.expertise}}</div>
         <div>{{session.enterpriseEmail}}</div>
         <div>{{session.politic}}</div>
@@ -129,10 +129,41 @@
         <div>{{session.acreditation}}</div>
         <div><img src="{{session.enterprise_picture}}"></div>
         <h1>Your experiences created</h1>
-         <hr>
+        <hr>
         {{/if}}
-       
+
+
+
+        <h1>Your seller profile</h1>
+        <img src="{{session.photo}}">
+        <h3>{{session.name}}</h3>
+        <hr>
+        <a class="btn btn-primary mb-3" href="/experiences/create">New experience</a>
       </form>
+      <ul class="list-group mt-5">
+    {{#each user.experiences as |experience|}}
+
+    
+      <li class="list-group-item d-flex justify-content-between align-items-center experience-item"   data-id="{{experience.id}}">
+         <form action="/experiences/{{experience.id}}/edit" method="get" class="float-left">
+            <button type="submit" class="btn btn-success">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+          </form>
+        <div>
+          <a href="/experiences/{{ experience.id }}">{{experience.name}}</a>
+        </div>
+          <form action="/experiences/{{experience.id}}/delete"  class="float-right">
+            <button type="submit" class="btn btn-danger">
+              <i class="fas fa-times"></i>
+            </button>
+          </form>
+        
+      </li>
+    {{/each}}
+  </ul>
+
+
     </div>
   </div>
 

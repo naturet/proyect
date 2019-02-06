@@ -1,3 +1,211 @@
+// Functions related to GOOGLE-MAPS
+
+
+var poly;
+var map;
+var infoWindow;
+var geocoder;
+
+function initMap() {
+  
+  
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 2,
+    center: {lat: 41.879, lng: -87.624}  // Center the map on Chicago, USA.
+  });
+
+  
+  infoWindow = new google.maps.InfoWindow;
+
+  poly = new google.maps.Polyline({
+    path: window.points ? window.points.map(function(point) {
+      return {
+        lat: point[1],
+        lng: point[0],
+      }
+    }) : null,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+
+  var SILVER_MAP = new google.maps.StyledMapType(
+    SILVER_STYLE, {
+      name: 'Styled Map'
+    });
+
+  if (window.points) {
+    poly
+  }
+  // poly.setMap(map);
+  addLine();
+
+  // Add a listener for the click event
+  map.addListener('click', addLatLng);
+
+  
+
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Estás aquí');
+      infoWindow.open(map);
+      infoWindow.open(map2);
+      map.setCenter(pos);
+      map.setZoom(16);
+      
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+
+   map.mapTypes.set('styled_map', SILVER_MAP);
+   map.setMapTypeId('styled_map');
+
+     //segundo mapa dentro de initmap()
+
+     var latLng2 = new google.maps.LatLng(0, 0);
+     var stylez = [{
+         featureType: "all",
+         elementType: "all",
+         stylers: [{
+             saturation: -100
+         }]
+     }];
+     var myOptions = {
+         zoom: 15,
+         center: latLng2,
+         panControl: false,
+         mapTypeControlOptions: {
+             mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.TERRAIN, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID, 'grayscale'],
+             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+         },
+         zoomControlOptions: {
+             style: google.maps.ZoomControlStyle.SMALL,
+             position: google.maps.ControlPosition.TOP_LEFT
+         },
+         mapTypeId: google.maps.MapTypeId.TERRAIN
+     };
+     map2 = new google.maps.Map(document.getElementById("map2"), myOptions);
+     var mapType = new google.maps.StyledMapType(stylez, {
+         name: "Escala grises"
+     });
+     map2.mapTypes.set('grayscale', mapType);
+     map2.setMapTypeId('grayscale');
+     var marker2 = new google.maps.Marker({
+         position: latLng2,
+         map: map2
+     });
+  
+     google.maps.event.addListener(marker2, 'click', function () {
+         infowindow2.open(map2, marker2);
+     });
+ 
+ 
+     var drawingManager = new google.maps.drawing.DrawingManager({
+           drawingMode: google.maps.drawing.OverlayType.POLYLINE,
+           drawingControl: true,
+           drawingControlOptions: {
+             position: google.maps.ControlPosition.TOP_CENTER,
+             drawingModes: [
+               google.maps.drawing.OverlayType.MARKER,
+               google.maps.drawing.OverlayType.CIRCLE,
+               google.maps.drawing.OverlayType.POLYGON,
+               google.maps.drawing.OverlayType.POLYLINE,
+               google.maps.drawing.OverlayType.RECTANGLE
+              ]
+            },
+            markerOptions: {},
+            circleOptions: {
+            fillColor: '#ffff00',
+            fillOpacity: 1,
+            strokeWeight: 5,
+            clickable: false,
+            editable: true,
+            zIndex: 1
+            }
+        });
+        drawingManager.setMap(map2);
+
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(map);
+}
+
+function addLine() {
+  poly.setMap(map);
+}
+
+function removeLine() {
+  poly.setMap(null);
+}
+
+// Handles click events on a map, and adds a new point to the Polyline.
+function addLatLng(event) {
+  var path = poly.getPath();
+
+  // Because path is an MVCArray, we can simply append a new coordinate
+  // and it will automatically appear.
+  path.push(event.latLng);
+
+
+
+  // Add a new marker at the new plotted point on the polyline.
+  var marker = new google.maps.Marker({
+    position: event.latLng,
+    title: '#' + path.getLength(),
+    map: map,
+    icon: '../img/icon.png',
+  });
+}
+
+function addPathToForm(form) {
+  poly.getPath().forEach(el => {
+    var input = document.createElement("input");
+    input.name = "path[]";
+    input.value = [el.lng(), el.lat()];
+    form.append(input);
+  });
+}
+
+function codeAddress() {
+  geocoder = new google.maps.Geocoder();
+  var address = document.getElementById('address').value;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      document.getElementById('x').innerHTML = results[0].geometry.location.lat().toFixed(6);
+      document.getElementById('y').innerHTML = results[0].geometry.location.lng().toFixed(6);
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+
+}
+
+// Functions related to DOM
+
+
 var MemoryGame = function (cards) {
   this.cards = cards;
   this.pickedCards = [];
