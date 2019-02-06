@@ -41,9 +41,14 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.doCreate = (req, res, next) => {
+
   if (req.body.path) {
     req.body.path = req.body.path.map(x => x.split(",").map(n => Number(n)));
+  } else {
+      res.render('experiences/form')
   }
+  
+
   const experienceData = {
     name: req.body.name,
     description: req.body.description,
@@ -54,11 +59,13 @@ module.exports.doCreate = (req, res, next) => {
     languages: req.body.languages,
     duration: req.body.duration,
     includes: req.body.includes,
-    location: {
+    location : {
       type: "LineString",
-      coordinates: req.body.path
+      coordinates: req.body.path  
     }
   };
+  
+
 
   const experience = new Experience(experienceData);
   experience.user = req.user._id;

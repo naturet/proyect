@@ -48,7 +48,7 @@
       {{#if errors.error }}
       <h2>{{ errors.error }}</h2>
       {{/if}}
-      <form enctype="multipart/form-data">
+      <form class="" method="POST" enctype="multipart/form-data">
         <div class="row">
           {{#each allCategories as |category| }}
 
@@ -139,6 +139,9 @@
         <h3>{{session.name}}</h3>
         <hr>
         <a class="btn btn-primary mb-3" href="/experiences/create">New experience</a>
+
+   
+
       </form>
       <ul class="list-group mt-5">
     {{#each user.experiences as |experience|}}

@@ -11,8 +11,8 @@ function initMap() {
   
 
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 2,
-    center: {lat: 41.879, lng: -87.624}  // Center the map on Chicago, USA.
+    zoom: 15,
+    center: {lat: 70.879, lng: -67.624}  // Center the map on Chicago, USA.
   });
 
   
@@ -38,6 +38,16 @@ function initMap() {
 
   if (window.points) {
     poly
+
+  var bounds = new google.maps.LatLngBounds()
+  
+  window.points.forEach(function(location){
+    var position = new google.maps.LatLng(location[1],location[0])
+    new google.maps.Marker({position:position, map:map})
+    bounds.extend(position)
+  })
+
+  map.fitBounds(bounds)
   }
   // poly.setMap(map);
   addLine();
@@ -45,9 +55,7 @@ function initMap() {
   // Add a listener for the click event
   map.addListener('click', addLatLng);
 
-  
 
-  // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = {
@@ -147,6 +155,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                         'Error: Your browser doesn\'t support geolocation.');
   infoWindow.open(map);
 }
+
 
 function addLine() {
   poly.setMap(map);
