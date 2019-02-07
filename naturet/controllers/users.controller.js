@@ -23,6 +23,7 @@ module.exports.doCreate = (req, res, next) => {
     pictures: req.files ? req.files.map(file => file.secure_url) : ''
   }
 
+
   const categories = typeof (req.body.categories) === 'string' ? [req.body.categories] : req.body.categories;
 
   if (!categories || categories.length <= 3) {
@@ -59,7 +60,7 @@ module.exports.profile = (req, res, next) => {
   User.findById(req.user.id)
   .populate('experiences')
   .then(user => {
-    console.log(user);
+
     res.render("users/profile", { user });
   })
   .catch(next);
@@ -133,7 +134,7 @@ module.exports.creator = (req, res, next) => {
 }
 
 module.exports.doCreator = (req, res, next) => {
-  console.log(req.body.politic)
+
 
   const bodyFields = {
     expertise: req.body.expertise,
@@ -192,7 +193,6 @@ module.exports.editCreator = (req, res, next) => {
 }
 
 module.exports.doEditCreator = (req, res, next) => {
-  console.log(req.body.politic)
 
   const bodyFields = {
     expertise: req.body.expertise,

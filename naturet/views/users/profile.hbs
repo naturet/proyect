@@ -121,50 +121,43 @@
         <hr class="mt-5">
 
         {{#if session.creator}}
-        <h1>Your creator Data</h1>
-        <div>{{session.expertise}}</div>
-        <div>{{session.enterpriseEmail}}</div>
-        <div>{{session.politic}}</div>
-        <div>{{session.enterpriseDescription}}</div>
-        <div>{{session.acreditation}}</div>
-        <div><img src="{{session.enterprise_picture}}"></div>
-        <h1>Your experiences created</h1>
-        <hr>
+          <h1>Your creator Data</h1>
+          <div>{{session.expertise}}</div>
+          <div>{{session.enterpriseEmail}}</div>
+          <div>{{session.politic}}</div>
+          <div>{{session.enterpriseDescription}}</div>
+          <div>{{session.acreditation}}</div>
+          <div><img src="{{session.enterprise_picture}}"></div>
+          <h1>Your experiences created</h1>
+          <hr>
         {{/if}}
 
-
-
-        <h1>Your seller profile</h1>
-        <img src="{{session.photo}}">
-        <h3>{{session.name}}</h3>
-        <hr>
-        <a class="btn btn-primary mb-3" href="/experiences/create">New experience</a>
-
-   
+        {{#if session.creator}}
+          <h1>Your seller profile</h1>
+          <img src="{{session.photo}}">
+          <h3>{{session.name}}</h3>
+          <hr>
+          <a class="btn btn-primary mb-3" href="/experiences/create">New experience</a>
+        {{/if}}
 
       </form>
-      <ul class="list-group mt-5">
-    {{#each user.experiences as |experience|}}
 
-    
-      <li class="list-group-item d-flex justify-content-between align-items-center experience-item"   data-id="{{experience.id}}">
-         <form action="/experiences/{{experience.id}}/edit" method="get" class="float-left">
-            <button type="submit" class="btn btn-success">
-              <i class="fas fa-pencil-alt"></i>
-            </button>
-          </form>
-        <div>
-          <a href="/experiences/{{ experience.id }}">{{experience.name}}</a>
-        </div>
-          <form action="/experiences/{{experience.id}}/delete"  class="float-right">
+      <ul class="list-group mt-5">
+        {{#each user.experiences as |experience|}}
+
+        <li class="list-group-item d-flex justify-content-between align-items-center experience-item" data-id="{{experience.id}}">
+          <div>
+            <a href="/experiences/{{ experience.id }}">{{experience.name}}</a>
+          </div>
+          <form action="/experiences/{{experience.id}}/delete" class="float-right">
             <button type="submit" class="btn btn-danger">
               <i class="fas fa-times"></i>
             </button>
           </form>
-        
-      </li>
-    {{/each}}
-  </ul>
+        </li>
+
+        {{/each}}
+      </ul>
 
 
     </div>

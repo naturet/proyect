@@ -8,7 +8,7 @@
             <a href="#categories">Categories</a>
             <a href="#description">Some description</a>
             <a href="#lugar">Lugar</a>
-            <a class="btn btn danger">View Profile</a>
+            <a class="btn btn danger" href="/profile">View Profile</a>
           </div>
         </div>
       </div>
@@ -20,158 +20,162 @@
         <h3>{{session.name}}</h3>
         <hr>
 
-        {{#if errors.error }}
-        <h2>{{ errors.error }}</h2>
-        {{/if}}
 
-        {{#unless experience }}
         <form action="/experiences/create" method="post" onsubmit="addPathToForm(this)">
           <h1>New experience</h1>
           <hr>
-          <h1 id="categories">categories</h1h>
-            <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
-            <p class="mb-5">Lit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
-              consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing
-              elit,
-              sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</p>
+          <h1 id="categories">categories</h1>
+          <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
+          <p class="mb-5">Lit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
+            consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing
+            elit,
+            sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</p>
 
-            <div class="row">
-              {{#each allCategories as |category| }}
+          <div class="row">
+            {{#if errors.categories}}
+            <div class="w-100">
+              <h2>{{errors.categories}}</h2>
+            </div>
+            {{/if}}
 
-              <div class="col-xl-2 col-md-3 col-6">
-                <input type='checkbox' name="categories" class="input-category" id="{{ category.id }}" value="{{ category.id }}" />
-                <div class="category-card">
-                  <span class='icon-{{category.fontnum}}'></span>
-                  <!-- descomentar esto par añadir estilo -->
-                  <p class="category-name">{{ category.name }} </p>
-                </div>
+            {{!-- {{#each allCategories as |category| }}
+
+            <div class="col-xl-2 col-md-3 col-6">
+              <input type='checkbox' name="categories" class="input-category" id="{{ category.id }}" value="{{ category.id }}" />
+              <div class="category-card">
+                <span class='icon-{{category.fontnum}}'></span>
+                <!-- descomentar esto par añadir estilo -->
+                <p class="category-name">{{ category.name }} </p>
               </div>
-        
-              {{/each}}
-
             </div>
 
-            {{else}}
-            <form action="/experiences/{{experience.id}}/edit" method="post" onsubmit="addPathToForm(this)">
-              <h1>Edit experience</h1>
-              <hr>
-              <h1 id="categories">categories</h1>
-              <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
-              <p class="mb-5">Lit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit
-                amet,
-                consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing
-                elit,
-                sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                in</p>
-              <div class="row">
-                {{#each allCategories as |category| }}
-                <div class="col-xl-2 col-md-3 col-6">
-                  <input type='checkbox' name="categories" class="input-category" id="{{ category.id }}" value="{{ category.id }}"
-                    {{#isCategoryExpSelected ../experience category ../categories }} {{/isCategoryExpSelected}} />
-                  <div class="category-card">
-                    <span class='icon-{{category.fontnum}}'></span>
-                    <!-- descomentar esto par añadir estilo -->
-                    <p class="category-name">{{ category.name }} </p>
-                  </div>
-                </div>
-                {{/each}}
-              </div>
-              {{/unless}}
+            {{/each}} --}}
 
-              <hr>
+            {{#each allCategories as |category| }}
+            <div class="col-xl-2 col-md-3 col-6">
+              <input type='checkbox' name="categories" class="input-category" id="{{ category.id }}" value="{{ category.id }}"
+                {{#containCategoryCreate  category ../categories }} {{/containCategoryCreate}} />
+              <div class="category-card">
+                <span class='icon-{{category.fontnum}}'></span>
+                <!-- descomentar esto par añadir estilo -->
+                <p class="category-name">{{ category.name }} </p>
+              </div>
+            </div>
+            {{/each}}
+
+          </div>
+
+
+          <hr>
+          <div class="form-group">
+            <h1 id="description">Some description</h1>
+            <div class="mb-2">
               <div class="form-group">
-                <h1 id="description">Some description</h1>
-                <div class="mb-2">
-                  <div class="form-group">
-                    <label for="name">Nombre de la actividad</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{experience.name}}">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="price">Precio</label>
-                    <input type="Number" class="form-control" id="price" name="price" value="{{experience.price}}">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="languages">Idiomas</label>
-                    <br />
-                    <input id="Español" type="checkbox" name="languages" value="Español" />
-                    <label for="Español">Español</label>
-                    <br />
-                    <input id="Inglés" type="checkbox" name="languages" value="Inglés" />
-                    <label for="Inglés">Inglés</label>
-                    <br />
-                    <input id="Francés" type="checkbox" name="languages" value="Francés" />
-                    <label for="Francés">Francés</label>
-                    <br />
-                    <input id="Alemán" type="checkbox" name="languages" value="Alemán" />
-                    <label for="Alemán">Alemán</label>
-                    <br />
-                    <input id="Chino" type="checkbox" name="languages" value="Chino" />
-                    <label for="Chino">Chino</label>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="duration">Duración</label>
-                    <input type="Number" class="form-control" id="duration" name="duration" value="{{experience.duration}}">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="includes">¿Que incluye?</label>
-                    <br />
-                    <input id="Bebidas" type="checkbox" name="includes" value="Bebidas" />
-                    <label for="Bebidas">Bebidas</label>
-                    <br />
-                    <input id="Comida" type="checkbox" name="includes" value="Comida" />
-                    <label for="Comida">Comida</label>
-                    <br />
-                    <input id="Aperitivo" type="checkbox" name="includes" value="Aperitivo" />
-                    <label for="Aperitivo">Aperitivo</label>
-                    <br />
-                    <input id="Equipo" type="checkbox" name="includes" value="Equipo" />
-                    <label for="Equipo">Equipo</label>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="description">Descripción</label>
-                    <textarea class="form-control" name="description" rows=3>{{experience.description}}</textarea>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="anymore">¿Que debes saber?</label>
-                    <textarea class="form-control" name="anymore" rows=2>{{experience.anymore}}</textarea>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="photos">Fotos</label>
-                    <input type="Number" class="form-control" id="photos" name="photos" value="{{experience.photos}}">
-                  </div>
-
-                  <div class="form-group">
-                    <h4 id="lugar">Lugar de la experiencia</h4>
-                    <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
-
-                    <div class="form-group" id="floating-panel">
-                      <input onclick="removeLine();" type=button value="Remove line">
-                      <input onclick="addLine();" type=button value="Restore line">
-                    </div>
-
-                    <div class="form-group">
-                      <input id="address" class="form-control" type="textbox" placeholder="Introduce aquí el sitio que quieres buscar" />
-                      <label>Latitud: </label>
-                      <span id="x"></span>
-                      <label>Longitud: </label>
-                      <span id="y"></span>
-                      <button type="button" class="btn btn-primary mt-3" value="Localizar" onclick="codeAddress()">Buscar</button>
-                    </div>
-                    <div id="map"></div>
-
-                  </div>
-                </div>
+                <label for="name">Nombre de la actividad</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{name}}">
+                {{#if errors.name}}
+                <p>{{errors.name}}</p>
+                {{/if}}
               </div>
-             <button type="submit" class="btn btn-primary">Submit</button>
-        </article>
-    </form>
+
+              <div class="form-group">
+
+                 <label for="price">Price:</label>
+                <input type="Number" class="form-control" id="price" name="price" value="{{price}}">
+                {{#if errors.price}}
+                <p>{{errors.price}}</p>
+                {{/if}}
+              </div>
+
+              
+
+
+              <div class="form-group">
+                <label for="languages">Idiomas</label>
+                <br />
+                <input id="Español" type="checkbox" name="languages" value="Español" />
+                <label for="Español">Español</label>
+                <br />
+                <input id="Inglés" type="checkbox" name="languages" value="Inglés" />
+                <label for="Inglés">Inglés</label>
+                <br />
+                <input id="Francés" type="checkbox" name="languages" value="Francés" />
+                <label for="Francés">Francés</label>
+                <br />
+                <input id="Alemán" type="checkbox" name="languages" value="Alemán" />
+                <label for="Alemán">Alemán</label>
+                <br />
+                <input id="Chino" type="checkbox" name="languages" value="Chino" />
+                <label for="Chino">Chino</label>
+              </div>
+
+              <div class="form-group">
+                <label for="duration">Duración</label>
+                <input type="Number" class="form-control" id="duration" name="duration" value="{{experience.duration}}">
+              </div>
+
+              <div class="form-group">
+                <label for="includes">¿Que incluye?</label>
+                <br />
+                <input id="Bebidas" type="checkbox" name="includes" value="Bebidas" />
+                <label for="Bebidas">Bebidas</label>
+                <br />
+                <input id="Comida" type="checkbox" name="includes" value="Comida" />
+                <label for="Comida">Comida</label>
+                <br />
+                <input id="Aperitivo" type="checkbox" name="includes" value="Aperitivo" />
+                <label for="Aperitivo">Aperitivo</label>
+                <br />
+                <input id="Equipo" type="checkbox" name="includes" value="Equipo" />
+                <label for="Equipo">Equipo</label>
+              </div>
+
+              <div class="form-group">
+                <label for="description">Descripción</label>
+                <textarea class="form-control" name="description" rows=3>{{description}}</textarea>
+                {{#if errors.description}}
+                <p>{{errors.description}}</p>
+                {{/if}}
+              </div>
+
+              <div class="form-group">
+                <label for="anymore">¿Que debes saber?</label>
+                <textarea class="form-control" name="anymore" rows=2>{{experience.anymore}}</textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="photos">Fotos</label>
+                <input type="file" class="form-control" name="photo" placeholder="Picture" value="string" multiple />
+              </div>
+
+              <div class="form-group">
+                <h4 id="lugar">Lugar de la experiencia</h4>
+                <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
+
+                <div class="form-group" id="floating-panel">
+                  <input onclick="removeLine();" type=button value="Remove line">
+                  <input onclick="addLine();" type=button value="Restore line">
+                </div>
+
+                <div class="form-group">
+                  <input id="address" class="form-control" type="textbox" placeholder="Introduce aquí el sitio que quieres buscar" />
+                  <label>Latitud: </label>
+                  <span id="x"></span>
+                  <label>Longitud: </label>
+                  <span id="y"></span>
+                  <button type="button" class="btn btn-primary mt-3" value="Localizar" onclick="codeAddress()">Buscar</button>
+                </div>
+                {{#if errors.bodyPath}}
+                <p>{{errors.bodyPath}}</p>
+                {{/if}}
+                <div id="map"></div>
+
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+</article>
+</form>
 <script>
   var decodedJson = decodeURIComponent("{{{pointsJSON}}}");
   var jsonObj = JSON.parse(decodedJson);

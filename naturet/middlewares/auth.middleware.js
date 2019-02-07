@@ -27,6 +27,15 @@ module.exports.isCreator = (req, res, next) => {
   }
 }
 
+module.exports.userIsCreator = (req, res, next) => {
+  if (req.user.creator) {
+    next();
+    res.status(401)
+  } else {
+    res.redirect('/profile');
+  }
+}
+
 
 module.exports.isProfileCompleted = (req, res, next) => {
   if (req.user.categories && req.user.categories.length > 3) {

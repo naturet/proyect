@@ -31,9 +31,10 @@ const experienceSchema = new mongoose.Schema({
    type: String,
    min: 0,
  },
- photo: {
-   path: String,
- },
+ photos: {
+  type: [String],
+  default: []
+},
  languages: {
    type: [String],
    enum:["Español", "Inglés", "Francés", "Alemán", "Chino"],

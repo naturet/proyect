@@ -64,11 +64,11 @@ function initMap() {
       map.setZoom(16);
 
     }, function () {
-      handleLocationError(true, infoWindow);
+      handleLocationError(true, infoWindow,map.getCenter());
     });
   } else {
     // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow);
+    handleLocationError(false, infoWindow,map.getCenter());
   }
 
   var SILVER_MAP = new google.maps.StyledMapType(
@@ -248,6 +248,7 @@ $('.category-card').on('click', function (e) {
 $("#creator").on("change", () => {
   $("#rol").toggle();
 })
+
 
 function autocomplete(inp, arr) {
 
