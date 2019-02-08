@@ -1,5 +1,67 @@
 /* Possible colors :  /*#00aad2*/
+.slider-session{
+  margin-top: 50px;
+}
+.custom-padding-home{
+  padding: 10px !important;
+}
 
+.flex-row {
+	display: flex;
+	flex-wrap: wrap;
+}
+.flex-row > [class*='col-'] {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-row .thumbnail,
+.flex-row .caption {
+	flex-direction: column;
+	display: flex;
+	flex: 1 0 auto;
+	height: auto;
+  position: relative;
+  background-color: blue;
+}
+.flex-text {
+	flex-grow: 1;
+}
+.flex-row img {
+	min-width: 0;
+	width: 100%;
+}
+
+/* make gutter sizes consistent */
+.flex-row  {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* 
+Extra Small Devices, Phones { .col-xs-$ } 
+  ~ 480px to 767px ~
+
+Extra Small Devices, Phones { .col-sm-$ } 
+  ~ 768px to 991px ~
+
+Extra Small Devices, Phones { .col-md-$ } 
+  ~ 992 to 1200px ~
+
+Extra Small Devices, Phones { .col-lg-$ } 
+  ~ 1201px up ~
+*/
+
+/* Extra Media Query Below for Retina Iphones and Smaller */
+@media only screen and (max-width : 480px){
+.flex-row > [class*='col-'] {
+    width: 100%;
+}
+.flex-row  {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+}
 /* carusel start */
 
 /* Slider */
@@ -9,8 +71,29 @@
   background: url('https://res.cloudinary.com/dwta0wgpp/image/upload/v1549223454/test/background-intro.jpg.jpg');
   background-size: cover;
   background-position: center;
+  border-radius: 4px;
+}
+.image-slide-session{
+  background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("http://imgstocks.com/wp-content/uploads/2013/12/Url-http-www-wallgc-com-waterfall-forest-nature-591792-199130.jpg");
+  height: 370px;
+  background-size: cover;
+  background-position: center;
+}
+.session-info{
+  padding: 15px;
+  bottom: 0;
+  height: 100%;
+bottom: 0px;
+display: flex;
+flex-direction: column-reverse;
 }
 
+.image-slide-owner{
+  width: 50px;
+height: 50px;
+border-radius: 100px;
+border: 2px solid white;
+}
 .experience-card-description{
   white-space: nowrap;
   overflow: hidden;
@@ -23,19 +106,20 @@
   margin-bottom: 100px;
 }
 
-.image-slide-inside-recommended{
+.image-full-card{
   border-radius: 7px;
-  max-width: 100%;
   height: 350px;
   background: url('https://picsum.photos/500');
   background-size: cover;
   background-position: center;
+  max-width: 300px;
+
 }
 
-
-
 .container-slider{
-  max-width: 1300px
+  max-width: 1300px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .slick-prev:before, .slick-next:before{
@@ -146,6 +230,13 @@
 .slick-loading .slick-slide
 {
     visibility: hidden;
+}
+.slick-prev {
+  left: 0px;
+}
+
+.slick-next{
+  right: 0px;
 }
 .slick-vertical .slick-slide
 {
@@ -399,16 +490,20 @@ input[type=file] {
 */
 @media (max-width: 768px) {
 
-  .profile-container {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-  }
 }
 
 @media (max-width: 492px){
   .slick-slide {
 
     margin: 0px 0px;
-
+  }
+  .image-slide-inside{
+    border: 3px solid white;
+    border-radius: 6px;
+  }
+}
+.no-padding-mobile{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 }

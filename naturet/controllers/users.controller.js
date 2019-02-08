@@ -8,12 +8,15 @@ const Experience = require("../models/experience.model");
 
 // First Create of user profile
 
+
+
 module.exports.getHome = (req, res, next) => {
   Experience.find()
+  .populate('user')
   .then(experiences => 
     res.render('users/index', {
-    experiences
-  }) 
+          experiences
+   } )
  )
   .catch(error => next(error))
 }

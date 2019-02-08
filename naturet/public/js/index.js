@@ -34,17 +34,19 @@ function initMap() {
     strokeWeight: 2
   });
 
+
   if (window.points) {
     poly
-
     var bounds = new google.maps.LatLngBounds()
 
     window.points.forEach(function (location) {
       var position = new google.maps.LatLng(location[1], location[0])
       new google.maps.Marker({
+        icon: '../img/icon.png',
         position: position,
         map: map
       })
+  
       bounds.extend(position)
     })
 
@@ -70,6 +72,7 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow,map.getCenter());
   }
+
 
   var SILVER_MAP = new google.maps.StyledMapType(
     SILVER_STYLE, {
