@@ -25,12 +25,7 @@ router.post('/creator/edit', authMiddleware.isAuthenticated, authMiddleware.isPr
 
 
 
-router.get('/',
-  authMiddleware.isAuthenticated,
-  authMiddleware.isProfileCompleted,
-  (req, res, next) => {
-    res.send('=D!')
-  });
+router.get('/', authMiddleware.isAuthenticated, authMiddleware.isProfileCompleted, usersController.getHome);
 
 // router.post('/profile/delete', 
 //   authMiddleware.isAuthenticated, 

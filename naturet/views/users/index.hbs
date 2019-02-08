@@ -1,0 +1,117 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+
+<div class="container container-slider">
+  <h2>ULtimas Experiencias</h2>
+  <section class="customer-experiencer slider">
+    {{#each experiences as |experience|}}
+    <div class="slide slide1">
+      <a href="/experiences/{{experience.id}}">
+        <div class="image-slide-inside">
+        </div>
+      </a>
+      <div class="p-2 border">
+
+        <h5>{{experience.name}}</h5>
+        <p class="experience-card-description">{{experience.description}}</p>
+        <p><strong>{{experience.price}}</strong></p>
+        <small>#{{experience.categories.[0]}}</small>
+        <small>#{{experience.categories.[2]}}</small>
+        <small>#{{experience.categories.[3]}}</small>
+
+      </div>
+    </div>
+
+    {{/each}}
+    <div class="slide slide1">
+      <div class="image-slide-inside"><a href="more">more</a></div>
+    </div>
+  </section>
+</div>
+{{!-- 
+<div class="container container-slider container-slider-2">
+  <h2>Recomendado para ti</h2>
+  <section class="customer-recommended slider">
+    
+    {{#each experiences as |experience|}}
+    <div class="slide slide1">
+      <a href="/experiences/{{experience.id}}">
+        <div class="image-slide-inside-recommended">
+           <h5>{{experience.name}}</h5>
+        <p class="experience-card-description">{{experience.description}}</p>
+        <p><strong>{{experience.price}}</strong></p>
+        <small>#{{experience.categories.[0]}}</small>
+        <small>#{{experience.categories.[2]}}</small>
+        <small>#{{experience.categories.[3]}}</small>
+        </div>
+      </a>
+
+    </div>
+
+    {{/each}}
+    <div class="slide slide1">
+      <div class="image-slide-inside"><a href="more">more</a></div>
+    </div>
+  </section>
+</div> --}}
+
+<script>
+  $(document).ready(function () {
+    $('.customer-experiencer').slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      arrows: true,
+      dots: false,
+      infinite: false,
+      pauseOnHover: false,
+      responsive: [{
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          slidesToShow: 2
+        }
+      }, {
+        breakpoint: 520,
+        settings: {
+          arrows: false,
+          slidesToShow: 1
+        }
+      }, {
+        breakpoint: 1068,
+        settings: {
+          arrows: false,
+          slidesToShow: 3
+        }
+      }]
+    });
+  });
+
+   $(document).ready(function () {
+    $('.customer-recommended').slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      arrows: true,
+      dots: false,
+      infinite: false,
+      pauseOnHover: false,
+      responsive: [{
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          slidesToShow: 2
+        }
+      }, {
+        breakpoint: 520,
+        settings: {
+          arrows: false,
+          slidesToShow: 1
+        }
+      }, {
+        breakpoint: 1068,
+        settings: {
+          arrows: false,
+          slidesToShow: 3
+        }
+      }]
+    });
+  });
+</script>

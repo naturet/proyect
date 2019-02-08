@@ -2,11 +2,22 @@ const createError = require('http-errors');
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
 const passport = require('passport');
-
+const Experience = require("../models/experience.model");
 
 
 
 // First Create of user profile
+
+module.exports.getHome = (req, res, next) => {
+  Experience.find()
+  .then(experiences => 
+    res.render('users/index', {
+    experiences
+  }) 
+ )
+  .catch(error => next(error))
+}
+
 
 module.exports.create = (req, res, next) => {
   res.render('users/create')
