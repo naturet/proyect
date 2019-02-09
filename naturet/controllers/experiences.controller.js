@@ -22,6 +22,7 @@ module.exports.doComment = (req, res, next) => {
  return comment
    .save()
    .then((experience)=> {
+     console.log(comment);
      res.redirect(`/experiences/${commentData.experience}`);
    })
    .catch(error => next(error));
@@ -30,10 +31,20 @@ module.exports.doComment = (req, res, next) => {
 module.exports.get = (req, res, next) => {
   const id = req.params.id;
   Experience.findById(id)
-    .populate('user')
-    .populate('comments')
+  .populate('user')
+  .populate({
+    path: 'comments',
+    populate: {
+      path: 'user',
+    },
+  })
+  .populate({
+    path: 'comments',
+    populate: {
+      path: 'experience',
+    },
+  })
     .then(experience => {
-      console.log(experience.comments)
       res.render('experiences/detail', {
         experience,
         pointsJSON: encodeURIComponent(JSON.stringify(experience.location.coordinates))

@@ -8,46 +8,43 @@
         <a href="">map</a>
         <a href="/profile">profile</a>
 
-   
-     {{#isfollow experience session}}
- 
-       <form action="/experiences/{{../experience.id}}/unfollow" class="mt-1" method="post">
-               <div class="form-actions">
-                   <button class="btn btn-success" type="submit">
-                     <i class="fas fa-star"></i>
-                   </button>
-               </div>
-       </form>
-     {{else}}
+
+        {{#isfollow experience session}}
+
+        <form action="/experiences/{{../experience.id}}/unfollow" class="mt-1" method="post">
+          <div class="form-actions">
+            <button class="btn btn-success" type="submit">
+              <i class="fas fa-star"></i>
+            </button>
+          </div>
+        </form>
+        {{else}}
 
 
-       <form action="/experiences/{{../experience.id}}/follow" class="float-left" method="post">
-               <div class="form-actions">
-                   <button class="btn btn-success" type="submit">
-                     <i class="far fa-star"></i>
-                   </button>
-               </div>
-       </form>
-     {{/isfollow}}
+        <form action="/experiences/{{../experience.id}}/follow" class="float-left" method="post">
+          <div class="form-actions">
+            <button class="btn btn-success" type="submit">
+              <i class="far fa-star"></i>
+            </button>
+          </div>
+        </form>
+        {{/isfollow}}
 
-     
+
+
+
         <form action="/experiences/{{experience.id}}/purchased" class="mt-1" method="post">
-               <div class="form-actions">
-                   <button class="btn btn-danger" type="submit">
-                     purchased
-                   </button>
-               </div>
-       </form>
-       <form action="/experiences/{{experience.id}}/docomment" class="mt-1" method="post">
-                 <div class="form-actions">
-                     <label for="docomment">Escribe tu comentario</label>
-                     <textarea class="form-control" name="message" rows=2></textarea>
-                     <button class="btn btn-primary" type="submit">enviar</button>      
-                 </div>
-       </form>
-     </div>
-   </div>
-   
+          <div class="form-actions">
+            <button class="btn btn-danger" type="submit">
+              purchased
+            </button>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+
 
     <div class="col-xl-9 col-md-9 col-12">
       <div class="text-center">
@@ -61,90 +58,103 @@
       <p class="mb-5">Lit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
         consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit,
         sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</p>
+      <div class="row">
+        {{#each allCategories as |category| }}
 
-      <form class="" method="POST" enctype="multipart/form-data">
-        <div class="row">
-          {{#each allCategories as |category| }}
+        <div class="col-xl-2 col-md-3 col-6 noevent not-shown" style="display:{{#containCategoryexp ../experience category ../categories }}{{/containCategoryexp}}">
 
-          <div class="col-xl-2 col-md-3 col-6 noevent not-shown" style="display:{{#containCategoryexp ../experience category ../categories }}{{/containCategoryexp}}">
-
-            <div class="category-card noevent">
-              <span class='icon-{{category.fontnum}}'></span>
-              <!-- descomentar esto par añadir estilo -->
-              <p class="category-name">{{ category.name }} </p>
-            </div>
-          </div>
-          </input>
-
-          {{/each}}
-
-        </div>
-        <hr>
-        <div class="form-group">
-          <h1>Some description</h1>
-
-          <div class="mb-2">
-            <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
-            <h3>{{experience.description}}</h3>
-            <hr>
-          </div>
-
-          <div class="mb-2">
-            <h3>¿Que incluye?</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-            <h4>{{experience.includes}}</h4>
-            <hr>
-          </div>
-
-          <div class="mb-2">
-            <h3>Idiomas</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-            <h4>{{experience.languages}}</h4>
-            <hr>
-          </div>
-          <div class="mb-2">
-            <h3>Precio</h3><small></small>
-            <h4>{{experience.price}}€</h4>
-            <hr>
-          </div>
-          <div class="mb-2">
-            <h3>Duracion</h3><small>El tiempo de duración una vez comienza la actividad, siempre en minutos</small>
-            <h4>{{experience.duration}} minutos</h4>
-            <hr>
-          </div>
-
-          <div class="mb-2">
-            <h3>¿Que debes saber?</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit</small>
-            <h4>{{experience.anymore}}</h4>
-            <hr>
-          </div>
-          <div class="mb-2">
-            <h3>Mapa actividad</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit</small>
-            <div id="map" style="pointer-events: none;"></div>
-            <hr>
+          <div class="category-card noevent">
+            <span class='icon-{{category.fontnum}}'></span>
+            <!-- descomentar esto par añadir estilo -->
+            <p class="category-name">{{ category.name }} </p>
           </div>
         </div>
+        </input>
 
-        <div class=" mb-2">
-          <h4> <span class="input-group-text"> <i class="fas fa-image"></i> </span>Fotos</h4>
-          {{#each experience.photos}}
-            <img src="{{this}}" style="max-width: 200px;">
-          {{/each}}
-          
-        </div>
-
-        {{#each experience.comments}}
-
-          {{this.message}}
         {{/each}}
 
+      </div>
+      <hr>
+      <div class="form-group">
+        <h1>Some description</h1>
 
-        <hr class="mt-5">
+        <div class="mb-2">
+          <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
+          <h3>{{experience.description}}</h3>
+          <hr>
+        </div>
+
+        <div class="mb-2">
+          <h3>¿Que incluye?</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
+          <h4>{{experience.includes}}</h4>
+          <hr>
+        </div>
+
+        <div class="mb-2">
+          <h3>Idiomas</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
+          <h4>{{experience.languages}}</h4>
+          <hr>
+        </div>
+        <div class="mb-2">
+          <h3>Precio</h3><small></small>
+          <h4>{{experience.price}}€</h4>
+          <hr>
+        </div>
+        <div class="mb-2">
+          <h3>Duracion</h3><small>El tiempo de duración una vez comienza la actividad, siempre en minutos</small>
+          <h4>{{experience.duration}} minutos</h4>
+          <hr>
+        </div>
+
+        <div class="mb-2">
+          <h3>¿Que debes saber?</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit</small>
+          <h4>{{experience.anymore}}</h4>
+          <hr>
+        </div>
+        <div class="mb-2">
+          <h3>Mapa actividad</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit</small>
+          <div id="map" style="pointer-events: none;"></div>
+          <hr>
+        </div>
+      </div>
+
+      <div class=" mb-2">
+        <h4> <span class="input-group-text"> <i class="fas fa-image"></i> </span>Fotos</h4>
+        {{#each experience.photos}}
+        <img src="{{this}}" style="max-width: 200px;">
+        {{/each}}
+      </div>
+      <!--- Comments experience -->
+
+      <form action="/experiences/{{experience.id}}/docomment" class="mt-1" method="post">
+        <div class="form-actions">
+          <h2 for="docomment">Escribe tu comentario</h2>
+          <textarea class="form-control mb-4" name="message" rows=2></textarea>
+          <button class="btn btn-primary btn-lg mb-2 " type="submit">enviar</button>
+        </div>
+      </form>
+      <hr>
+      {{#each experience.comments}}
+      <div>
+        <div class="flex-row align-items-center mb-3">
+          <div class="image-slide-owner" style="background:url('{{this.user.photo}}')"></div>
+          <divclass="column">
+            <h6 class="ml-3 p-0 mb-0"><strong>{{this.user.name}}</strong></h6>
+            <span class="ml-3 p-0 date-comment">{{this.createdAt}}</span>
+        </div>
+        <div class="flex-row">
+        <h5 >{{this.message}}</h5>
+        </div>
+      </div>
+      <hr>
+      {{/each}}
     </div>
   </div>
 
 </div>
-</div>
+
 <script>
   var decodedJson = decodeURIComponent("{{{pointsJSON}}}");
   var jsonObj = JSON.parse(decodedJson);

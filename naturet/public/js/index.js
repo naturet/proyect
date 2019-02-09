@@ -8,8 +8,6 @@ var geocoder;
 
 function initMap() {
 
-
-
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: {
@@ -17,7 +15,6 @@ function initMap() {
       lng: -67.624
     } // Center the map on Chicago, USA.
   });
-
 
   infoWindow = new google.maps.InfoWindow;
 
@@ -34,7 +31,6 @@ function initMap() {
     strokeWeight: 2
   });
 
-
   if (window.points) {
     poly
     var bounds = new google.maps.LatLngBounds()
@@ -46,7 +42,6 @@ function initMap() {
         position: position,
         map: map
       })
-  
       bounds.extend(position)
     })
 
@@ -73,12 +68,10 @@ function initMap() {
     handleLocationError(false, infoWindow,map.getCenter());
   }
 
-
   var SILVER_MAP = new google.maps.StyledMapType(
     SILVER_STYLE, {
       name: 'Styled Map'
     });
-
 
   // poly.setMap(map);
   addLine();
@@ -90,7 +83,6 @@ function initMap() {
   map.setMapTypeId('styled_map');
 
   //segundo mapa dentro de initmap()
-
 
   var drawingManager = new google.maps.drawing.DrawingManager({
     drawingMode: google.maps.drawing.OverlayType.POLYLINE,
@@ -115,8 +107,6 @@ function initMap() {
       zIndex: 1
     }
   });
-
-
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -126,7 +116,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     'Error: Your browser doesn\'t support geolocation.');
   infoWindow.open(map);
 }
-
 
 function addLine() {
   poly.setMap(map);
@@ -143,8 +132,6 @@ function addLatLng(event) {
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear.
   path.push(event.latLng);
-
-
 
   // Add a new marker at the new plotted point on the polyline.
   var marker = new google.maps.Marker({
@@ -235,6 +222,15 @@ $(window).on("load", function () {
     $('.politics-checkbox input').prop('checked', false);
     $(this).prop('checked') ? $(this).prop('checked', false) : $(this).prop('checked', true);
   });
+
+  function dateFormat(){
+    let array = $('.date-comment').text().split(' ');
+    let newString = `${array[1]} ${array[2]} ${array[3]}`
+    $('.date-comment').text(newString) 
+  }
+   dateFormat()
+
+  
 });
 
 $('.category-card').on('click', function (e) {

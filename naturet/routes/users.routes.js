@@ -23,13 +23,6 @@ router.post('/creator/create', authMiddleware.isAuthenticated, authMiddleware.is
 router.get('/creator/edit', authMiddleware.isAuthenticated, authMiddleware.isProfileCompleted, usersController.editCreator);
 router.post('/creator/edit', authMiddleware.isAuthenticated, authMiddleware.isProfileCompleted, uploadCloud.single('enterprise_picture'), usersController.doEditCreator);
 
-
-
 router.get('/', authMiddleware.isAuthenticated, authMiddleware.isProfileCompleted, usersController.getHome);
-
-// router.post('/profile/delete', 
-//   authMiddleware.isAuthenticated, 
-//   authMiddleware.checkRole(constants.ROLE_ADMIN), 
-//   usersController.doDelete);
 
 module.exports = router;
