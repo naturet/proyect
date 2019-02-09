@@ -15,3 +15,4 @@ require('../helpers/categorycreate.helpers')(hbs);
 
 require('../helpers/categoryshowexp.helpers')(hbs);
 require('../helpers/experiences.helpers')(hbs);
+require('../helpers/follow.helpers')(hbs);

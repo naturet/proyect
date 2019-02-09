@@ -48,10 +48,22 @@ const experienceSchema = new mongoose.Schema({
    type: [String],
    enum: ["Bebidas", "Comida", "Aperitivo", "Equipo"]
  }
-
 }, {
- timestamps: true
+ timestamps: true,
+ toObject: {
+  virtuals: true
+} 
 });
+
+experienceSchema.virtual('comments', {
+  ref: 'Comment', // The model to use
+  localField: '_id', // Find people where `localField`
+  foreignField: 'experience', // is equal to `foreignField`
+  // If `justOne` is true, 'members' will be a single doc as opposed to
+  // an array. `justOne` is false by default.
+  justOne: false,
+  options: { sort: { createdAt: -1 } } // Query options, see http://bit.ly/mongoose-query-options
+ });
 
 experienceSchema.index({ location: '2dsphere' });
 

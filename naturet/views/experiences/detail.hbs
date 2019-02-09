@@ -7,9 +7,47 @@
         <a href="">Some description</a>
         <a href="">map</a>
         <a href="/profile">profile</a>
-      </div>
-    </div>
 
+   
+     {{#isfollow experience session}}
+ 
+       <form action="/experiences/{{../experience.id}}/unfollow" class="mt-1" method="post">
+               <div class="form-actions">
+                   <button class="btn btn-success" type="submit">
+                     <i class="fas fa-star"></i>
+                   </button>
+               </div>
+       </form>
+     {{else}}
+
+
+       <form action="/experiences/{{../experience.id}}/follow" class="float-left" method="post">
+               <div class="form-actions">
+                   <button class="btn btn-success" type="submit">
+                     <i class="far fa-star"></i>
+                   </button>
+               </div>
+       </form>
+     {{/isfollow}}
+
+     
+        <form action="/experiences/{{experience.id}}/purchased" class="mt-1" method="post">
+               <div class="form-actions">
+                   <button class="btn btn-danger" type="submit">
+                     purchased
+                   </button>
+               </div>
+       </form>
+       <form action="/experiences/{{experience.id}}/docomment" class="mt-1" method="post">
+                 <div class="form-actions">
+                     <label for="docomment">Escribe tu comentario</label>
+                     <textarea class="form-control" name="message" rows=2></textarea>
+                     <button class="btn btn-primary" type="submit">enviar</button>      
+                 </div>
+       </form>
+     </div>
+   </div>
+   
 
     <div class="col-xl-9 col-md-9 col-12">
       <div class="text-center">
@@ -89,8 +127,15 @@
 
         <div class=" mb-2">
           <h4> <span class="input-group-text"> <i class="fas fa-image"></i> </span>Fotos</h4>
-          {{!-- <img src="{{experience.photo}}" style="max-width: 200px;"> --}}
+          {{#each experience.photos}}
+            <img src="{{this}}" style="max-width: 200px;">
+          {{/each}}
+          
         </div>
+
+        {{#each experience.comments}}
+          {{this.message}}
+        {{/each}}
 
 
         <hr class="mt-5">

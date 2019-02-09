@@ -9,7 +9,6 @@ const Experience = require("../models/experience.model");
 // First Create of user profile
 
 
-
 module.exports.getHome = (req, res, next) => {
   Experience.find()
   .populate('user')
@@ -73,6 +72,8 @@ module.exports.doCreate = (req, res, next) => {
 module.exports.profile = (req, res, next) => {
   User.findById(req.user.id)
   .populate('experiences')
+  .populate('following')
+  .populate('purchased')
   .then(user => {
 
     res.render("users/profile", { user });

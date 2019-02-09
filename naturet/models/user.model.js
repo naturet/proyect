@@ -76,6 +76,20 @@ const userSchema = new mongoose.Schema({
   },
   enterprise_picture: {
     type: String
+  },
+  following: {
+    type: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Experience'
+    }],
+    default: []
+  },
+  purchased: {
+    type: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Experience'
+    }],
+    default: []
   }
 }, {
   timestamps: true,

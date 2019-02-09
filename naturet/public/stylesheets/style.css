@@ -123,7 +123,7 @@ border: 2px solid white;
 }
 
 .slick-prev:before, .slick-next:before{
-  color:red;
+  color:white;
 }
 
 .slick-slide {
@@ -168,6 +168,21 @@ border: 2px solid white;
     cursor: hand;
 }
 
+.slick-prev::before, .slick-next::before{
+  font-size: 40px;
+}
+
+.slick-next {
+  right: 20px !important;
+}
+
+.slick-arrow{
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+
+}
+
 .slick-slider .slick-track,
 .slick-slider .slick-list
 {
@@ -190,6 +205,7 @@ border: 2px solid white;
 {
     display: table;
     content: '';
+    color: white;
 }
 .slick-track:after
 {
@@ -232,7 +248,7 @@ border: 2px solid white;
     visibility: hidden;
 }
 .slick-prev {
-  left: 0px;
+  left: 20px;
 }
 
 .slick-next{

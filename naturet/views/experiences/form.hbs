@@ -21,7 +21,7 @@
         <hr>
 
 
-        <form action="/experiences/create" method="post" onsubmit="addPathToForm(this)">
+        <form action="/experiences/create" method="post" onsubmit="addPathToForm(this)" enctype="multipart/form-data">
           <h1>New experience</h1>
           <hr>
           <h1 id="categories">categories</h1>
@@ -145,7 +145,7 @@
 
               <div class="form-group">
                 <label for="photos">Fotos</label>
-                <input type="file" class="form-control" name="photo" placeholder="Picture" value="string" multiple />
+                <input type="file" class="form-control" name="photo" placeholder="Picture" multiple />
               </div>
 
               <div class="form-group">
