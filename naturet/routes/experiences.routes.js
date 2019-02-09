@@ -8,7 +8,7 @@ const uploadCloud = require('../configs/cloudinary.config.js');
 router.get('/create',  authMiddleware.isAuthenticated, authMiddleware.userIsCreator, experienceController.create);
 router.post('/create', authMiddleware.isAuthenticated, authMiddleware.userIsCreator, uploadCloud.array('photo'), experienceController.doCreate);
 
-router.get('/:id', authMiddleware.userIsCreator, experienceController.get);
+router.get('/:id', experienceController.get);
 router.get('/:id/delete',  authMiddleware.isAuthenticated, authMiddleware.userIsCreator, experienceController.delete);
 
 router.post('/:id/follow', authMiddleware.isAuthenticated, experienceController.follow);
