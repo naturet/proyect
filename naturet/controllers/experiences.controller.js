@@ -130,7 +130,7 @@ module.exports.unFollow = (req, res, next) => {
               })
               .populate('following')
               .populate('experience')
-              .then(() => res.redirect("/profile/"))
+              .then(() => res.redirect(`/experiences/${id}`))
         }
       })
       .catch(error => next(error));
@@ -149,7 +149,7 @@ module.exports.unFollow = (req, res, next) => {
             })
             .populate('following')
             .populate('experience')
-            .then(() => res.redirect("/profile/"))
+            .then(() => res.redirect(`/experiences/${id}`))
           }
       })
       .catch(error => next(error));
