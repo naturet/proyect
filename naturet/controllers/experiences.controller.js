@@ -19,11 +19,10 @@ module.exports.doComment = (req, res, next) => {
  };
 
  const comment = new Comment(commentData);
- 
  return comment
    .save()
-   .then(()=> {
-     res.redirect("/profile");
+   .then((experience)=> {
+     res.redirect(`/experiences/${commentData.experience}`);
    })
    .catch(error => next(error));
 };
