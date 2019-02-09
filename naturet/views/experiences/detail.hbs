@@ -142,7 +142,11 @@
           <div class="image-slide-owner" style="background:url('{{this.user.photo}}')"></div>
           <divclass="column">
             <h6 class="ml-3 p-0 mb-0"><strong>{{this.user.name}}</strong></h6>
-            <span class="ml-3 p-0 date-comment">{{this.createdAt}}</span>
+            <span class="ml-3 p-0 date-comment">
+              {{#formatDate this.createdAt}}
+              {{/formatDate}}
+              
+              </span>
         </div>
         <div class="flex-row">
         <h5 >{{this.message}}</h5>

@@ -10,6 +10,7 @@ require('../helpers/equalcheck.helpers')(hbs);
 require('../helpers/politic.helpers')(hbs);
 require('../helpers/creator.helpers')(hbs);
 require('../helpers/categorycreate.helpers')(hbs);
+require('../helpers/formatDate.helpers')(hbs);
 
 // experiences
 

@@ -5,17 +5,40 @@ const User = require("../models/user.model");
 const passport = require("passport");
 const Comment = require("../models/comment.model");
 
+module.exports.results = (req, res, next) => {
+
+  const {name, category} = req.query
+  console.log(category)
+  const criteria = {};
+
+  if(name){
+    criteria.name = new RegExp(name, 'i')
+  }
+  if(category){
+    criteria.categories = {
+      $all: category.split(',')
+    }
+  }
+  Experience.find(criteria)
+    .then(experiences => 
+      res.render('users/results', {
+        experiences
+      })
+    )
+}
+
 module.exports.comment = (req, res, next) => {
  res.render("experiences/detail");
  
 };
 
 module.exports.doComment = (req, res, next) => {
-
+ 
  const commentData = {
    message: req.body.message,
    user: req.user.id,
    experience: req.params.id,
+   date: new Date()
  };
 
  const comment = new Comment(commentData);
@@ -26,6 +49,7 @@ module.exports.doComment = (req, res, next) => {
      res.redirect(`/experiences/${commentData.experience}`);
    })
    .catch(error => next(error));
+  
 };
 
 module.exports.get = (req, res, next) => {

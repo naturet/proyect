@@ -224,9 +224,7 @@ $(window).on("load", function () {
   });
 
   function dateFormat(){
-    let array = $('.date-comment').text().split(' ');
-    let newString = `${array[1]} ${array[2]} ${array[3]}`
-    $('.date-comment').text(newString) 
+  
   }
    dateFormat()
 
