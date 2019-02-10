@@ -187,6 +187,7 @@ module.exports.unFollow = (req, res, next) => {
               .populate('following')
               .populate('experience')
               .then(() => res.redirect(`/experiences/${id}`))
+              
         }
       })
       .catch(error => next(error));

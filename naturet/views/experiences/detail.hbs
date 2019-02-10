@@ -7,6 +7,7 @@
         <a href="">Some description</a>
         <a href="">map</a>
         <a href="/profile">profile</a>
+        <a href="/">Home</a>
 
 
         {{#isfollow experience session}}
@@ -30,9 +31,7 @@
         </form>
         {{/isfollow}}
 
-
-
-
+  
         <form action="/experiences/{{experience.id}}/purchased" class="mt-1" method="post">
           <div class="form-actions">
             <button class="btn btn-danger" type="submit">
@@ -168,3 +167,4 @@
   var jsonObj = JSON.parse(decodedJson);
   window.points = jsonObj;
 </script>
+
