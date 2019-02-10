@@ -4,6 +4,7 @@ const Experience = require("../models/experience.model");
 const User = require("../models/user.model");
 const passport = require("passport");
 const Comment = require("../models/comment.model");
+const axios = require("axios");
 
 module.exports.results = (req, res, next) => {
 
@@ -40,38 +41,39 @@ module.exports.doComment = (req, res, next) => {
    experience: req.params.id,
    date: new Date()
  };
-  
+
  if (!commentData.message) {
-   Experience.findById(req.params.id)
-   .populate('user')
-   .populate({
-      path: 'comments',
-      populate: {
-        path: 'user',
-      },
-    })
-   .then(experience => {
-    res.render('experiences/detail', {
-      experience,
-      pointsJSON: encodeURIComponent(JSON.stringify(experience.location.coordinates)),
-      errors: {
-        message: req.body.message ? undefined : 'Message is required',
-      }
-    })
-    .catch(error => next(error));
+  Experience.findById(req.params.id)
+  .populate('user')
+  .populate({
+     path: 'comments',
+     populate: {
+       path: 'user',
+     },
    })
- 
-  } else {
-  const comment = new Comment(commentData);
-  return comment
-    .save()
-    .then((experience)=> {
-      console.log(comment);
-      res.redirect(`/experiences/${commentData.experience}`);
-    })
-    .catch(error => next(error));
-  }
+  .then(experience => {
+   res.render('experiences/detail', {
+     experience,
+     pointsJSON: encodeURIComponent(JSON.stringify(experience.location.coordinates)),
+     errors: {
+       message: req.body.message ? undefined : 'Message is required',
+     }
+   })
+   .catch(error => next(error));
+  })
+
+ } else {
+ const comment = new Comment(commentData);
+ return comment
+   .save()
+   .then((experience)=> {
+     console.log(comment);
+     res.redirect(`/experiences/${commentData.experience}`);
+   })
+   .catch(error => next(error));
+ }
 };
+
 
 module.exports.get = (req, res, next) => {
   const id = req.params.id;
@@ -186,12 +188,35 @@ module.exports.unFollow = (req, res, next) => {
               })
               .populate('following')
               .populate('experience')
+<<<<<<< Updated upstream
               .then(() => res.redirect(`/experiences/${id}`))
               
+=======
+              .then(() =>
+                res.json({
+                 OK: true,
+              }))
+>>>>>>> Stashed changes
         }
       })
       .catch(error => next(error));
  }
+
+
+// module.exports.favBar = (req, res, next) => {
+//   const { restaurantId } = req.params;
+//   User.findByIdAndUpdate(req.user.id, { $set: { favBar: restaurantId } }, { new: true })
+//     .then(user => {
+//       if (user) {
+//         res.json({
+//           OK: true,
+//         })
+//       } else {
+//         next(createError(404, 'User not found'));
+//       }
+//     })
+//     .catch(error => next(error));
+// }
  
  module.exports.follow = (req, res, next) => {
   const id = req.params.id;
@@ -206,7 +231,10 @@ module.exports.unFollow = (req, res, next) => {
             })
             .populate('following')
             .populate('experience')
-            .then(() => res.redirect(`/experiences/${id}`))
+            .then((user) => 
+            res.json({
+              OK: true,
+            }))
           }
       })
       .catch(error => next(error));
