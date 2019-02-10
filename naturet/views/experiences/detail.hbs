@@ -10,14 +10,14 @@
         <a href="/">Home</a>
 
 
-          
-          <button class="btn btn-success fav-btn  {{#isfollow experience session}}unfollow{{else}}{{/isfollow}}" type="button" value="{{experience.id}}" id="fav-btn">
-
-            <i class="fas fa-star"></i>
-          </button>
-
-      
-
+        <button class="btn btn-success fav-btn  {{#isfollow experience session}}{{else}}unfollow{{/isfollow}}" type="button"
+          value="{{experience.id}}" id="fav-btn">
+          {{#isfollow experience session}}
+          <i class="far fa-star"></i>
+          {{else}}
+          <i class="fas fa-star"></i>
+          {{/isfollow}}
+        </button>
 
         <form action="/experiences/{{experience.id}}/purchased" class="mt-1" method="post">
           <div class="form-actions">
@@ -26,8 +26,6 @@
             </button>
           </div>
         </form>
-
-
       </div>
     </div>
 
@@ -123,7 +121,7 @@
           {{/if}}
           <button class="btn btn-primary btn-lg mb-2 " type="submit">enviar</button>
         </div>
-       
+
       </form>
       <hr>
       {{#each experience.comments}}
@@ -150,29 +148,29 @@
 </div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script>
 
   var favBtn = $('#fav-btn')
 
-
   function doFav(event) {
-
     if (favBtn.hasClass('unfollow')) {
-          const experienceId = event.target.value;
-      axios.post(`/experiences/${experienceId}/follow`, {method: "post",withCredentials: true})
+      const experienceId = event.target.value;
+      axios.post(`/experiences/${experienceId}/follow`, { method: "post", withCredentials: true })
         .then(response => {
           console.log('follow')
           favBtn.removeClass('unfollow')
+          favBtn.children('.far').removeClass('fas').addClass('far')
         })
         .catch(error => console.log(error));
     } else {
-          const experienceId = event.target.value;
-      axios.post(`/experiences/${experienceId}/unfollow`, {method: "post",withCredentials: true})
+      const experienceId = event.target.value;
+      axios.post(`/experiences/${experienceId}/unfollow`, { method: "post", withCredentials: true })
         .then(response => {
           console.log('unfollow')
           favBtn.addClass('unfollow')
+          favBtn.children('.fas').removeClass('far').addClass('fas')
         })
-
     }
   }
 
@@ -185,4 +183,3 @@
   var jsonObj = JSON.parse(decodedJson);
   window.points = jsonObj;
 </script>
-

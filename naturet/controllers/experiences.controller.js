@@ -188,15 +188,10 @@ module.exports.unFollow = (req, res, next) => {
               })
               .populate('following')
               .populate('experience')
-<<<<<<< Updated upstream
-              .then(() => res.redirect(`/experiences/${id}`))
-              
-=======
               .then(() =>
                 res.json({
                  OK: true,
               }))
->>>>>>> Stashed changes
         }
       })
       .catch(error => next(error));
