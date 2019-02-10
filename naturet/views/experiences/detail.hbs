@@ -13,9 +13,9 @@
         <button class="btn btn-success fav-btn  {{#isfollow experience session}}{{else}}unfollow{{/isfollow}}" type="button"
           value="{{experience.id}}" id="fav-btn">
           {{#isfollow experience session}}
-          <i class="far fa-star"></i>
-          {{else}}
           <i class="fas fa-star"></i>
+          {{else}}
+          <i class="far fa-star"></i>
           {{/isfollow}}
         </button>
 
@@ -160,7 +160,7 @@
         .then(response => {
           console.log('follow')
           favBtn.removeClass('unfollow')
-          favBtn.children('.far').removeClass('fas').addClass('far')
+          favBtn.children('i').removeClass('far').addClass('fas')
         })
         .catch(error => console.log(error));
     } else {
@@ -169,7 +169,7 @@
         .then(response => {
           console.log('unfollow')
           favBtn.addClass('unfollow')
-          favBtn.children('.fas').removeClass('far').addClass('fas')
+          favBtn.children('i').removeClass('fas').addClass('far')
         })
     }
   }
