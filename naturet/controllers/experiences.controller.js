@@ -40,16 +40,37 @@ module.exports.doComment = (req, res, next) => {
    experience: req.params.id,
    date: new Date()
  };
-
- const comment = new Comment(commentData);
- return comment
-   .save()
-   .then((experience)=> {
-     console.log(comment);
-     res.redirect(`/experiences/${commentData.experience}`);
-   })
-   .catch(error => next(error));
   
+ if (!commentData.message) {
+   Experience.findById(req.params.id)
+   .populate('user')
+   .populate({
+      path: 'comments',
+      populate: {
+        path: 'user',
+      },
+    })
+   .then(experience => {
+    res.render('experiences/detail', {
+      experience,
+      pointsJSON: encodeURIComponent(JSON.stringify(experience.location.coordinates)),
+      errors: {
+        message: req.body.message ? undefined : 'Message is required',
+      }
+    })
+    .catch(error => next(error));
+   })
+ 
+  } else {
+  const comment = new Comment(commentData);
+  return comment
+    .save()
+    .then((experience)=> {
+      console.log(comment);
+      res.redirect(`/experiences/${commentData.experience}`);
+    })
+    .catch(error => next(error));
+  }
 };
 
 module.exports.get = (req, res, next) => {
