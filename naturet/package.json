@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@glidejs/glide": "^3.2.5",
+    "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
     "cloudinary": "^1.13.2",
     "connect-mongo": "^2.0.3",

@@ -7,6 +7,7 @@ const multer = require('multer');
 const uploadCloud = require('../configs/cloudinary.config.js');
 
 
+
 router.get('/profile', authMiddleware.isAuthenticated, authMiddleware.isProfileCompleted, usersController.profile);
 
 

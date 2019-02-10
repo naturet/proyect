@@ -5,33 +5,20 @@
       <div class=" profile-navigation d-flex flex-column mx-auto ">
         <a href="">Categories</a>
         <a href="">Some description</a>
-        <a href="">map</a>
+        <a href="/">Home</a>
         <a href="/profile">profile</a>
         <a href="/">Home</a>
 
 
-        {{#isfollow experience session}}
+          
+          <button class="btn btn-success fav-btn  {{#isfollow experience session}}unfollow{{else}}{{/isfollow}}" type="button" value="{{experience.id}}" id="fav-btn">
 
-        <form action="/experiences/{{../experience.id}}/unfollow" class="mt-1" method="post">
-          <div class="form-actions">
-            <button class="btn btn-success" type="submit">
-              <i class="fas fa-star"></i>
-            </button>
-          </div>
-        </form>
-        {{else}}
+            <i class="fas fa-star"></i>
+          </button>
+
+      
 
 
-        <form action="/experiences/{{../experience.id}}/follow" class="float-left" method="post">
-          <div class="form-actions">
-            <button class="btn btn-success" type="submit">
-              <i class="far fa-star"></i>
-            </button>
-          </div>
-        </form>
-        {{/isfollow}}
-
-  
         <form action="/experiences/{{experience.id}}/purchased" class="mt-1" method="post">
           <div class="form-actions">
             <button class="btn btn-danger" type="submit">
@@ -131,9 +118,9 @@
         <div class="form-actions">
           <h2 for="docomment">Escribe tu comentario</h2>
           <textarea class="form-control mb-4" name="message" rows=2></textarea>
-           {{#if errors.message }}
-            <h2>{{ errors.message }}</h2>
-           {{/if}}
+          {{#if errors.message }}
+          <h2>{{ errors.message }}</h2>
+          {{/if}}
           <button class="btn btn-primary btn-lg mb-2 " type="submit">enviar</button>
         </div>
        
@@ -148,11 +135,11 @@
             <span class="ml-3 p-0 date-comment">
               {{#formatDate this.createdAt}}
               {{/formatDate}}
-              
-              </span>
+
+            </span>
         </div>
         <div class="flex-row">
-        <h5 >{{this.message}}</h5>
+          <h5>{{this.message}}</h5>
         </div>
       </div>
       <hr>
@@ -161,6 +148,37 @@
   </div>
 
 </div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+  var favBtn = $('#fav-btn')
+
+
+  function doFav(event) {
+
+    if (favBtn.hasClass('unfollow')) {
+          const experienceId = event.target.value;
+      axios.post(`/experiences/${experienceId}/follow`, {method: "post",withCredentials: true})
+        .then(response => {
+          console.log('follow')
+          favBtn.removeClass('unfollow')
+        })
+        .catch(error => console.log(error));
+    } else {
+          const experienceId = event.target.value;
+      axios.post(`/experiences/${experienceId}/unfollow`, {method: "post",withCredentials: true})
+        .then(response => {
+          console.log('unfollow')
+          favBtn.addClass('unfollow')
+        })
+
+    }
+  }
+
+  favBtn.click(doFav)
+
+</script>
 
 <script>
   var decodedJson = decodeURIComponent("{{{pointsJSON}}}");
