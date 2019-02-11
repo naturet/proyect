@@ -8,7 +8,6 @@
       const experienceId = event.target.value;
       axios.post(`/experiences/${experienceId}/follow`, { method: "post", withCredentials: true })
         .then(response => {
-          console.log('follow')
           favBtn.removeClass('unfollow')
           favBtn.children('i').removeClass('far').addClass('fas')
         })
@@ -17,7 +16,6 @@
       const experienceId = event.target.value;
       axios.post(`/experiences/${experienceId}/unfollow`, { method: "post", withCredentials: true })
         .then(response => {
-          console.log('unfollow')
           favBtn.addClass('unfollow')
           favBtn.children('i').removeClass('fas').addClass('far')
         })

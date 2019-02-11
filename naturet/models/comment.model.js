@@ -20,7 +20,10 @@ const commentSchema = new mongoose.Schema({
  },
  owner: {
    type: Object,
- }
+ },
+ rate: {
+   type: Number,
+ },
 }, {
  timestamps: true
 });

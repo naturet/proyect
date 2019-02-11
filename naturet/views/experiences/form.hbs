@@ -81,7 +81,7 @@
               <div class="form-group">
 
                  <label for="price">Price:</label>
-                <input type="Number" class="form-control" id="price" name="price" value="{{price}}">
+                <input type="Number" class="form-control" min="0" id="price" name="price" value="{{price}}">
                 {{#if errors.price}}
                 <p>{{errors.price}}</p>
                 {{/if}}
@@ -111,7 +111,7 @@
 
               <div class="form-group">
                 <label for="duration">Duración</label>
-                <input type="Number" class="form-control" id="duration" name="duration" value="{{experience.duration}}">
+                <input type="Number" class="form-control" min="0" id="duration" name="duration" value="{{experience.duration}}">
               </div>
 
               <div class="form-group">

@@ -40,10 +40,11 @@ module.exports.doComment = (req, res, next) => {
    message: req.body.message,
    user: req.user.id,
    experience: req.params.id,
+   rate: req.body.rate,
    date: new Date()
  };
 
- if (!commentData.message) {
+ if (!commentData.message || !commentData.rate) {
   Experience.findById(req.params.id)
   .populate('user')
   .populate({
@@ -58,6 +59,7 @@ module.exports.doComment = (req, res, next) => {
      pointsJSON: encodeURIComponent(JSON.stringify(experience.location.coordinates)),
      errors: {
        message: req.body.message ? undefined : 'Message is required',
+       rate: req.body.rate ? undefined : 'Rate'
      }
    })
    .catch(error => next(error));
@@ -68,7 +70,6 @@ module.exports.doComment = (req, res, next) => {
  return comment
    .save()
    .then((experience)=> {
-     console.log(comment);
      res.redirect(`/experiences/${commentData.experience}`);
    })
    .catch(error => next(error));
