@@ -45,8 +45,8 @@
 .image-filter{
   max-width: 100%;
   height: 250px;
-  background-size: cover;
-  background-position: center;
+  background-size: cover !important;
+  background-position: center !important;
 }
 
 .categorie-box{
