@@ -1,6 +1,35 @@
 
+<div class="container">
 
-{{#each experiences}}
- <p>{{this.name}}</p>
-{{/each}}
+<div class="row">
+    {{#each_upto experiences 9 }}
 
+    <div class="col-4 mb-3 ">
+      <a href="/experiences/{{this.id}}">
+      <div class="border rounded-top">
+
+ 
+        <div class="image-filter rounded-top" style="background: url('{{#if this.photos.[0]}}{{this.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1549223454/test/background-intro.jpg.jpg{{/if}}')">
+        </div>
+      </a>
+      <div class="p-2">
+
+        <h5>{{this.name}}</h5>
+        <p class="experience-card-description">{{this.description}}</p>
+        <p><strong>{{this.price}}</strong></p>
+        <small class="category-tag" data-category="{{this.categories.[0]}}">#{{this.categories.[0]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[2]}}">#{{this.categories.[2]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[3]}}">#{{this.categories.[3]}}</small>
+        <div>{{this.user.name}}</div>
+             </div>
+
+      </div>
+    </div>
+
+    {{/each_upto}}
+    </div>
+
+
+
+
+  </div>

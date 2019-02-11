@@ -1,12 +1,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
 <div class="container-slider mx-auto pt-5 pb-5">
 
-<input type='text' name='' id="filter-word" class="w-100" rows='3'>
-<button id="filter-button">filtrar</button>
+  <input type='text' name='' id="filter-word" class="w-100">
+  <button id="filter-button" class="btn btn-primary mt-2 w-25">filtrar</button>
 </div>
 
 <div class="container-slider mx-auto">
-  
+
   <h2>ULtimas Experiencias</h2>
   <hr>
   <section class="customer-experiencer slider">
@@ -22,9 +22,9 @@
         <h5>{{this.name}}</h5>
         <p class="experience-card-description">{{this.description}}</p>
         <p><strong>{{this.price}}</strong></p>
-        <small>#{{this.categories.[0]}}</small>
-        <small>#{{this.categories.[2]}}</small>
-        <small>#{{this.categories.[3]}}</small>
+         <small class="category-tag" data-category="{{this.categories.[0]}}">#{{this.categories.[0]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[2]}}">#{{this.categories.[2]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[3]}}">#{{this.categories.[3]}}</small>
         <div>{{this.user.name}}</div>
 
       </div>
@@ -51,9 +51,9 @@
         <div class="image-slide-inside image-slide-session">
           <div class="session-info">
             <h5 class="experience-card-description">{{this.description}}</h5>
-                      <div>{{this.user.name}}</div>
+            <div>{{this.user.name}}</div>
             <div class="image-slide-owner" style="background:url('{{this.user.photo}}')"></div>
-  
+
           </div>
         </div>
       </a>
@@ -64,6 +64,45 @@
     {{/each_upto}}
     <div class="slide slide1">
       <div class="image-slide-inside"><a href="more">more</a></div>
+    </div>
+  </section>
+</div>
+
+
+<div class="container-slider mx-auto mt-4 ">
+  <h2>Categorias</h2>
+  <hr>
+  <section class="mb-5">
+    <div class="flex-row wrap m-0 row-categories">
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 categorie-box row mb-2">
+        <div class="category-name-home" data-category="forest">
+             <div class="image-category" style="background: url('http://www.dsalud.com/wp-content/uploads/2016/08/ntermedia_053_10.jpg')"></div>
+          <h6 class="category-name-text">Forest</h6>
+        </div>
+      </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 categorie-box row mb-2">
+        <div class="category-name-home" data-category="wildlife">
+             <div class="image-category" style="background: url('https://estaticos.muyinteresante.es/media/cache/760x570_thumb/uploads/images/article/590c38d75bafe8cb903c9869/tucan_0.jpg')"></div>
+          <h6 class="category-name-text">Wildlife</h6>
+        </div>
+      </div>
+      
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 categorie-box row mb-2">
+        <div class="category-name-home" data-category="landscape">
+             <div class="image-category" style="background: url('https://cdn.pixabay.com/photo/2017/07/26/12/24/camera-2541541_960_720.jpg')"></div>
+          <h6 class="category-name-text">Al aire libre</h6>
+        </div>
+      </div>
+      
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 categorie-box row mb-2">
+        <div class="category-name-home" data-category="diving">
+             <div class="image-category" style="background: url('https://arenaldiving.com/wp-content/uploads/2018/02/Bautismo-Buceo-PADI-Discover-Scuba-Diving-ibiza.jpg')"></div>
+          <h6 class="category-name-text">Diving</h6>
+        </div>
+      </div>
+      
+      
+
     </div>
   </section>
 </div>
@@ -87,7 +126,7 @@
           arrows: false,
           slidesToShow: 2
         }
-      },{
+      }, {
         breakpoint: 520,
         settings: {
           arrows: false,
@@ -137,5 +176,5 @@
 </script>
 
 <script src="/js/filters.js">
-  
+
 </script>

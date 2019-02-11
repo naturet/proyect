@@ -33,7 +33,7 @@ const experienceSchema = new mongoose.Schema({
  },
  photos: {
   type: [String],
-  default: []
+  default: ['https://res.cloudinary.com/dwta0wgpp/image/upload/v1549223454/test/background-intro.jpg.jpg']
 },
  languages: {
    type: [String],

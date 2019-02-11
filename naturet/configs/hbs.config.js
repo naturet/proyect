@@ -17,3 +17,4 @@ require('../helpers/formatDate.helpers')(hbs);
 require('../helpers/categoryshowexp.helpers')(hbs);
 require('../helpers/experiences.helpers')(hbs);
 require('../helpers/follow.helpers')(hbs);
+require('../helpers/purchased.helpers')(hbs);

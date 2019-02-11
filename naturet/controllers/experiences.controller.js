@@ -9,12 +9,13 @@ const axios = require("axios");
 module.exports.results = (req, res, next) => {
 
   const {name, category} = req.query
-  console.log(category)
+
   const criteria = {};
 
   if(name){
     criteria.name = new RegExp(name, 'i')
   }
+
   if(category){
     criteria.categories = {
       $all: category.split(',')
@@ -198,20 +199,7 @@ module.exports.unFollow = (req, res, next) => {
  }
 
 
-// module.exports.favBar = (req, res, next) => {
-//   const { restaurantId } = req.params;
-//   User.findByIdAndUpdate(req.user.id, { $set: { favBar: restaurantId } }, { new: true })
-//     .then(user => {
-//       if (user) {
-//         res.json({
-//           OK: true,
-//         })
-//       } else {
-//         next(createError(404, 'User not found'));
-//       }
-//     })
-//     .catch(error => next(error));
-// }
+
  
  module.exports.follow = (req, res, next) => {
   const id = req.params.id;
