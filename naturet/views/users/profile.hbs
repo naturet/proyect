@@ -125,11 +125,12 @@
         <hr>
         <div class="mb-2 col-6">
           <h4>Your Purchased Experiences</h4>
+          {{user.purchased.id}}
           {{#each user.purchased as |experience| }}
           <ul>
             <li data-id="{{experience.id}}">
               <div>
-                <a href="/experiences/{{ experience.id }}">{{experience.name}}</a>
+                <a href="/experiences/{{ experience.id }}">{{this}}</a>
               </div>
             </li>
           </ul>

@@ -4,6 +4,7 @@ const Experience = require("../models/experience.model");
 const User = require("../models/user.model");
 const passport = require("passport");
 const Comment = require("../models/comment.model");
+const Payment = require("../models/payment.model");
 const axios = require("axios");
 
 module.exports.results = (req, res, next) => {
@@ -85,13 +86,7 @@ module.exports.get = (req, res, next) => {
     path: 'comments',
     populate: {
       path: 'user',
-    },
-  })
-  .populate({
-    path: 'comments',
-    populate: {
-      path: 'experience',
-    },
+    }
   })
     .then(experience => {
       res.render('experiences/detail', {
@@ -216,9 +211,7 @@ module.exports.unFollow = (req, res, next) => {
             .populate('following')
             .populate('experience')
             .then((user) => 
-            res.json({
-              OK: true,
-            }))
+            res.status(204).json())
           }
       })
       .catch(error => next(error));
@@ -229,15 +222,31 @@ module.exports.unFollow = (req, res, next) => {
       .populate('purchased')
       .then(experience =>  { 
           if (!experience) {
-              next();
+              next(createError(404));
           } else {
-          return  User.findByIdAndUpdate(req.user.id, {
-              $addToSet: { purchased: experience.id }
-            })
-            .populate('purchased')
-            .populate('experience')
-            .then(() => res.redirect("/profile/"))
-          }
-      })
+            const paymentData = {
+              user: req.user.id,
+              experience: req.params.id,
+            };
+
+            const payment = new Payment(paymentData);
+            
+            return payment
+              .save()
+              .then(() => {
+                return  User.findByIdAndUpdate(req.user.id, {
+                  $addToSet: { purchased: payment.id }
+                })
+                .populate('purchased')
+                .then(() => 
+                
+                res.redirect("/profile"))
+           
+              })
+              
+            }
+          }) 
       .catch(error => next(error));
- }
+
+}
+

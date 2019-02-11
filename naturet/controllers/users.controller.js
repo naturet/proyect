@@ -4,6 +4,7 @@ const User = require('../models/user.model');
 const passport = require('passport');
 const Experience = require("../models/experience.model");
 const axios = require("axios");
+const Payment = require("../models/payment.model");
 
 
 // First Create of user profile
@@ -75,7 +76,7 @@ module.exports.profile = (req, res, next) => {
   .populate('following')
   .populate('purchased')
   .then(user => {
-
+    console.log(user)
     res.render("users/profile", { user });
   })
   .catch(next);
