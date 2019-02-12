@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 const categories = require('./data/categories');
 const politics = require('./data/politics')
 
+
 require('./configs/db.config');
 require('./configs/hbs.config');
 require('./configs/passport.config');

@@ -19,15 +19,28 @@
           {{else}}
           <i class="fav-btn far fa-star "></i>
           {{/isfollow}}
-        </button>
+          </button>
+          
+          <form action="/experiences/{{../experience.id}}/charge" method="POST">
+            <script 
+              src="https://checkout.stripe.com/checkout.js" 
+              class="stripe-button" 
+              data-key="pk_test_zcTEmEh9DNzx17DvNLibaUVS"
+              data-name="Demo Site" 
+              data-description="2 widgets ($20.00)" 
+              data-amount="2000">
+              </script>
+          </form>
 
+
+{{!-- 
         <form action="/experiences/{{../experience.id}}/purchased" class="mt-1" method="post">
           <div class="form-actions">
             <button class="btn btn-danger" type="submit">
               purchased
             </button>
           </div>
-        </form>
+        </form> --}}
         {{/theCreator}}
       </div>
     </div>
@@ -175,7 +188,7 @@
         {{else}}
         
         <h1>Comentarios</h1>
-        <small>Solo si compras la experiencia podrás puntuarla y escribir tu comentario</small>
+        <small>Solo si compras la experiencia o no eres su creador/a podrás puntuarla y escribir un comentario</small>
         {{/ispurchased}}
 
 

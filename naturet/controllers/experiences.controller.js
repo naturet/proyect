@@ -6,6 +6,10 @@ const passport = require("passport");
 const Comment = require("../models/comment.model");
 const Payment = require("../models/payment.model");
 const axios = require("axios");
+// Stripe //
+const keyPublishable = process.env.PUBLISHABLE_STRIPE_KEY;
+const keySecret = process.env.SECRET_STRIPE_KEY;
+const stripe = require("stripe")(keySecret);
 
 module.exports.results = (req, res, next) => {
 
@@ -216,37 +220,60 @@ module.exports.unFollow = (req, res, next) => {
       })
       .catch(error => next(error));
  }
+
  module.exports.purchased = (req, res, next) => {
-  const id = req.params.id;
-  Experience.findById(id)
-      .populate('purchased')
-      .then(experience =>  { 
-          if (!experience) {
-              next(createError(404));
-          } else {
-            const paymentData = {
-              user: req.user.id,
-              experience: req.params.id,
-            };
+   console.log(req.params.id)
+   Experience.findById(req.params.id)
+     .then(experience => {
+       console.log(experience)
+       if (experience) {
+         stripe.customers.create({
+             email: req.body.stripeEmail,
+             source: req.body.stripeToken
+           })
+           .then(costumer => {
+             console.log('entra 1')
+             stripe.charges.create({
+               amount: experience.price,
+               description: `Buy: ${experience.name}`,
+               currency: "eur",
+               customer: costumer.id
+             })
+           })
+           .then(charge => {
+             console.log(charge)
+             const paymentData = {
+               user: req.user.id,
+               experience: req.params.id,
+             };
+             const payment = new Payment(paymentData)
+             return payment
+               .save()
+               .then(() => {
+                 return User.findByIdAndUpdate(req.user.id, {
+                     $addToSet: {
+                       purchased: experience.id
+                     }
+                   })
+                   .populate('purchased')
+                   .then(() =>
+                     res.redirect(`/experiences/${experience.id}/thankyou`))
+               })
+           })
+       }
+     })
+     .catch(error => next(error));
+ }
 
-            const payment = new Payment(paymentData);
-            
-            return payment
-              .save()
-              .then(() => {
-                return  User.findByIdAndUpdate(req.user.id, {
-                  $addToSet: { purchased: payment.id }
-                })
-                .populate('purchased')
-                .then(() => 
-                
-                res.redirect("/profile"))
-           
-              })
-              
-            }
-          }) 
-      .catch(error => next(error));
 
+module.exports.thankyou = (req, res, next) => {
+  Experience.findById(req.params.id)
+    .then(experience => {
+      console.log(experience)
+      if (experience ) {
+        res.render('experiences/thankyou',{experience})
+      }
+    })
+    .catch(error => next(error));
 }
 
