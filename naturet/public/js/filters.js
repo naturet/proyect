@@ -6,13 +6,13 @@ $('#filter-button').click( function(){
 
 $('.category-name-home').click( function(){
   console.log('entra')
-  var filterWordValue = $(this).attr('data-category')
+  var filterWordValue = $(this).attr('data-category').toLowerCase()
   window.location = `/experiences/results?category=${filterWordValue}`
 })
 
 $('.category-tag').click( function(){
   console.log('entra')
-  var filterWordValue = $(this).attr('data-category')
+  var filterWordValue = $(this).attr('data-category').toLowerCase()
   window.location = `/experiences/results?category=${filterWordValue}`
 })
 

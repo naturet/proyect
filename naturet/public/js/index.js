@@ -223,13 +223,8 @@ $(window).on("load", function () {
     $(this).prop('checked') ? $(this).prop('checked', false) : $(this).prop('checked', true);
   });
 
-  function dateFormat(){
-  
-  }
-   dateFormat()
-
-  
 });
+
 
 $('.category-card').on('click', function (e) {
   $(this).toggleClass("category-selected");

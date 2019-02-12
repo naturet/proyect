@@ -18,27 +18,7 @@ passport.deserializeUser((id, next) => {
     .catch(error => next(error));
 });
 
-// passport.use('local-auth', new LocalStrategy({
-//   usernameField: 'email',
-//   passwordField: 'password'
-// }, (email, password, next) => {
-//   User.findOne({ email: email })
-//     .then(user => {
-//       if (user) {
-//         return user.checkPassword(password)
-//           .then(match => {
-//             if (match) {
-//               next(null, user);
-//             } else {
-//               next(null, null, { password: 'Invalid email or password' })
-//             }
-//           });
-//       } else {
-//         next(null, null, { password: 'Invalid email or password' })
-//       }
-//     })
-//     .catch(error => next(error));
-// }));
+
 
 passport.use('google-auth', new GoogleStrategy({
   clientID: process.env.GOOGLE_AUTH_CLIENT_ID || 'todo',

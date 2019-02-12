@@ -3,12 +3,14 @@ module.exports = [
   {
     id: 'camping',
     name: 'Camping',
-    fontnum: '001'
+    fontnum: '001',
+    image:'https://source.unsplash.com/1600x900/?nature'
   },
   {
     id: 'forest',
     name: 'Forest',
-    fontnum: '002'
+    fontnum: '002',
+    image:'https://source.unsplash.com/1600x900/?nature'
   },
   {
     id: 'ownbag',

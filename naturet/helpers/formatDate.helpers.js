@@ -3,4 +3,9 @@ module.exports = (hbs) => {
     let array = date.toString().split(' ');
    return `${array[1]} ${array[2]} ${array[3]}`;
   })
+
+  hbs.registerHelper('formatName', (name, options) => {
+    let array = name.toString().split(' ');
+   return `${array[0]}`;
+  })
 }
