@@ -236,7 +236,7 @@ module.exports.unFollow = (req, res, next) => {
              stripe.charges.create({
                amount: experience.price,
                description: `Buy: ${experience.name}`,
-               currency: "eur",
+               currency: "EUR",
                customer: costumer.id
              })
            })
