@@ -1,0 +1,46 @@
+<div class="container profile-container">
+  <div class="row pb-5">
+
+    <div class="col-xl-3 col-md-3 col-12 ">
+      <div class=" profile-navigation d-flex flex-column mx-auto ">
+        <a href="">Categories</a>
+        <a href="">Some description</a>
+        <a href="/">Home</a>
+        <a href="/profile">profile</a>
+      </div>
+    </div>
+
+    <div class="col-xl-9 col-md-9 col-12">
+      <div class="text-center">
+        <h5>Experiencia</h5>
+        <h6>{{experience.name}}</h6>
+
+
+        <hr>
+        <h5>Políticas de cancelación</h5>
+        <h6>{{experience.user.politic}}</h6>
+
+      </div>
+      <hr>
+      <div class="text-center">
+        <h5>Tus datos</h5>
+        <hr>
+        <h6>Nombre: {{session.name}}</h6>
+        <h6>Pais: {{session.country}}</h6>
+        <h6>Fecha de nacimiento: {{session.birth}}</h6>
+        <h6>Tlfn: {{session.phone}}</h6>
+
+        <hr>
+        <h6>Total a pagar: {{experience.price}} €</h6>
+        <input type="checkbox" class="regular-checkbox">Acepto las Condiciones Generales de Contratación y la Política
+        de Privacidad y de Cookies
+
+
+        <form action="/experiences/{{experience.id}}/charge" method="POST" class="mt-2">
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_zcTEmEh9DNzx17DvNLibaUVS"
+            data-name="{{experience.name}}" data-description="Total a pagar: {{experience.price}} €" data-amount="{{experience.price}}00 €">
+            </script>
+        </form>
+
+      </div>
+    </div>

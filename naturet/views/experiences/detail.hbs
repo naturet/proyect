@@ -21,26 +21,25 @@
           {{/isfollow}}
           </button>
           
-          <form action="/experiences/{{../experience.id}}/charge" method="POST">
-            <script 
-              src="https://checkout.stripe.com/checkout.js" 
-              class="stripe-button" 
-              data-key="pk_test_zcTEmEh9DNzx17DvNLibaUVS"
-              data-name="{{../experience.name}}" 
-              data-description="Total a pagar: {{../experience.price}} €" 
-              data-amount="{{../experience.price}}00 €">
-              </script>
-          </form>
-        {{/theCreator}}
-      </div>
-    </div>
+     <form action="/experiences/{{../experience.id}}/paypage" class="mt-1" method="get">
+         <div class="form-actions">
+           <button class="btn btn-danger" type="submit">
+             <i class="fas fa-shopping-cart"></i>
+           </button>
+         </div>
+       </form>
+       {{/theCreator}}
+     </div>
+   </div>
 
 
-    <div class="col-xl-9 col-md-9 col-12">
-      <div class="text-center">
-        <img class="profile-image" src="http://prpop.org/wp-content/plugins/ajax-search-pro/img/default.jpg" width="250px">
-        <h3>{{experience.name}}</h3>
-      </div>
+   <div class="col-xl-9 col-md-9 col-12">
+     <div class="text-center">
+       <img class="profile-image" src="http://prpop.org/wp-content/plugins/ajax-search-pro/img/default.jpg" width="250px">
+       <h3>{{experience.name}}</h3>
+       
+       <h4>{{#rating experience}} {{/rating}}<i class='fa fa-star fa-fw'></i></h4>
+     </div>
 
       <hr>
       <h1>categories</h1>

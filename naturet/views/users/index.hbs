@@ -1,14 +1,14 @@
-  {{>  searchmobile}}
+{{!-- {{> searchmobile}}
 
 <header class="masthead">
   <div class="container-slider mx-auto h-100">
     <div class="row h-100 align-items-center">
       <div class="col-12 text-left header-caption">
-        <h1 class="mobile-none">La naturaleza no es para visitar,</h1>
-        <h1 class="mobile-none"> es el verdadero hogar</h1>
-        <h1 class="just-mobile">La naturaleza no es para visitar, es el verdadero hogar</h1>
+        <h1 class="mobile-none">Nature is not just for visitting,</h1>
+        <h1 class="mobile-none">is our real home.</h1>
+        <h1 class="just-mobile">Nature is not just for visitting, is our real home.</h1>
         <hr class="small-green-hr">
-        <p class="lead ml-0">Los mejores caminos, paso a paso...</p>
+        <p class="lead ml-0">The best ways, step by step...</p>
       </div>
     </div>
   </div>
@@ -16,28 +16,40 @@
 
 {{> slidecategories}}
 
-{{> lastexperiences}}
+{{> lastexperiences}} --}}
 
 {{> recommended}}
 
+
+{{!-- 
 <div class="container nav-mobile mx-auto">
   <div class="row mx-auto align-items-center h-100">
-   <div class="col-3 text-center">
-     <i class="fas fa-campground"></i>
-   </div>
     <div class="col-3 text-center">
-     <i class="fas fa-campground"></i>
-   </div>
+      <i class="fas fa-campground"></i>
+    </div>
     <div class="col-3 text-center">
-     <i class="fas fa-campground"></i>
-   </div>
+      <i class="fas fa-campground"></i>
+    </div>
     <div class="col-3 text-center">
-     <i class="fas fa-campground"></i>
-   </div>
+      <i class="fas fa-campground"></i>
+    </div>
+    <div class="col-3 text-center">
+      <i class="fas fa-campground"></i>
+    </div>
   </div>
 </div>
 
-
+{{#if session.creator}}
+<div class="container-slider mx-auto ">
+  <h2>Add new experiences as creator</h2>
+  <p>Show the community your experiences and earn with Naturapp your knowledge</p>
+  <hr>
+  <div class="caption-home mt-4">
+    <img src="/img/logo-invert.svg" alt="" id="caption-logo">
+    <a class="btn mt-3" id="caption-button-home" href="/experiences/create">New experience</a>
+  </div>
+</div>
+{{else}}
 <div class="container-slider mx-auto ">
   <h2>Become an experience creator</h2>
   <p>Show the community your experiences and earn with Naturapp</p>
@@ -46,6 +58,5 @@
     <img src="/img/logo-invert.svg" alt="" id="caption-logo">
     <a class="btn mt-3" id="caption-button-home" href="/creator/create">Become a creator</a>
   </div>
-
 </div>
-
+{{/if}} --}}

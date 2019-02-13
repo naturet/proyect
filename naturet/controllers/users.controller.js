@@ -262,12 +262,14 @@ module.exports.doEditCreator = (req, res, next) => {
 
 
 
-module.exports.get = (req, res, next) => {
-  User.findById(req.params.id)
+module.exports.getOtherProfile = (req, res, next) => {
+let id = req.params.id
+  User.findById(id)
     .then(user => {
+      console.log(user)
       if (!user) {
         next(createError(404, 'User not found'));
-      } else {
+      } else {  
         res.render('users/detail', {
           user
         });

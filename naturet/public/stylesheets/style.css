@@ -34,22 +34,22 @@ box-shadow: 0px 20px 35px -8px rgba(0,0,0,0.05);
   background-color: white;
   z-index:  10;
   -webkit-box-shadow: 0px -13px 35px -8px rgba(0,0,0,0.09);
--moz-box-shadow: 0px -13px 35px -8px rgba(0,0,0,0.09);
-box-shadow: 0px -13px 35px -8px rgba(0,0,0,0.09);
+  -moz-box-shadow: 0px -13px 35px -8px rgba(0,0,0,0.09);
+  box-shadow: 0px -13px 35px -8px rgba(0,0,0,0.09);
 }
 
 .search-div-mobile button{
   background-color: #00c98d;
-    color: white;
-    border: none;
-    padding-top: 9px;
-    padding-bottom: 8px;
-    position: absolute;
-    right: 13px;
-    margin-top: -5px;
-    margin-top: 0px !important;
-    margin-left: -10px !important;
-    border-radius:0px 4px 4px 0px;
+  color: white;
+  border: none;
+  padding-top: 9px;
+  padding-bottom: 8px;
+  position: absolute;
+  right: 13px;
+  margin-top: -5px;
+  margin-top: 0px !important;
+  margin-left: -10px !important;
+  border-radius:0px 4px 4px 0px;
 } 
 .search-div-mobile input{
   padding-left: 10px;
@@ -182,7 +182,8 @@ p{
 }
 
 /*--navbar--*/
-.navbar-brand{
+
+/* .navbar-brand{
   align-items: center;
   display: flex;
   color:white;
@@ -236,6 +237,11 @@ input::placeholder  {
   border-radius: 2px;
   padding-left: 10px;
 }
+ */
+
+
+/*---navbar...*/
+ç
 #filter-button:hover{
   background-color: #0c8a65;
   border: 2px solid #0c8a65;
@@ -492,14 +498,14 @@ body, html{
   background-position: center;
 }
 
-.session-info {
-  padding: 15px;
-  bottom: 0;
-  height: 100%;
-  bottom: 0px;
-  display: flex;
-  flex-direction: column-reverse;
-}
+  .session-info {
+    padding: 15px;
+    bottom: 0;
+    height: 100%;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
 
 .image-slide-owner {
   width: 50px;
@@ -955,12 +961,13 @@ input[type=file] {
     }
   }
   
-  
-  
-  
 
 /* Extra Media Query Below for Retina Iphones and Smaller */
 @media only screen and (max-width : 480px) {
+
+  .footer {
+    margin-bottom: 50px;
+  }
   .masthead {
     height: 90vh;
   }

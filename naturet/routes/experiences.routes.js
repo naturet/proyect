@@ -15,9 +15,9 @@ router.get('/:id/delete',  authMiddleware.isAuthenticated, authMiddleware.userIs
 router.post('/:id/follow', authMiddleware.isAuthenticated, experienceController.follow);
 router.post('/:id/unfollow', authMiddleware.isAuthenticated, experienceController.unFollow);
 
+router.get('/:id/paypage', authMiddleware.isAuthenticated, experienceController.paypage);
 router.post('/:id/charge', authMiddleware.isAuthenticated, experienceController.purchased);
 router.get('/:id/thankyou', authMiddleware.isAuthenticated, experienceController.thankyou);
-// router.post('/:id/purchased', authMiddleware.isAuthenticated, experienceController.purchased);
 
 router.get('/:id/comment', authMiddleware.isAuthenticated, experienceController.comment);
 router.post('/:id/docomment', authMiddleware.isAuthenticated, experienceController.doComment);

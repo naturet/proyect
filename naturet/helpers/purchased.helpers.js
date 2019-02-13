@@ -5,9 +5,12 @@ module.exports = (hbs) => {
        return  experienceBool && !commentBool  ? options.fn(this) : options.inverse(this);
   }),
   hbs.registerHelper('theCreator', (experience, user, options) => {
-   
    const creator = experience.user.id === user.id
-   
        return  creator  ? options.fn(this) : options.inverse(this);
-  }) // preparado por si queremos ocultar purchased y following cuando eres creador de esa experiencia
+  })
+  hbs.registerHelper('rating', (experience, options) => {
+    const numComment = experience.comments.length;
+    const rating = experience.comments.map(comment => comment.rate).reduce((a,b) => a + b, 0)/ numComment
+    return `${rating}/5`
+  })
 }

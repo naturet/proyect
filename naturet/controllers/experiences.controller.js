@@ -269,11 +269,23 @@ module.exports.unFollow = (req, res, next) => {
 module.exports.thankyou = (req, res, next) => {
   Experience.findById(req.params.id)
     .then(experience => {
-      console.log(experience)
       if (experience ) {
         res.render('experiences/thankyou',{experience})
       }
     })
     .catch(error => next(error));
 }
+
+module.exports.paypage = (req, res, next) => {
+  Experience.findById(req.params.id)
+    .populate('user')
+    .then(experience => {  
+      if (experience ) {
+        res.render('experiences/paypage',{experience})
+      }
+    })
+    .catch(error => next(error));
+}
+
+
 
