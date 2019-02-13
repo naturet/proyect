@@ -9,18 +9,24 @@ const Payment = require("../models/payment.model");
 
 // First Create of user profile
 
-
 module.exports.getHome = (req, res, next) => {
-  Experience.find()
-  .populate('user')
-  .then(experiences => 
-    res.render('users/index', {
-          experiences
-   } )
- )
-  .catch(error => next(error))
-}
-
+  const p1 = Experience.find({}, null, {
+    limit: 4,
+    sort: { price: 1 }
+  }).populate("user");
+  const p2 = Experience.find({}, null, {
+    limit: 5,
+    sort: { createdAt: -1 }
+  }).populate("user");
+  Promise.all([p1, p2])
+    .then(([sortPriceExp, experiences]) =>
+      res.render("users/index", {
+        experiences,
+        sortPriceExp
+      })
+    )
+    .catch(error => next(error));
+ };
 
 module.exports.create = (req, res, next) => {
   res.render('users/create')

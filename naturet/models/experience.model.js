@@ -28,7 +28,7 @@ const experienceSchema = new mongoose.Schema({
    coordinates: [[Number]]
  },
  price: {
-   type: String,
+   type: Number,
    min: 0,
  },
  photos: {
@@ -37,7 +37,7 @@ const experienceSchema = new mongoose.Schema({
 },
  languages: {
    type: [String],
-   enum:["Español", "Inglés", "Francés", "Alemán", "Chino"],
+   enum:["Spanish", "English","French","German","Chinese"]
    // required: true,
  },
  duration: {
@@ -46,7 +46,10 @@ const experienceSchema = new mongoose.Schema({
  },
  includes: {
    type: [String],
-   enum: ["Bebidas", "Comida", "Aperitivo", "Equipo"]
+   enum: ["Drinks", "Food", "Snack", "Equipment"]
+ },
+ rating: {
+   type: Number,
  }
 }, {
  timestamps: true,
