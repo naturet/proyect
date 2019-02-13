@@ -1,0 +1,16 @@
+<div class="container-slider mx-auto mt-5">
+  <h2 id="looking-for-name">¿What are you looking for {{#formatName session.name}}{{/formatName}}?</h2>
+  <p>Find your experiences searching in all our categories</p>
+  <section class="costumer-categories slider mb-5">
+    {{#each_upto allCategories 15 }}
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 categorie-box row mb-2">
+        <div class="category-name-home" data-category="{{this.name}}">
+          <div class="image-category">
+            <span class='icon-{{this.fontnum}} search-category-icon'></span>
+          </div>
+          <h6 class="category-name-text">{{this.name}}</h6>
+        </div>
+      </div>
+    {{/each_upto}}
+  </section>
+</div>

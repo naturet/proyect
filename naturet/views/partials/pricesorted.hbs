@@ -1,0 +1,27 @@
+<div class="container-slider mx-auto mb-0">
+  <h2>Últimas Experiencias</h2>
+  <p>Find what you want in the last experiences we upload</p>
+  <hr>
+  <section class="customer-experiencer slider mt-4 mb-0">
+    {{#each_upto sortexp 4 }}
+    <div class="slide slide1">
+      <a href="/experiences/{{this.id}}">
+        <div class="image-slide-inside"style="background: url('{{#if this.photos.[0]}}{{this.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1550007271/test/default-preview.jpg{{/if}}')">
+        </div>
+      </a>
+      <div class="p-2">
+        <h5>{{this.name}}</h5>
+        <p class="experience-card-description ml-0 mb-1">{{this.description}}</p>
+        <p class="ml-0 mt-0 mb-0 nt-c"><strong><span class="price-slider-exp">{{this.price}}</strong> €</span></p>
+        <small class="category-tag" data-category="{{this.categories.[0]}}">#{{this.categories.[0]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[2]}}">#{{this.categories.[2]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[3]}}">#{{this.categories.[3]}}</small>
+        <div><p class="experience-card-description ml-0"><strong>Owner:</strong> <i><a class="nt-c" href="/{{this.id}}/profile">{{this.user.name}}</a></i></p></div>
+      </div>
+    </div>
+    {{/each_upto}}
+    <div class="slide slide1">
+      <div class="image-slide-inside"><a href="more">more</a></div>
+    </div>
+  </section>
+</div>

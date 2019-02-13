@@ -3,13 +3,172 @@
   --category-bg-color: #00c98d;
 }
 
+.nt-c, .nt-c:hover{
+  text-decoration: none;
+  color: var(--category-bg-color);
+}
+
+.nt-w{
+  color: white;
+}
+
+a, a:hover{
+  text-decoration: none;
+}
+
+.search-mobile{
+  display: none;
+  height: 80px;
+  position: fixed;
+  background-color: white;
+  z-index: 100;
+  -webkit-box-shadow: 0px 20px 35px -8px rgba(0,0,0,0.05);
+-moz-box-shadow: 0px 20px 35px -8px rgba(0,0,0,0.05);
+box-shadow: 0px 20px 35px -8px rgba(0,0,0,0.05);
+}
+.nav-mobile{
+  display: none;
+  position: fixed;
+  bottom: 0px;
+  height: 60px;
+  background-color: white;
+  z-index:  10;
+  -webkit-box-shadow: 0px -13px 35px -8px rgba(0,0,0,0.09);
+-moz-box-shadow: 0px -13px 35px -8px rgba(0,0,0,0.09);
+box-shadow: 0px -13px 35px -8px rgba(0,0,0,0.09);
+}
+
+.search-div-mobile button{
+  background-color: #00c98d;
+    color: white;
+    border: none;
+    padding-top: 9px;
+    padding-bottom: 8px;
+    position: absolute;
+    right: 13px;
+    margin-top: -5px;
+    margin-top: 0px !important;
+    margin-left: -10px !important;
+    border-radius:0px 4px 4px 0px;
+} 
+.search-div-mobile input{
+  padding-left: 10px;
+  height: 40px;
+  width:100%;
+  border: none;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 0px 1px #00c98d59;
+  -moz-box-shadow: 0px 0px 0px 1px #00c98d59;
+  box-shadow: 0px 0px 0px 1px #00c98d59;
+}
+
+/*---footer---*/
+.footer {
+  background-color: #181f2a;
+  padding-top: 60px;
+  color: #636e74;
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.footer-line {
+  border-color: #152e3d;
+}
+
+.footer-widget {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.footer-title {
+  font-family:'Circular Std Book';
+  font-weight:normal;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.footer-widget ul li a {
+  text-transform: capitalize;
+  font-size: 15px;
+  color: #636e74;
+  display: block;
+  font-weight: 600;
+  font-family:'Circular Std Book';
+  font-weight:normal;
+}
+
+.footer-widget ul li a:hover {
+  color: #fff;
+}
+
+.news-letter-button{
+  padding: 5px 45px;
+  margin-top: 8px;
+  font-family:'Circular Std Book';
+  font-weight:normal;
+  background-color:#00c98d;
+  color: white;
+}
+
+.newsletter-form {
+  padding-top: 15px;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #00c98d;
+}
+
+.newsletter-form .form-control {
+  background-color: #1e2e38;
+  border-color: #1e2e38;
+}
+
+.newsletter-form .form-control:focus {
+  color: #fff;
+}
+
+.newsletter-form input::-webkit-input-placeholder {
+  color: #fff !important;
+}
+
+.newsletter-form input:focus::-webkit-input-placeholder {
+  color: #fff !important;
+}
+
+
+.tiny-footer {
+  font-size: 1px;
+  padding: 14px 0px;
+  font-weight: 600;
+  background-color: transparent;
+  border-top: 1px solid #152e3d;
+  color: #888d90;
+  line-height: 1.2rem;
+}
+
+.tiny-footer p {
+  font-size: 14px;
+}
+
 
 /*--Main css--*/
 
-h2{
+.price-slider-exp{
+  font-family:'Circular Std Book';
+  font-weight:normal;
+}
+
+h2, h4, h5{
   font-family:'Circular Std Bold';
   font-weight:normal;
-  color:	#383838
+  color:	#383838;
+  line-height: 2rem;
 }
 
 body {
@@ -286,6 +445,37 @@ body, html{
   margin-left: 0px;
 }
 
+.caption-home{
+  height: 250px;
+  background-color:red;
+  border-radius: 5px;
+  margin-bottom: 50px;
+  display:flex;
+  border-radius:5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../img/caption-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#caption-logo{
+  max-width: 100px;
+}
+
+#caption-button-home{
+  font-family:'Circular Std Bold';
+  font-weight:normal;
+ background-color:rgba(0,0,0,0.2);
+  color: white;
+  padding: 10px 40px;
+  border: 2px solid white;
+}
+#caption-button-home:hover{
+  background-color: #00c98d8e;
+}
+
 /* Slider */
 .image-slide-inside {
   max-width: 100%;
@@ -297,7 +487,6 @@ body, html{
 }
 
 .image-slide-session {
-  background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("http://imgstocks.com/wp-content/uploads/2013/12/Url-http-www-wallgc-com-waterfall-forest-nature-591792-199130.jpg");
   height: 370px;
   background-size: cover;
   background-position: center;
@@ -322,11 +511,26 @@ body, html{
   box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.75);
 }
 
+.name-recommended-slide{
+  position: absolute;
+  padding: 20px;
+  max-width: 230px;
+  
+}
+
+.name-recommended-slide h4{
+  color: white;
+  line-height: 1.7rem
+}
+
+
 .experience-card-description {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 150px;
+  opacity: 0.85;
+  max-width: 290px;
+  font-size:15px;
 }
 
 .image-full-card {
@@ -336,13 +540,17 @@ body, html{
   background-size: cover;
   background-position: center;
   max-width: 300px;
-
 }
 
 .container-slider {
   max-width: 1300px;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.image-slide-owner.recomended{
+  box-shadow: 0px 0px 0px 2px var(--category-bg-color);
+  border: 2px solid rgba(0,0,0,0.6); 
 }
 
 .costumer-categories .slick-prev:before, .costumer-categories .slick-next:before{
@@ -514,7 +722,7 @@ body, html{
 }
 
 .category-tag:hover {
-  color: green;
+  color: var(--category-bg-color);;
 }
 
 
@@ -753,6 +961,20 @@ input[type=file] {
 
 /* Extra Media Query Below for Retina Iphones and Smaller */
 @media only screen and (max-width : 480px) {
+  .masthead {
+    height: 90vh;
+  }
+
+  .nav-mobile{
+    display: block;
+  }
+  
+  .search-mobile{
+    display: block;
+  }
+  nav{
+    display: none !important;
+  }
   .container-slider p{
     margin-left: 0px;
   }

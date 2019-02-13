@@ -1,3 +1,5 @@
+  {{>  searchmobile}}
+
 <header class="masthead">
   <div class="container-slider mx-auto h-100">
     <div class="row h-100 align-items-center">
@@ -12,81 +14,38 @@
   </div>
 </header>
 
-<div class="container-slider mx-auto mt-5">
-  <h2 id="looking-for-name">¿What are you looking for {{#formatName session.name}}{{/formatName}}?</h2>
-  <p>Find your experiences searching in all our categories</p>
-  <section class="costumer-categories slider mb-5">
-    {{#each_upto allCategories 15 }}
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 categorie-box row mb-2">
-        <div class="category-name-home" data-category="{{this.name}}">
-          <div class="image-category">
-            <span class='icon-{{this.fontnum}} search-category-icon'></span>
-          </div>
-          <h6 class="category-name-text">{{this.name}}</h6>
-        </div>
-      </div>
-    {{/each_upto}}
-  </section>
-</div>
+{{> slidecategories}}
 
-<div class="container-slider mx-auto">
-  <h2>Últimas Experiencias</h2>
-  <p>Find what you want in the last experiences we upload</p>
-  <hr>
-  <section class="customer-experiencer slider">
-    {{#each_upto experiences 15 }}
-    <div class="slide slide1">
-      <a href="/experiences/{{this.id}}">
-        <div class="image-slide-inside"style="background: url('{{#if this.photos.[0]}}{{this.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1550007271/test/default-preview.jpg{{/if}}')">
-        </div>
-      </a>
-      <div class="p-2">
-        <h5>{{this.name}}</h5>
-        <p class="experience-card-description ml-0">{{this.description}}</p>
-        <p class="ml-0"><strong>{{this.price}}</strong></p>
-        <small class="category-tag" data-category="{{this.categories.[0]}}">#{{this.categories.[0]}}</small>
-        <small class="category-tag" data-category="{{this.categories.[2]}}">#{{this.categories.[2]}}</small>
-        <small class="category-tag" data-category="{{this.categories.[3]}}">#{{this.categories.[3]}}</small>
-        <div>{{this.user.name}}</div>
+{{> lastexperiences}}
 
-      </div>
-    </div>
+{{> recommended}}
 
-    {{/each_upto}}
-    <div class="slide slide1">
-      <div class="image-slide-inside"><a href="more">more</a></div>
-    </div>
-
-  </section>
+<div class="container nav-mobile mx-auto">
+  <div class="row mx-auto align-items-center h-100">
+   <div class="col-3 text-center">
+     <i class="fas fa-campground"></i>
+   </div>
+    <div class="col-3 text-center">
+     <i class="fas fa-campground"></i>
+   </div>
+    <div class="col-3 text-center">
+     <i class="fas fa-campground"></i>
+   </div>
+    <div class="col-3 text-center">
+     <i class="fas fa-campground"></i>
+   </div>
+  </div>
 </div>
 
 
-<div class="container-slider mx-auto slider-session">
-
-  <h2>Recomendados para ti</h2>
+<div class="container-slider mx-auto ">
+  <h2>Become an experience creator</h2>
+  <p>Show the community your experiences and earn with Naturapp</p>
   <hr>
-  <section class="customer-experiencer-session slider">
-    {{#each_upto experiences 4 }}
+  <div class="caption-home mt-4">
+    <img src="/img/logo-invert.svg" alt="" id="caption-logo">
+    <a class="btn mt-3" id="caption-button-home" href="/creator/create">Become a creator</a>
+  </div>
 
-    <div class="slide slide1">
-      <a href="/experiences/{{this.id}}">
-        <div class="image-slide-inside image-slide-session">
-          <div class="session-info">
-            <h5 class="experience-card-description">{{this.description}}</h5>
-            <div>{{this.user.name}}</div>
-            <div class="image-slide-owner" style="background:url('{{this.user.photo}}')"></div>
-
-          </div>
-        </div>
-      </a>
-      <div class="p-2">
-      </div>
-    </div>
-
-    {{/each_upto}}
-    <div class="slide slide1">
-      <div class="image-slide-inside"><a href="more">more</a></div>
-    </div>
-  </section>
 </div>
 
