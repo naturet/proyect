@@ -14,7 +14,7 @@ module.exports = [
   },
   {
     id: 'ownbag',
-    name: 'Your Own Bag',
+    name: 'Your Bag',
     fontnum: '003'
   },
   {

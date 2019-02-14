@@ -1,4 +1,4 @@
- {{> searchmobile}}
+{{> searchmobile}}
 
 <header class="masthead">
   <div class="container-slider mx-auto h-100">
@@ -14,30 +14,46 @@
   </div>
 </header>
 
-{{> slidecategories}} 
+{{> slidecategories}}
 
-{{> lastexperiences}} 
+{{> lastexperiences}}
 
 {{> pricesorted}}
 
+{{> ratesorted}}
+
 {{> recommended}}
 
+{{!-- nav-menu-mobile--}}
 <div class="container nav-mobile mx-auto">
   <div class="row mx-auto align-items-center h-100">
-    <div class="col-3 text-center">
-      <i class="fas fa-campground"></i>
+    <div class="col-3 text-center menu-icon">
+      <a href="/"class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text active">search</span>
+        <span class="icon-home icon-nav active"></span>
+      </a>
     </div>
-    <div class="col-3 text-center">
-      <i class="fas fa-campground"></i>
+    <div class="col-3 text-center menu-icon">
+      <a href="/favorites" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Favourites</span>
+        <span class="icon-favorites icon-nav"></span>
+      </a>
     </div>
-    <div class="col-3 text-center">
-      <i class="fas fa-campground"></i>
+    <div class="col-3 text-center menu-icon">
+      <a href="{{#if session.creator}}/experiences/create{{else}}/creator/create{{/if}}" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Create</span>
+        <span class="icon-new-rute icon-nav"></span>
+      </a>
     </div>
-    <div class="col-3 text-center">
-      <i class="fas fa-campground"></i>
+    <div class="col-3 text-center menu-icon">
+      <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Profile</span>
+        <span class="icon-profile icon-nav"></span>
+      </a>
     </div>
   </div>
 </div>
+{{!-- nav-menu-mobile--}}
 
 {{#if session.creator}}
 <div class="container-slider mx-auto ">

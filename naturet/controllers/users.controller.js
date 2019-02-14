@@ -11,18 +11,24 @@ const Payment = require("../models/payment.model");
 
 module.exports.getHome = (req, res, next) => {
   const p1 = Experience.find({}, null, {
-    limit: 4,
+    limit: 10,
     sort: { price: 1 }
   }).populate("user");
   const p2 = Experience.find({}, null, {
-    limit: 5,
+    limit: 10,
     sort: { createdAt: -1 }
   }).populate("user");
-  Promise.all([p1, p2])
-    .then(([sortPriceExp, experiences]) =>
+  const p3 = Experience.find({}, null, {
+    limit: 10,
+    sort: { rating: -1 }
+  }).populate("user");
+  
+  Promise.all([p1, p2, p3])
+    .then(([sortPriceExp, experiences, sortRateExp]) =>
       res.render("users/index", {
         experiences,
-        sortPriceExp
+        sortPriceExp,
+        sortRateExp
       })
     )
     .catch(error => next(error));

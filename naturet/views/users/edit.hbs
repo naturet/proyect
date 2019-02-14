@@ -1,20 +1,42 @@
-<div class="container profile-container">
-  <div class="row pb-5">
+{{> searchmobile}}
 
-    <div class="col-xl-3 col-md-3 col-12 ">
-      <div style="">
-        <div class=" profile-navigation d-flex flex-column  ">
-          <a href="">Categories</a>
-          <a href="">Some description</a>
-          <a href="">User role</a>
-          <a href="">profile</a>
-                    <a class="btn btn danger" href="/profile">View Profile</a>
+
+<div class="container-slider mx-auto profile-container mt-6">
+  <div class="row pb-5 pt-5">
+     <div class="col-xl-4 col-md-12 col-12 row mx-auto">
+      <div class="profile-sidenav d-flex flex-column mx-auto " id="getFixed">
+        <div class="profile-sidenav-inside d-flex flex-column">
+          <a href="#categories">Categories</a>
+          <a href="#description">Some description</a>
+          <a href="#role">User role</a>
+          <a href="#experiences">Experiences</a>
+          <a class="btn btn-danger mt-3" id="edit-profile-button" href="/profile/edit">Edit Profile</a>
+          {{#if session.creator}}
+          <a class="btn btn-default" href="/creator/edit">Edit Creator Profile</a>
+          {{/if}}
         </div>
       </div>
-
     </div>
-    <div class="col-xl-9 col-md-9 col-12">
-
+    <div class="col-xl-8 col-md-8 col-12">
+  <div class="row">
+        <div class="back-image-profile">
+        </div>
+      </div>
+      <section class="border-bottom pb-5">
+        <div class="text-center mt-5">
+          <div>
+            <img class="profile-image" src="{{session.photo}}">
+            {{#if session.creator}}
+            <span class="creator-simbol"></span>
+            {{/if}}
+          </div>
+          <h3 id="profile-name" class="mt-2">{{session.name}} - <span class="nt-c">{{#if session.creator}}
+              Creator</span> <span class="icon-030 nt-c"></span>
+            {{else}}
+            Adventurous</span>
+            {{/if}}</span></h3>
+        </div>
+      </section>
 
       <h1>Your Profile</h1>
       <img src="{{session.photo}}">
@@ -95,3 +117,20 @@
     </div>
   </div>
 </div>
+<script>
+  jQuery(function ($) {
+    function fixDiv() {
+      var $cache = $('#getFixed');
+      if ($(window).scrollTop() > 100 && $(window).width() >= 1080)
+        $cache.css({
+         'top': '40px'
+        });
+      else
+        $cache.css({
+          'top': 'auto'
+        });
+    }
+    $(window).scroll(fixDiv);
+    fixDiv();
+  });
+</script>

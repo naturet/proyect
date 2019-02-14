@@ -1,0 +1,15 @@
+
+<section class="customer-favourites slider mt-4 mb-0">
+  {{#each_upto user.purchased 10 }}
+  <div class="slide slide1">
+    <a href="/experiences/{{this.id}}">
+      <div class="image-slide-favourites" style="background: url('{{#if this.photos.[0]}}{{this.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1550007271/test/default-preview.jpg{{/if}}')">
+      </div>
+    </a>
+    <div class="p-2">
+      <h5>{{this.name}}</h5>
+      <p class="experience-card-description ml-0 mb-1">{{this.description}}</p>
+    </div>
+  </div>
+  {{/each_upto}}
+</section>

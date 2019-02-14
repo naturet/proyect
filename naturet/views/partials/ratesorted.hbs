@@ -1,0 +1,28 @@
+<div class="container-slider mx-auto mt-5 mb-0 pt-2 pb-2">
+  <h2>Best rated experiences</h2>
+  <p>Find our best experiences, the community decide the best oest of the best!</p>
+  <hr>
+</div>
+
+<div class="container-slider padding-correct mx-auto mt-0 pt-0s">
+  <div class="row mt-0">
+    {{#each_upto sortRateExp 4 }}
+    <div class="col-lg-3 col-md-6 col-6 mb-3 mt-0 ">
+      <a href="/experiences/{{this.id}}">
+        <div class=" rounded">
+          <div class="image-filter rounded rate-image" style="background: url('{{#if this.photos.[0]}}{{this.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1550007271/test/default-preview.jpg{{/if}}')">
+            <p class="rate-slider-sort">{{#if this.rating}}<i class='fas fa-star fa-fw rating-home-star'> <span class="nt-f nt-w">{{this.rating}}/5</span></i>{{/if}}</p>
+          </div>
+      </a>
+      <div class="p-2">
+        <h5>{{this.name}}</h5>
+        <p class="experience-card-description ml-0 mb-0">{{this.description}}</p>
+        <small class="category-tag" data-category="{{this.categories.[0]}}">#{{this.categories.[0]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[2]}}">#{{this.categories.[2]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[3]}}">#{{this.categories.[3]}}</small>
+      </div>
+    </div>
+  </div>
+  {{/each_upto}}
+</div>
+</div>

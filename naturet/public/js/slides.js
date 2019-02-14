@@ -35,7 +35,7 @@ $(document).ready(function () {
     slidesToScroll: 1,
     arrows: true,
     dots: false,
-    infinite: false,
+    infinite: true,
     pauseOnHover: false,
     responsive: [{
       breakpoint: 768,
@@ -68,7 +68,7 @@ $(document).ready(function () {
     slidesToScroll: 1,
     arrows: false,
     dots: false,
-    infinite: false,
+    infinite: true,
     pauseOnHover: false,
     responsive: [{
       breakpoint: 768,
@@ -92,3 +92,36 @@ $(document).ready(function () {
     }]
   });
 });
+
+$(document).ready(function () {
+  $('.customer-favourites').slick({
+    swipe: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: false,
+    infinite: true,
+    pauseOnHover: false,
+    responsive: [{
+      breakpoint: 768,
+      settings: {
+        arrows: true,
+        slidesToShow: 2
+      }
+    }, {
+      breakpoint: 520,
+      settings: {
+        swipe: true,
+        arrows: true,
+        slidesToShow: 1
+      }
+    }, {
+      breakpoint: 1068,
+      settings: {
+        arrows: true,
+        slidesToShow: 3
+      }
+    }]
+  });
+});
+

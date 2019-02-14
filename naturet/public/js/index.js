@@ -26,9 +26,10 @@ function initMap() {
       }
     }) : null,
     geodesic: true,
-    strokeColor: '#FF0000',
+    strokeColor: '#2ec98c',
     strokeOpacity: 1.0,
-    strokeWeight: 2
+    strokeWeight: 3,
+    draggable: true,
   });
 
   if (window.points) {

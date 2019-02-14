@@ -64,6 +64,33 @@
 
   @font-face {
     font-family: 'icomoon';
+    src:  url('../fonts/menu/icomoon.eot?ab80ir');
+    src:  url('../fonts/menu/icomoon.eot?ab80ir#iefix') format('embedded-opentype'),
+      url('../fonts/menu/icomoon.ttf?ab80ir') format('truetype'),
+      url('../fonts/menu/icomoon.woff?ab80ir') format('woff'),
+      url('../fonts/menu/icomoon.svg?ab80ir#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  
+  .icon-favorites:before {
+    content: "\e980";
+  }
+  .icon-home:before {
+    content: "\e981";
+  }
+  .icon-new-rute:before {
+    content: "\e982";
+  }
+  .icon-profile:before {
+    content: "\e983";
+  }
+  
+  
+
+  @font-face {
+    font-family: 'icomoon';
     src: url('../fonts/icomoon.eot?67gml9');
     src: url('../fonts/icomoon.eot?67gml9#iefix') format('embedded-opentype'),
       url('../fonts/icomoon.ttf?67gml9') format('truetype'),
