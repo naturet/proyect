@@ -3,29 +3,32 @@
 
 <div class="container-slider mx-auto profile-container mt-6">
   <div class="row pb-5 pt-5">
-     <div class="col-xl-4 col-md-12 col-12 row mx-auto">
-      <div class="profile-sidenav d-flex flex-column mx-auto " id="getFixed">
+    <div class="col-xl-4 col-md-12 col-12 row mx-auto">
+      <div class="profile-sidenav d-flex flex-column mx-auto nav-intro-profile" id="getFixed">
         <div class="profile-sidenav-inside d-flex flex-column">
+          <h4 class="nt-fb"><span class="far fa-edit nt-c mr-3"></span>Editing profile</h4>
           <a href="#categories">Categories</a>
           <a href="#description">Some description</a>
-          <a href="#role">User role</a>
-          <a href="#experiences">Experiences</a>
-          <a class="btn btn-danger mt-3" id="edit-profile-button" href="/profile/edit">Edit Profile</a>
+          <a href="/profile">View profile</a>
           {{#if session.creator}}
-          <a class="btn btn-default" href="/creator/edit">Edit Creator Profile</a>
+          <a class="btn btn-danger mt-3" id="edit-profile-button" href="/creator/edit">Edit Creator Profile</a>
+          {{else}}
+          <a class="btn btn-danger mt-3" id="edit-profile-button" href="/creator/create">Become a Creator</a>
           {{/if}}
         </div>
       </div>
     </div>
-    <div class="col-xl-8 col-md-8 col-12">
-  <div class="row">
+
+    <div class="col-xl-8 col-md-12 col-12">
+      <div class="row">
         <div class="back-image-profile">
         </div>
       </div>
+
       <section class="border-bottom pb-5">
         <div class="text-center mt-5">
           <div>
-            <img class="profile-image" src="{{session.photo}}">
+            <img class="profile-image" src="{{#if session.pictures.[0]}}{{session.pictures.[0]}}{{else}}{{session.photo}}{{/if}}">
             {{#if session.creator}}
             <span class="creator-simbol"></span>
             {{/if}}
@@ -37,93 +40,124 @@
             {{/if}}</span></h3>
         </div>
       </section>
+      
 
-      <h1>Your Profile</h1>
-      <img src="{{session.photo}}">
-      <h3>{{session.name}}</h3>
+      <section class="border-bottom pt-5 pb-4" id="categories">
+        <h2><span class="far fa-heart nt-c mr-3"></span>Your liked categories </h2>
+        <h5 class="mb-3 pt-2 nt-f profile-subtitle">Your categories are really important for naturapp, choose wisely.</h5>
+        <p class="mb-5 ml-0 profile-paragraph"></p>
+
+        {{#if errors.error }}
+        <div class="errors-div-form">
+          <p><span class="fa fa-exclamation-circle nt-w mr-3"></span>{{ errors.error }}</p>
+        </div>
+        
+        {{/if}}
+        
+        <form class="" method="POST" enctype="multipart/form-data">
+          <div class="row">
+            {{#each allCategories as |category| }}
+            <div class="col-xl-2 col-md-3 col-6">
+              <input type='checkbox' name="categories" class="input-category" id="{{ category.id }}" value="{{ category.id }}"
+                {{#isCategorySelected ../session category ../categories }} {{/isCategorySelected}} />
+              <div class="category-card">
+
+                <span class='icon-{{category.fontnum}}'></span>
+                <!-- descomentar esto par añadir estilo -->
+                <p class="category-name">{{ category.name }} </p>
+              </div>
+            </div>
+            </input>
+            {{/each}}
+          </div>
+      </section>
+
+      <div class="form-group row pb-2">
+        <section class=" pt-5 pl-3 " id="description">
+          <h2><span class="far fa-comments nt-c mr-3"></span>Some description </h2>
+          <div class="mb-2">
+            <h5 class="mb-3 pt-2 nt-f profile-subtitle">Some description to let everybody know about your adventurer
+              self.</h5>
+        </section>
+
+        <div class="mb-2 mt-4 col-xl-12">
+          <h4 class="mb-0 pb-0">About you</h4><span class="span-edit-subtitle nt-f">Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.</span>
+          <textarea type="text" name="about" id="description-area" class="w-100 mt-4 nt-ipc" cols="40" rows="4" value="{{session.about}}">{{session.about}}</textarea>
+        </div>
+
+        <div class="mb-2 mt-4 col-xl-6 col-md-6 col-12">
+          <h4 class="mb-0 pb-0">Birth Date</h4><span class="span-edit-subtitle nt-f">Lorem ipsum dolor sit amet,
+            consectetur</span>
+          <input type="date" name="birth" id="birth-input" class="d-table mt-2 nt-ipc" value="{{session.birth}}">
+        </div>
+        <div class="mb-4 mt-4 col-xl-6 col-md-6 col-12">
+          <h4 class="mb-0 pb-0">Phone number</h4><span class="span-edit-subtitle nt-f">Lorem ipsum dolor sit amet,
+            consectetur</span>
+          <input type="text" name="phone" id="phone-input" class="country-input nt-ipc" placeholder="Phone" value='{{session.phone}}'>
+        </div>
+
+        <div class="mb-4 mt-2 col-xl-12">
+          <h4 class="mb-0 pb-0">Country from</h4><span class="span-edit-subtitle nt-f">Lorem ipsum dolor sit amet,
+            consectetur</span>
+          <div class="autocomplete">
+            <input id="myInput" autocomplete="off" type="text" name="country" class="country-input nt-ipc" placeholder="Country"
+              value='{{session.country}}'>
+          </div>
+        </div>
+
+        <div class="mb-4 mt-2 col-xl-12">
+          <h4 class="mb-0 pb-0">Your image</h4><span class="span-edit-subtitle nt-f">Your image profile is the best and
+            the first way to know adventures</span>
+          <input id="input-image-profile" type="file" class="form-control nt-ipc input-file-profile" name="picture"
+            placeholder="Picture" value="string" multiple />
+        </div>
+
+      </div>
       <hr>
-      <h1>categories</h1>
-      <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
-      <p class="mb-5">Lit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
-        consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</p>
-
-      {{#if errors.error }}
-      <h2>{{ errors.error }}</h2>
-      {{/if}}
-      <form class="" method="POST" enctype="multipart/form-data">
-        <div class="row">
-          {{#each allCategories as |category| }}
-
-          <div class="col-xl-2 col-md-3 col-6">
-               <input type='checkbox' name="categories" class="input-category" id="{{ category.id }}" value="{{ category.id }}"
-              {{#isCategorySelected ../session category ../categories }} {{/isCategorySelected}} />
-            <div class="category-card">
-           
-              <span class='icon-{{category.fontnum}}'></span>
-              <!-- descomentar esto par añadir estilo -->
-              <p class="category-name">{{ category.name }} </p>
-            </div>
-          </div>
-          </input>
-
-          {{/each}}
-
-        </div>
-        <hr>
-        <div class="form-group">
-          <h1>Some description</h1>
-
-          <div class="mb-2">
-            <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
-              consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor in</p>
-            <h4>about you</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-            <input type="text" name="about" id="address" class="w-100 mt-1" value="{{session.about}}">
-          </div>
-
-          <div class="mb-2">
-            <h4>Birth Date</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-            <input type="date" name="birth" class="d-table mt-2" value="{{session.birth}}">
-          </div>
-
-          <div class="mb-2">
-            <h4>From:</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-            <div class="autocomplete">
-              <input id="myInput" type="text" name="country" placeholder="Country" value='{{session.country}}'>
-            </div>
-          </div>
-
-          <div class="mb-2">
-            <h4>Your phone number</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit</small>
-            <input type="text" name="phone" class="w-100 mt-1" value="{{session.phone}}">
-          </div>
-        </div>
-
-
-
-        <div class="input-group-prepend mb-2">
-          <h4>Your Album</h4><small>Some photos that can tell something about you and your interests</small>
-          <span class="input-group-text"> <i class="fas fa-image"></i> </span>
-        </div>
-        <input type="file" class="form-control" name="picture" placeholder="Picture" value="string" multiple />
-        <hr>
-        <button class="btn btn-primary btn-block p-3" type="submit">Guardar</button>
+      <button class="btn btn-primary btn-block p-3 mt-5 btn-naturet nt-f" type="submit">Guardar cambios <span class="fa fa-check nt-w ml-2"></span></button>
       </form>
     </div>
   </div>
 </div>
+{{!-- nav-menu-mobile--}}
+<div class="container nav-mobile mx-auto">
+  <div class="row mx-auto align-items-center h-100">
+    <div class="col-3 text-center menu-icon">
+      <a href="/" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">search</span>
+        <span class="icon-home icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/favorites" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Favourites</span>
+        <span class="icon-favorites icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="{{#if session.creator}}/experiences/create{{else}}/creator/create{{/if}}" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Create</span>
+        <span class="icon-new-rute icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text active">Profile</span>
+        <span class="icon-profile icon-nav active"></span>
+      </a>
+    </div>
+  </div>
+</div>
+{{!-- nav-menu-mobile--}}
+
 <script>
   jQuery(function ($) {
     function fixDiv() {
       var $cache = $('#getFixed');
       if ($(window).scrollTop() > 100 && $(window).width() >= 1080)
         $cache.css({
-         'top': '40px'
+          'top': '40px'
         });
       else
         $cache.css({

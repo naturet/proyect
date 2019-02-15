@@ -3,9 +3,9 @@
 
 <div class="container-slider mx-auto profile-container mt-6">
   <div class="row pb-5 mt-5">
-    <div class="col-xl-4 col-md-12 col-12 row mx-auto">
-      <div class="profile-sidenav d-flex flex-column mx-auto " id="getFixed">
-        <div class="profile-sidenav-inside d-flex flex-column">
+    <div class="col-xl-4 col-md-12 col-12 row mx-auto nav-intro-profile" id="responsive-menu-tag">
+      <div class="profile-sidenav d-flex flex-column mx-auto  mb-5 " id="getFixed">
+        <div class="profile-sidenav-inside d-flex flex-column mt-4">
           <a href="#categories">Categories</a>
           <a href="#description">Some description</a>
           <a href="#role">User role</a>
@@ -26,7 +26,7 @@
       <section class="border-bottom pb-5">
         <div class="text-center mt-5">
           <div>
-            <img class="profile-image" src="{{session.photo}}">
+            <img class="profile-image" src="{{#if session.pictures.[0]}}{{session.pictures.[0]}}{{else}}{{session.photo}}{{/if}}">
             {{#if session.creator}}
             <span class="creator-simbol"></span>
             {{/if}}
@@ -51,9 +51,7 @@
               mattis urna sper eros</p>
               <a class="btn btn-primary p-2 btn-naturet w-100 nt-f p-3" href="creator/create">Become a creator</a>
         </section>
-      
       {{/if}}
-
       <section class="border-bottom pt-5 pb-4" id="categories">
         <h2><span class="far fa-heart nt-c mr-3"></span>Your liked categories </h2>
         <h5 class="mb-3 pt-2 nt-f profile-subtitle">Your categories are really important for naturapp, choose wisely.</h5>
@@ -73,7 +71,6 @@
                 {{#isCategorySelected ../session category ../categories }} {{/isCategorySelected}}>
               <div class="category-card noevent">
                 <span class='icon-{{category.fontnum}}'></span>
-                <!-- descomentar esto par añadir estilo -->
                 <p class="category-name">{{ category.name }} </p>
               </div>
             </div>
@@ -181,7 +178,7 @@
           <div class="mb-2 col-xl-6 col-md-6 col-12">
             <div class="border-div-profile">
               <h4>Enterprise:</h4>
-              <p class=" ml-0 profile-paragraph">{{session.enterpriseDescription}}</p>
+              <p class=" ml-0 profile-paragraph">{{#if session.enterpriseDescription}} {{session.enterpriseDescription}}{{else}}{{session.acreditation}}{{/if}}</p>
             </div>
           </div>
 

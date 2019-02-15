@@ -1,124 +1,216 @@
-<div class="container profile-container">
-  <div class="row pb-5">
+{{> searchmobile}}
 
-    <div class="col-xl-3 col-md-3 col-12 ">
-      <div style="">
-        <div class=" profile-navigation d-flex flex-column  ">
-          <a href="">Categories</a>
-          <a href="">Some description</a>
-          <a href="">User role</a>
-          <a href="">profile</a>
-          <a class="btn btn danger" href="/profile">View Profile</a>
+
+<div class="container-slider mx-auto profile-container mt-5">
+  <div class="row pb-5">
+    <div class="col-xl-4 col-md-12 col-12 row mx-auto" id="margin-mobile">
+      <div class="profile-sidenav d-flex flex-column mx-auto nav-intro-profile" id="getFixed">
+        <div class="profile-sidenav-inside d-flex flex-column">
+          <h4 class="nt-fb"><span class="far fa-edit nt-c mr-3"></span>Editing creator profile</h4>
+          <a href="#expertise">Expertise</a>
+          <a href="#description">Some description</a>
+          <a href="/profile">View profile</a>
+          <a class="btn btn-danger mt-3" id="edit-profile-button" href="/profile/edit">Edit Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-8 col-md-12 col-12">
+      <div class="row">
+        <div class="back-image-profile">
         </div>
       </div>
 
-    </div>
-    <div class="col-xl-9 col-md-9 col-12">
-      <div class="text-center">
-        <img class="profile-image" src="{{session.photo}}" width="250px">
-        <h3>{{session.name}}</h3>
-      </div>
+      <section class="border-bottom pb-5">
+        <div class="text-center mt-5">
+          <div>
+            <img class="profile-image" src="{{#if session.pictures.[0]}}{{session.pictures.[0]}}{{else}}{{session.photo}}{{/if}}">
+            {{#if session.creator}}
+            <span class="creator-simbol"></span>
+            {{/if}}
+          </div>
+          <h3 id="profile-name" class="mt-2">{{session.name}} - <span class="nt-c">{{#if session.creator}}
+              Creator</span> <span class="icon-030 nt-c"></span>
+            {{else}}
+            Adventurous</span>
+            {{/if}}</span></h3>
+        </div>
+      </section>
 
-      <hr>
-      <h5 class="mb-3">Become a Experience Creator with naturapp and join the community!</h5>
-      <p class="mb-5">Lit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
-        consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</p>
+      <section class="border-bottom pb-2 pt-5 ">
+        <h2><span class="far fa-user nt-c mr-3"></span>Become a creator! </h2>
+        <div class="mb-2">
+          <h5 class="mb-3 pt-2 nt-f profile-subtitle">Some description to let everybody know about your adventurer
+            self.</h5>
+          <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
+            mattis urna sodales ornare semr adipiscing elit dis posuere,
+            mattis urna sper eros</p>
+      </section>
+
+
       <form class="" method="POST" enctype="multipart/form-data">
-        <div id="rol">
-          <h1 class="mb-3">Let us know about you</h1>
-
+        <div id="expertise">
           <div class="row mt-4 d-flex ">
+            <section>
+              <div class='col-12 mt-4 mb-3 expertise-check-group '>
+                <h2><span class="far fa-building nt-c mr-3"></span>Type of Expertise </h2>
+                <h5 class="mb-3 pt-2 nt-f profile-subtitle">Your type of expertise is what will make your choice
+                  important!</h5>
+                <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis
+                  posuere,
+                  mattis urna sodales ornare semper erosdictum ultricies vestibulum, tempus at erat venenatis id odio
+                  non
+                  facilisi.
+                </p>
+                <div class="mt-3 mb-2 expertise-checkbox">
+                  <input value="enterprise" name="expertise" type="checkbox" class="regular-checkbox"
+                    {{#ifCond "enterprise" session.expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                  <span class="ml-2 margin-checkbox nt-f">Enterprise, Lorem ipsum dolor sit amet, consectetur</span>
+                </div>
+                <div class="mb-2 expertise-checkbox">
+                  <input value="proffesional" name="expertise" type="checkbox" class="regular-checkbox"
+                    {{#ifCond "proffesional" session.expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                  <span class="ml-2 margin-checkbox nt-f">Proffessional, Lorem ipsum dolor sit amet, consectetur</span>
+                </div>
+                <div class="mb-2 pb-4 expertise-checkbox">
+                  <input value="organization" name="expertise" type="checkbox" class="regular-checkbox"
+                    {{#ifCond "organization" session.expertise}} {{/ifCond}}><span class="checkmark"></span>
+                  <span class="ml-2 margin-checkbox nt-f">ONG, Lorem ipsum dolor sit amet, consectetur onsectetur</span>
+                </div>
 
-            <div class='col-12 mt-4 mb-3 expertise-check-group'>
-              <hr>
-              <h4>Type of Expertise</h4>
-              
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
-                sit amet, consectetur adipiscing elit</p>
-              <div class="mt-3 mb-2 expertise-checkbox">
-                <input value="enterprise" name="expertise" type="checkbox" class="regular-checkbox" {{#ifCond "enterprise" session.expertise}}{{/ifCond}}  > Empresa, Lorem
-                ipsum dolor sit amet,
-                consectetur
+                {{#if errors.expertise}}
+                <div class="errors-div-form">
+                  <p><span class="fa fa-exclamation-circle nt-w mr-3"></span>{{errors.expertise}}</p>
+                </div>
+                {{/if}}
+
+                <hr>
               </div>
-              <div class="mb-2 expertise-checkbox">
-                <input value="proffesional" name="expertise" type="checkbox" class="regular-checkbox" {{#ifCond "proffesional" session.expertise}}{{/ifCond}} > Profesional,
-                Lorem ipsum dolor sit amet,
-                consectetur
-              </div>
-              <div class="mb-2 expertise-checkbox">
-                <input value="organization" name="expertise" type="checkbox" class="regular-checkbox" {{#ifCond "organization" session.expertise}}{{/ifCond}} > ONG, Lorem ipsum
-                dolor sit amet,
-                consectetur onsectetur
-              </div>
-              {{#if errors.expertise}}
-                 <h3>{{errors.expertise}}</h3> 
-              {{/if}}
-               <hr>
-            </div>
+            </section>
 
             <div class='col-12 mt-4 mb-4'>
+              <h2><span class="far fa-bell-slash nt-c mr-3"></span>Type of politic cancelation </h2>
+              <h5 class="mb-3 pt-2 nt-f profile-subtitle">Your type politic oc cancelation will be display in all your
+                experiences created.</h5>
+              <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis
+                posuere,
+                mattis urna sodales ornare semper erosdictum ultricies vestibulum, tempus at erat venenatis id odio non
+                facilisi.
+              </p>
 
-              <h4>Reservation polities</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum elit</p>
-
-            {{#each allPolitics as |politic|}}
-                <div class="mt-3 mb-2 politics-checkbox">
-                   <input name="politic" type="checkbox" class="regular-checkbox" value="{{politic.name}}"  {{#isPoliticSelected ../session politic ../politics }} {{/isPoliticSelected}} />  {{politic.name}}
-                </div>
+              {{#each allPolitics as |politic|}}
+              <div class="mt-3 mb-2 politics-checkbox">
+                <input name="politic" type="checkbox" class="regular-checkbox" value="{{politic.name}}"
+                  {{#isPoliticSelected ../session politic ../politics }} {{/isPoliticSelected}} /><span class="checkmark-politic"></span>
+                <span class="ml-2 margin-checkbox nt-f politic-name-checkbox">{{politic.name}}</span>
+              </div>
               {{/each}}
-              
-               {{#if errors.politic}}
-                 <h3>{{errors.politic}}</h3> 
-              {{/if}}
-              <hr>
-             
-            </div>
-
-            <div class="col-12 mb-2">
-              <h4>Enterprise or Personal description:</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit,</small>
-              <input type="text" name="enterpriseDescription" class="w-100 mt-1" value="{{session.enterpriseDescription}}">
-              <hr>
-            </div>
-
-            <div class="col-12 mb-2 mt-4">
-              <h4>Enterprise or Profesional email:</h4><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-              <input type="email" name="enterpriseEmail" class="w-100 mt-1" value="{{session.enterpriseEmail}}">
-                 {{#if errors.enterpriseEmail}}
-                 <h3>{{errors.enterpriseEmail}}</h3> 
-              {{/if}}
-              <hr>
-             
-            </div>
-
-            <div class="col-xl-12 col-md-12 col-12">
-              <h4>Your acreditation</h4>
-              <small>Lorem it amet, consectetur adipiscing elit, Lorem ipsum dolor
-                sit amet, consectetur adipiscing elit</small>
-              <input name="acreditation" type="text" class="w-100 mt-1" value="{{session.acreditation}}">
-                   {{#if errors.acreditation}}
-                 <h3>{{errors.acreditation}}</h3> 
+              <br>
+              {{#if errors.politic}}
+              <div class="errors-div-form">
+                <p><span class="fa fa-exclamation-circle nt-w mr-3"></span>{{errors.politic}}</p>
+              </div>
               {{/if}}
               <hr>
             </div>
-
-       
-
-            
-
-            <div class="col-xl-12 col-md-12 col-12">
-              <h4>Your Enterprise Photo</h4>
-              <small class="mb-2">Upload your enterprise logo if you have it</small><br>
-              <span> <i class="fas fa-image"></i> </span>
-              <input class="mt-2" type="file" name="enterprise_picture" placeholder="Logo of your Enterprise" value="string" />
+            <section class="mb-3 pl-3 " id="description">
+              <h2><span class="far fa-comments nt-c mr-3"></span>Some description </h2>
+              <div class="mb-2">
+                <h5 class="mb-3 pt-2 nt-f profile-subtitle">Some description to let everybody know about your
+                  adventurer
+                  enterprise.</h5>
+            </section>
+            <div class="mb-4 mt-3 col-xl-6 col-md-6 col-12">
+              <h4 class="mb-0 pb-0">Enterprise description</h4><span class="span-edit-subtitle nt-f">Lorem ipsum dolor
+                sit amet,
+                consectetur</span>
+              <input type="text" name="enterpriseDescription" id="descripction-enterprise" class="country-input nt-ipc mt-2"
+                placeholder="description" value="{{session.enterpriseDescription}}">
             </div>
+
+            <div class="mb-4 mt-3 col-xl-6 col-md-6 col-12">
+              <h4 class="mb-0 pb-0">Enterprise email:</h4><span class="span-edit-subtitle nt-f">Lorem ipsum dolor
+                sit amet,
+                consectetur</span>
+              <input type="email" name="enterpriseEmail" id="email-enterprise" class="country-input nt-ipc mt-2"
+                placeholder="description" value="{{session.enterpriseEmail}}">
+            </div>
+
+            <div class="mb-4 mt-3 col-xl-12 col-md-12 col-12">
+              <h4 class="mb-0 pb-0">Your acreditation</h4><span class="span-edit-subtitle nt-f">Lorem ipsum dolor
+                sit amet,
+                consectetur</span>
+              <input type="text" name="acreditation" id="descripction-enterprise" class="country-input nt-ipc mt-2"
+                placeholder="description" value="{{session.acreditation}}">
+              {{#if errors.acreditation}}
+              <div class="errors-div-form mt-4">
+                <p><span class="fa fa-exclamation-circle nt-w mr-3"></span>{{errors.acreditation}}</p>
+              </div>
+              {{/if}}
+            </div>
+
+            <div class="mb-4 mt-3 col-xl-12 col-md-12 col-12">
+              <h4 class="mb-0 pb-0">Your Enterprise Photo</h4><span class="span-edit-subtitle nt-f">Upload your
+                enterprise logo if you have it</span>
+              <input id="input-creator-image-profile" type="file" class="form-control nt-ipc input-file-profile mt-2"
+                name="enterprise_picture" placeholder="Logo of your Enterprise" value="string" multiple />
+            </div>
+
             <hr>
           </div>
         </div>
         <hr>
-        <button class="btn btn-primary btn-block p-3" type="submit">Guardar</button>
+        <button class="btn btn-primary btn-block p-3 mt-5 btn-naturet nt-f" type="submit">Guardar cambios <span class="fa fa-check nt-w ml-2"></span></button>
       </form>
     </div>
   </div>
 </div>
+
+{{!-- nav-menu-mobile--}}
+<div class="container nav-mobile mx-auto">
+  <div class="row mx-auto align-items-center h-100">
+    <div class="col-3 text-center menu-icon">
+      <a href="/" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">search</span>
+        <span class="icon-home icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/favorites" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Favourites</span>
+        <span class="icon-favorites icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="{{#if session.creator}}/experiences/create{{else}}/creator/create{{/if}}" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Create</span>
+        <span class="icon-new-rute icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text active">Profile</span>
+        <span class="icon-profile icon-nav active"></span>
+      </a>
+    </div>
+  </div>
+</div>
+{{!-- nav-menu-mobile--}}
+
+<script>
+  jQuery(function ($) {
+    function fixDiv() {
+      var $cache = $('#getFixed');
+      if ($(window).scrollTop() > 100 && $(window).width() >= 1080)
+        $cache.css({
+          'top': '40px'
+        });
+      else
+        $cache.css({
+          'top': 'auto'
+        });
+    }
+    $(window).scroll(fixDiv);
+    fixDiv();
+  });
+</script>

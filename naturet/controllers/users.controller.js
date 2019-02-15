@@ -277,6 +277,7 @@ module.exports.doEditCreator = (req, res, next) => {
 module.exports.getOtherProfile = (req, res, next) => {
 let id = req.params.id
   User.findById(id)
+    .populate('experiences')
     .then(user => {
       console.log(user)
       if (!user) {
