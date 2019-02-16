@@ -22,4 +22,8 @@ router.get('/:id/thankyou', authMiddleware.isAuthenticated, experienceController
 router.get('/:id/comment', authMiddleware.isAuthenticated, experienceController.comment);
 router.post('/:id/docomment', authMiddleware.isAuthenticated, experienceController.doComment);
 
+/// Node mailer
+
+router.post('/send',authMiddleware.isAuthenticated, experienceController.send);
+
 module.exports = router;

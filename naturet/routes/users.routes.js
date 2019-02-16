@@ -27,4 +27,8 @@ router.post('/creator/edit', authMiddleware.isAuthenticated, authMiddleware.isPr
 
 router.get('/', authMiddleware.isAuthenticated, authMiddleware.isProfileCompleted, usersController.getHome);
 
+//---News letters--//
+
+router.post('/subscribe',authMiddleware.isAuthenticated, authMiddleware.isProfileCompleted, usersController.subscribe);
+
 module.exports = router;

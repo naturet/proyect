@@ -14,33 +14,39 @@
       <div class="text-center">
         <h5>Experiencia</h5>
         <h6>{{experience.name}}</h6>
-
-
         <hr>
         <h5>Políticas de cancelación</h5>
         <h6>{{experience.user.politic}}</h6>
-
       </div>
       <hr>
       <div class="text-center">
         <h5>Tus datos</h5>
         <hr>
         <h6>Nombre: {{session.name}}</h6>
-        <h6>Pais: {{session.country}}</h6>
         <h6>Fecha de nacimiento: {{session.birth}}</h6>
         <h6>Tlfn: {{session.phone}}</h6>
-
         <hr>
-        <h6>Total a pagar: {{experience.price}} €</h6>
-        <input type="checkbox" class="regular-checkbox">Acepto las Condiciones Generales de Contratación y la Política
+        <div class="product" id="line">
+          <div class="price-und">
+            <span class="price-span">{{experience.price}}</span>€
+            <span> x </span>
+            <input id="qty" type="number" value="1" placeholder="1" name="qty">
+            <label for="">Persons</label>
+            <span><button id="calc-prices-button" class="btn-success">actualizar</button>
+              <h2>Total: <span class="total">{{experience.price}}</span>€</h2>
+            </span>
+          </div>
+        </div>
+        <input type="checkbox" class="regular-checkbox" id="checked">Acepto las Condiciones Generales de Contratación y
+        la Política
         de Privacidad y de Cookies
-
-
-        <form action="/experiences/{{experience.id}}/charge" method="POST" class="mt-2">
+        <form action="/experiences/{{experience.id}}/charge" method="POST" class="mt-2" id="paybtn" style="display:none;">
           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_zcTEmEh9DNzx17DvNLibaUVS"
-            data-name="{{experience.name}}" data-description="Total a pagar: {{experience.price}} €" data-amount="{{experience.price}}00 €">
+            data-name="{{experience.name}}" data-locale="es" data-currency="EUR">
             </script>
         </form>
-
       </div>
     </div>
+  </div>
+</div>
+<script src="/js/axios.js" type="text/javascript"></script>

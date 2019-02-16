@@ -10,6 +10,39 @@ const axios = require("axios");
 const keyPublishable = process.env.PUBLISHABLE_STRIPE_KEY;
 const keySecret = process.env.SECRET_STRIPE_KEY;
 const stripe = require("stripe")(keySecret);
+const transporter = require('../configs/nodemailer.config');
+const hbs = require('nodemailer-express-handlebars');
+
+
+//nodemailer.../
+
+
+module.exports.send = (req, res, next) => {
+  
+
+  transporter.use('compile',hbs({
+    viewPath: 'views/email',
+    extName: '.hbs'
+  }))
+
+  const mailOptions = {
+    from: 'moisesgarcia83@gmail.com',
+    to: req.user.email,
+    subject: 'Sending Email using Naturapp',
+    template: 'payment',
+    context: {body: req.body}
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+        console.log(error);
+    } else { 
+        console.log('Email sent: ' + info.response);  
+    }
+  }) 
+}
+
+
 
 module.exports.results = (req, res, next) => {
 
@@ -300,6 +333,7 @@ module.exports.purchased = (req, res, next) => {
 
 module.exports.thankyou = (req, res, next) => {
   Experience.findById(req.params.id)
+    .populate('user')
     .then(experience => {
       if (experience) {
         res.render('experiences/thankyou', {

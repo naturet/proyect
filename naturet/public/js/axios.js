@@ -25,6 +25,27 @@ $(document).ready(() => {
       }
     }
   }
+  const calcBtn = $('#calc-prices-button');
+  function getTotalPrice() {
+
+    const priceProduct = $('.price-span').text()
+    const qtyProduct =  $('input[name="qty"]').val();
+    
+    const priceTotal = priceProduct * qtyProduct;
+
+    document.querySelector('h2 span').innerHTML = priceTotal;
+
+  }
+  
+  $('#checked').click(function() {  
+    if ($('#checked').prop("checked")){
+      $('#paybtn').show() 
+    } else {
+      $('#paybtn').hide()
+    }   
+  })
+ 
+  calcBtn.click(getTotalPrice)
 
   favBtn.click(doFav)
 })

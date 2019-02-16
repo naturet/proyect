@@ -5,7 +5,39 @@ const passport = require('passport');
 const Experience = require("../models/experience.model");
 const axios = require("axios");
 const Payment = require("../models/payment.model");
+const transporter = require('../configs/nodemailer.config');
+const hbs = require('nodemailer-express-handlebars');
 
+module.exports.subscribe = (req, res, next) => {
+
+  transporter.use('compile',hbs({
+    viewPath: 'views/email',
+    extName: '.hbs'
+  }))
+
+  const mailOptions = {
+    from: 'moisesgarcia83@gmail.com',
+    to: req.body.to,
+    subject: 'Naturapp subscription',
+     template: 'subscribe',
+    context: {body: req.body}//preguntar mañana
+  };
+
+ User.findById(req.body.id)
+  .populate('experiences')
+  .then(() => {
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else { 
+        console.log('Email sent: ' + info.response);  
+      }
+      res.redirect('/');   
+    })
+    
+  })
+  .catch(next);
+}
 
 // First Create of user profile
 
