@@ -939,7 +939,41 @@ html {
   background-position: center;
   position: absolute;
   z-index: -2;
+ 
 }
+
+.back-image-experiences{
+  width: 100%;
+  height: 220px;
+  background: url('../img/new-exp-bg.jpg');
+  background-size: cover;
+  border-radius: 5px;
+  background-position: center;
+  position: absolute;
+  z-index: -2;
+  flex-direction:column;
+}
+.back-image-experiences h1{
+  margin-bottom: 0px;
+  padding-bottom: 8px;
+}
+
+.p-intro-new-experience{
+  color: white;
+  font-size: 17px;
+  padding-top: 8px;
+  margin-top:0px;
+  font-family: 'Circular Std Book Italic';
+}
+
+.hr-new-experience{
+  border: 1px solid white;
+    padding: 0px;
+    margin: 0px;
+    width: 34px;
+}
+
+
 .profile-image{
   width: 100%;
   max-width: 200px;
