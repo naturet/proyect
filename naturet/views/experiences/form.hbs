@@ -123,19 +123,24 @@
             <div class="mb-2">
 
               <section class="mt-5 pb-5 border-bottom">
-                 <h2><span class="fa fa-book nt-c mr-3"></span>Some description</h2>
-              <h5 class="mb-3 pt-2 nt-f profile-subtitle">Choose your best price in a normal range</h5>
-              <p class="mb-2 ml-0 profile-paragraph">The values are writting in numbers, <strong class="nt-c">from 0 to
-                  your choice</strong> and the currency will be displayed in <strong class="nt-c">Euros.</strong></p>
+                <h2><span class="fa fa-book nt-c mr-3"></span>Some description</h2>
+                <h5 class="mb-3 pt-2 nt-f profile-subtitle">Add some important reference points to your rute</h5>
+                <p class="mb-2 ml-0 profile-paragraph">This information is completly usefull to your costumers and is important to fill all fields correctly
+                  to make your experience more accesible and more especific.
+                </p>
                 <div class="form-group">
-                  <label for="languages">Idiomas</label>
-                  <br />
-                  <input id="Spanish" type="checkbox" name="languages" value="Spanish" />
-                  <label for="Spanish">Spanish</label>
-                  <br />
-                  <input id="English" type="checkbox" name="languages" value="English" />
-                  <label for="English">English</label>
-                  <br />
+                   <h4>Lenguages</h4>
+            
+                  <div class="mb-2 expertise-checkbox">
+                    <input id="Spanish" type="checkbox" name="languages" value="Spanish" class="regular-checkbox"
+                      {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                    <span class="ml-2 margin-checkbox nt-f">Spanish </span>
+                  </div>
+                    <div class="mb-2 expertise-checkbox">
+                    <input id="English" type="checkbox" name="languages" value="English"  class="regular-checkbox"
+                      {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                    <span class="ml-2 margin-checkbox nt-f">English</span>
+                  </div>
                   <input id="French" type="checkbox" name="languages" value="French" />
                   <label for="French">French</label>
                   <br />
