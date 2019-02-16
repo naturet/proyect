@@ -1,6 +1,6 @@
 /*--variables --*/
 
-input, input:before, input:after {
+input, input:before, input:after, textarea {
   -webkit-user-select: initial !important;
   -khtml-user-select: initial !important;
   -moz-user-select: initial !important;
