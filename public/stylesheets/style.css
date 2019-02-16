@@ -108,9 +108,7 @@ a:hover {
   width: 100%;
   border: none;
   border-radius: 4px;
-  -webkit-box-shadow: 0px 0px 0px 1px #00c98d59;
-  -moz-box-shadow: 0px 0px 0px 1px #00c98d59;
-  box-shadow: 0px 0px 0px 1px #00c98d59;
+  border: 1px solid rgba(128, 128, 128, 0.589);
 }
 
 /*---footer---*/
