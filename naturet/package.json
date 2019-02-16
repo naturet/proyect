@@ -6,6 +6,9 @@
     "dev": "DEBUG=naturapp:* nodemon -e hbs,js --inspect ./bin/www",
     "start": "node ./bin/www"
   },
+  "engines": {
+    "node": "11.4.0"
+  },
   "dependencies": {
     "@glidejs/glide": "^3.2.5",
     "axios": "^0.18.0",
