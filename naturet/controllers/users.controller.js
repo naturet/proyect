@@ -32,31 +32,21 @@ module.exports.subscribe = (req, res, next) => {
       } else { 
         console.log('Email sent: ' + info.response);  
       }
-      res.redirect('/');   
     })
     
+    res.json({ path: ''});   
   })
   .catch(next);
 }
 
 // First Create of user profile
 
-module.exports.getHome = (req, res, next) => {
-  const p1 = Experience.find({}, null, {
-    limit: 10,
-    sort: { price: 1 }
-  }).populate("user");
-  const p2 = Experience.find({}, null, {
-    limit: 10,
-    sort: { createdAt: -1 }
-  }).populate("user");
-  const p3 = Experience.find({}, null, {
-    limit: 10,
-    sort: { rating: -1 }
-  }).populate("user");
-  
-  Promise.all([p1, p2, p3])
-    .then(([sortPriceExp, experiences, sortRateExp]) =>
+module.exports.getHome = (req, res, next) => {  
+  Promise.all([
+    Experience.find().limit(10).sort({ price: 1 }).populate("user"), 
+    Experience.find().limit(10).sort({ createdAt: -1 }).populate("user"),
+    Experience.find().limit(10).sort({ rating: -1 }).populate("user")
+  ]).then(([sortPriceExp, experiences, sortRateExp]) =>
       res.render("users/index", {
         experiences,
         sortPriceExp,
@@ -65,6 +55,7 @@ module.exports.getHome = (req, res, next) => {
     )
     .catch(error => next(error));
  };
+
 
 module.exports.create = (req, res, next) => {
   res.render('users/create')

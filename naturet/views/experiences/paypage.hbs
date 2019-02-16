@@ -30,21 +30,20 @@
           <div class="price-und">
             <span class="price-span">{{experience.price}}</span>€
             <span> x </span>
-            <input id="qty" type="number" value="1" placeholder="1" name="qty">
+            <input id="qty" type="number" value="1" placeholder="1" min="1" name="qty">
             <label for="">Persons</label>
-            <span><button id="calc-prices-button" class="btn-success">actualizar</button>
-              <h2>Total: <span class="total">{{experience.price}}</span>€</h2>
+            <span>
+              <h2>Total: <span class="total-span">{{experience.price}}</span>€</h2>
             </span>
           </div>
         </div>
         <input type="checkbox" class="regular-checkbox" id="checked">Acepto las Condiciones Generales de Contratación y
         la Política
         de Privacidad y de Cookies
-        <form action="/experiences/{{experience.id}}/charge" method="POST" class="mt-2" id="paybtn" style="display:none;">
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_zcTEmEh9DNzx17DvNLibaUVS"
-            data-name="{{experience.name}}" data-locale="es" data-currency="EUR">
-            </script>
-        </form>
+          <form action="/experiences/{{experience.id}}/charge" method="POST" class="mt-2" id="stripe-form" style="display:none;">
+            <div id="paybtn"></div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

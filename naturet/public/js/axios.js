@@ -1,9 +1,13 @@
-
-
-
 $(document).ready(() => {
+  
+  const finalPrice = $(".total-span").text() * 100
+    $("#paybtn").remove();
+    $("#stripe-form").prepend(
+    `<div id="paybtn"><script src="https://checkout.stripe.com/checkout.js" class="stripe-button" id="stripe-script" data-key="pk_test_zcTEmEh9DNzx17DvNLibaUVS"
+     data-locale="es" data-currency="EUR" data-amount=${finalPrice}></script></div>`
+  );
+
   var favBtn = $('#fav-btn')
-  console.log(favBtn)
   function doFav(event) {
     const experienceId = event.target.value;
     if (experienceId) {
@@ -25,30 +29,28 @@ $(document).ready(() => {
       }
     }
   }
-  const calcBtn = $('#calc-prices-button');
-  function getTotalPrice() {
-
-    const priceProduct = $('.price-span').text()
-    const qtyProduct =  $('input[name="qty"]').val();
-    
-    const priceTotal = priceProduct * qtyProduct;
-
-    document.querySelector('h2 span').innerHTML = priceTotal;
-
-  }
   
+  $('input[name="qty"]').on('change', function() {
+  const priceProduct = $('.price-span').text();
+  const qtyProduct =  $('input[name="qty"]').val();
+    const priceTotal = priceProduct * qtyProduct;
+    $(".total-span").text(priceTotal);
+    const finalPrice = priceTotal * 100
+    $("#paybtn").remove();
+    $("#stripe-form").prepend(
+    `<div id="paybtn"><script src="https://checkout.stripe.com/checkout.js" class="stripe-button" id="stripe-script" data-key="pk_test_zcTEmEh9DNzx17DvNLibaUVS"
+     data-locale="es" data-currency="EUR" data-amount=${finalPrice}></script></div>`
+  );
+
+  })
+
   $('#checked').click(function() {  
     if ($('#checked').prop("checked")){
-      $('#paybtn').show() 
+      $('#stripe-form').show() 
     } else {
-      $('#paybtn').hide()
+      $('#stripe-form').hide()
     }   
   })
  
-  calcBtn.click(getTotalPrice)
-
   favBtn.click(doFav)
 })
-  
-
-  

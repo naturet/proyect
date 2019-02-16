@@ -30,7 +30,7 @@ module.exports.send = (req, res, next) => {
     to: req.user.email,
     subject: 'Sending Email using Naturapp',
     template: 'payment',
-    context: {body: req.body}
+    context: {session: req.user, experience: req.experience}
   };
 
   transporter.sendMail(mailOptions, function(error, info){
@@ -40,35 +40,32 @@ module.exports.send = (req, res, next) => {
         console.log('Email sent: ' + info.response);  
     }
   }) 
+
 }
 
 
 
 module.exports.results = (req, res, next) => {
-
-  const {
-    name,
-    category
-  } = req.query
-
+  const { name, category } = req.query
   const criteria = {};
 
   if (name) {
     criteria.name = new RegExp(name, 'i')
   }
-
   if (category) {
     criteria.categories = {
       $all: category.split(',')
     }
   }
+
   Experience.find(criteria)
     .then(experiences =>
       res.render('users/results', {
         experiences
       })
-    )
+    ).catch(error => next(error));
 }
+
 
 module.exports.comment = (req, res, next) => {
   res.render("experiences/detail");
