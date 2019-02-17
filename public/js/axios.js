@@ -44,6 +44,20 @@ $(document).ready(() => {
 
   })
 
+  $('input[name="qty2"]').on('change', function() {
+    const priceProduct = $('.price-span2').text();
+    const qtyProduct =  $('input[name="qty2"]').val();
+      const priceTotal = priceProduct * qtyProduct;
+      $(".total-span2").text(priceTotal);
+      const finalPrice = priceTotal * 100
+      $("#paybtn").remove();
+      $("#stripe-form").prepend(
+      `<div id="paybtn"><script src="https://checkout.stripe.com/checkout.js" class="stripe-button" id="stripe-script" data-key="pk_test_zcTEmEh9DNzx17DvNLibaUVS"
+       data-locale="es" data-currency="EUR" data-amount=${finalPrice}></script></div>`
+    );
+  
+    })
+
   $('#checked').click(function() {  
     if ($('#checked').prop("checked")){
       $('#stripe-form').show() 

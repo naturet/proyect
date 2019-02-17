@@ -22,6 +22,18 @@ input, input:before, input:after, textarea {
   color: var(--category-bg-color);
 }
 
+.nt-g{
+  color: grey;
+}
+
+
+form .stripe-button-el{
+width: 175px;
+}
+form .stripe-button-el span{
+  padding-top: 9px;
+  height: 50px;
+}
 
 
 .nt-f{
@@ -33,6 +45,13 @@ input, input:before, input:after, textarea {
   font-family: 'Circular Std Bold';
   font-weight: normal;
 }
+
+.nt-fbi{
+  font-family: 'Circular Std Bold Italic';
+  font-style: normal;
+  font-weight: normal;
+}
+
 
 .nt-w {
   color: white;
@@ -667,6 +686,10 @@ html {
 
 .container-favourites-experiences{
   margin-top:100px;
+}
+
+.desktop-none{
+  display: none !important;
 }
 
 
@@ -1514,6 +1537,18 @@ input[type=file] {
 }
 
 @media (max-width: 768px) {
+  .paragraph-payment{
+    border-right: none !important;
+    border-bottom: 1px solid #dee2e6!important;
+    padding-bottom: 15px;
+  }
+  .desktop-none{
+    display: block !important;
+  }
+  
+  .ipad-none{
+    display: none !important;
+  }
 
   .back-image-experiences-detail h1{
 font-size: 1.7rem;

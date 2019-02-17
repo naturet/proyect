@@ -2,71 +2,139 @@
 
 <article id="create-user">
   <div class="container-slider mx-auto mt-6 profile-container">
-    <div class="row pb-5 pt-5">
-      <div class="col-xl-4 col-md-12 col-12 row mx-auto nav-intro-profile" id="responsive-menu-tag">
-        <div class="profile-sidenav d-flex flex-column mx-auto nav-intro-profile mb-5 " id="getFixed">
-          <div class="profile-sidenav-inside d-flex flex-column mt-4">
-            <h4 class="nt-fb"><span class="far fa-map nt-c mr-3"></span>Payment experience</h4>
-            <a href="/">Home</a>
-            <a href="/profile">Profile</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xl-8 col-md-12 col-12">
+    <div class="row pb-5 pt-4 mx-auto d-flex justify-content-center">
+      <div class="col-xl-9 col-md-12 col-12">
 
 
-        <div class="row pb-5 mb-5">
-          <div class="back-image-experiences d-flex align-items-center justify-content-center d-column">
-            <h1 class="nt-fb ml-4 nt-w">Experience´s payment page</h1>
+        <div class="row pb-5 image-detail-exp">
+          <div class="back-image-experiences-detail d-flex align-items-center justify-content-center d-column mb-5"
+            style="background:linear-gradient(rgba(0, 201, 141, 0.7), rgba(0, 201, 141, 0.7)),url('{{#if experience.photos.[0]}}{{experience.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1550418585/test/lukasz-szmigiel-33891-unsplash%20(1).jpg.jpg{{/if}}')">
+            <h1 class="nt-fb nt-w pb-3" style="padding: 25px;">{{experience.name}}</h1>
             <hr class="hr-new-experience">
-            
+            <p class="p-intro-new-experience pt-3 nt-f">Payment with Natur<span class="nt-fbi">app</span></p>
           </div>
         </div>
 
-        <section class="pb-5 pt-5">
-          <div class="text-center mt-5">
+
+
+        <section class=" pb-5" id="description">
+          <h2><span class="fa fa-file-invoice nt-c mr-3"></span>Experience information</h2>
+          <p class="mb-5 ml-0 profile-paragraph">This information is completly usefull to you, and the creator made
+            some description to sumarize the
+            experience as best as possible. and the creator made some description.
+          </p>
+          <hr>
+          <div class="row border-bottom">
+            <div class="col-xl-6 col-md-6 col-12 ">
+              <p  class=" border-right paragraph-payment "><span class="black  "><strong>Name:</strong></span>{{experience.name}}</p>
+            </div>
+            <div class="col-xl-6 col-md-6 col-12">
+              <p class=""><span class="black "><strong>Owner: </strong></span>{{experience.user.name}}</p>
+            </div>
           </div>
-        </section>
+          <div class="row border-bottom mt-3">
+            <div class="col-xl-6 col-md-6 col-12 ">
+              <p  class="paragraph-payment border-right "><span class="black  "><strong>Price: </strong></span>{{experience.price}} €</p>
+            </div>
+            <div class="col-xl-6 col-md-6 col-12">
+              <p class=""><span class="black "><strong>Contact: </strong></span>{{experience.user.phone}}</p>
+            </div>
+          </div>
+         <div class="row border-bottom mt-3">
+            <div class="col-xl-12 col-md-12 col-12">
+              <p class=""><span class="black "><strong>Politic cancelation: </strong></span>{{experience.user.politic}}</p>
+            </div>
+          </div>
 
 
-          <section class=" pt-4 pb-5 border-bottom" id="description">
-            <h2><span class="fa fa-signature nt-c mr-3"></span>Experience</h2>
-            <h3 class="mb-3 pt-2 nt-f profile-subtitle">{{experience.name}}</h3>
-            <h3 class="mb-3 pt-2 nt-f profile-subtitle">Price for experience {{experience.price}} €</h3>
+          <section class="mt-5 pb-5 border-bottom">
+            <div class="form-group">
+              <h2><span class="fa fa-shopping-cart nt-c mr-3"></span>Buying process </h2>
+              <div class="price-und mt-3  nt-f">
+                 <p class="mb-5 ml-0 profile-paragraph">Please, to buy the experience, you must <strong>first indicate the number of people </strong>for whom you want the
+                  experience and then <strong>accept the General Contracting Conditions and the Privacy and Cookies Policy.</strong> </p>
+
+                <div class="row mx-auto mb-4 d-flex align-items-baseline justify-content-center ipad-none">
+                <div class="product ml-2 margin-checkbox nt-f col-xl-4 col-md-4 col-12" id="line">
+                  <span class="price-span nt-fb">{{experience.price}}</span>€
+                  <span> x </span>
+                  <input id="qty" type="number" value="1" placeholder="1" min="1" name="qty" class="country-input nt-ipc"
+                    style="width: 50px;">
+                  <label for="">Persons</label>
+                </div>
+                <span class="product ml-2 margin-checkbox nt-f">
+                  <h3>Total: <span name="total" class="total-span nt-fb nt-c">{{experience.price}} €</span></h3>
+                </span>
+                </div>
+
+                {{!--- mobile counter ---}}
+
+                <div class="row mx-auto mb-4 d-flex desktop-none">
+                  <hr>
+                <div class="product pl-0 nt-f col-xl-4 col-md-4 col-12" id="line">
+                  <span class="price-span2 nt-fb">{{experience.price}}</span>€
+                  <span> x </span>
+                  <input id="qty2" type="number" value="1" placeholder="1" min="1" name="qty2" class="country-input nt-ipc"
+                    style="width: 70px;">
+                  <label for="">Persons</label>
+                </div>
+                <hr>
+                <span class="product ml-2 margin-checkbox nt-f">
+                  <h3>Total: <span name="total" class="total-span2 nt-fb nt-c">{{experience.price}} €</span></h3>
+                </span>
+                </div>
 
 
-            <section class="mt-5 pb-5 border-bottom">
-              <div class="form-group">
-                <h2><span class="fa fa-shopping-cart nt-c mr-3"></span>Experience shopping cart </h2>
-                  <div class="price-und mt-3 ml-2 margin-checkbox nt-f">
-                    <span>Please, to buy the experience, you must first indicate the number of people for whom you want the experience and then accept
-                          the General Contracting Conditions and the Privacy and Cookies Policy.</span>
-                    <div class="product mt-5 ml-2 margin-checkbox nt-f" id="line">
-                    <span class="price-span">{{experience.price}}</span>€
-                    <span> x </span>
-                    <input id="qty" type="number" value="1" placeholder="1" min="1" name="qty" class="country-input nt-ipc" style="width: 50px;">
-                    <label for="">Persons</label>
-                    </div>
-                    <span class="product ml-2 margin-checkbox nt-f">
-                      <h2>Total: <span name="total" class="total-span">{{experience.price}}</span>€</h2>
-                    </span>
-                  </div>
-                    <div class="mb-2 expertise-checkbox">
-                      <input type="checkbox" class="ml-2 margin-checkbox nt-f" id="checked"
-                        {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
-                      <span class="ml-2 margin-checkbox nt-f">I accept the General Contracting Conditions and the Privacy and Cookies Policy.</span>
-                    </div>
-                    <form action="/experiences/{{experience.id}}/charge" method="POST" class="mt-2" id="stripe-form" style="display:none;">
-                      <div id="paybtn"></div>
-                    </form>
-                  </div>
+
               </div>
-            </section>
-          </section>
+              <div class="mb-2 expertise-checkbox d-flex ">
+                <input type="checkbox" class="ml-2 margin-checkbox nt-f" id="checked"
+                  {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                <span class="ml-2 margin-checkbox nt-f">I accept the General Contracting Conditions and the Privacy and
+                  Cookies Policy.</span>
+              </div>
+              <form action="/experiences/{{experience.id}}/charge" method="POST" class="mt-4 text-center" id="stripe-form" style="display:none;">
+                <div id="paybtn"></div>
+              </form>
+            </div>
+      </section>
+      </section>
 
-  </article>
-                    
+</article>
+
+
+{{!-- nav-menu-mobile--}}
+<div class="container nav-mobile mx-auto">
+  <div class="row mx-auto align-items-center h-100">
+    <div class="col-3 text-center menu-icon">
+      <a href="/" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">search</span>
+        <span class="icon-home icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/favourites" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Favourites</span>
+        <span class="icon-favorites icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="{{#if session.creator}}/experiences/create{{else}}/creator/create{{/if}}" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Create</span>
+        <span class="icon-new-rute icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Profile</span>
+        <span class="icon-profile icon-nav"></span>
+      </a>
+    </div>
+  </div>
+</div>
+{{!-- nav-menu-mobile--}}
+
+
 <script>
   var decodedJson = decodeURIComponent("{{{pointsJSON}}}");
   var jsonObj = JSON.parse(decodedJson);
