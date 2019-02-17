@@ -208,9 +208,11 @@ $(window).on("load", function () {
 
   function changeGoogleImageUrl() {
     var newSize = "1000"
-    var str = $('.profile-image').attr('src')
+    var str = $('.profile-image').attr('data-image')
     var res = str.split("?sz=50")[0] + "?sz=" + newSize;
-    $('.profile-image').attr("src", res);
+  
+    $('.profile-image').css('background', 'url(' + res + ')');
+    
   }
   changeGoogleImageUrl()
 

@@ -75,7 +75,7 @@
           <section class="mt-5 pb-4 border-bottom">
             <h2><span class="far fa-heart nt-c mr-3"></span>Experience categories </h2>
             <h5 class="mb-3 pt-2 nt-f profile-subtitle">Choose your categories
-              wisely to match with your potential costumers.</h5>
+              wisely to match with your costumers.<strong> At least 4 categories!</strong></h5>
             <p class="mb-4 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
               mattis urna sodales ornare semper eros
               dictum ultricies vestibulum, tempus at erat venenatis id odio non facilisi. Rhoncus sem congue volutpat
@@ -122,102 +122,182 @@
 
             <div class="mb-2">
 
-              <section class="mt-5 pb-5 border-bottom">
+              <section class="mt-5 pb-4 ">
                 <h2><span class="fa fa-book nt-c mr-3"></span>Some description</h2>
                 <h5 class="mb-3 pt-2 nt-f profile-subtitle">Add some important reference points to your rute</h5>
-                <p class="mb-2 ml-0 profile-paragraph">This information is completly usefull to your costumers and is important to fill all fields correctly
+                <p class="mb-2 ml-0 profile-paragraph">This information is completly usefull to your costumers and is
+                  important to fill all fields correctly
                   to make your experience more accesible and more especific.
                 </p>
-                <div class="form-group">
-                   <h4>Lenguages</h4>
-            
-                  <div class="mb-2 expertise-checkbox">
+              </section>
+              <div class="row">
+
+                <div class="col-6 form-group mt-3">
+                  <h4>Lenguages</h4>
+
+                  <div class="mb-2 mt-4 expertise-checkbox">
                     <input id="Spanish" type="checkbox" name="languages" value="Spanish" class="regular-checkbox"
                       {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
                     <span class="ml-2 margin-checkbox nt-f">Spanish </span>
                   </div>
-                    <div class="mb-2 expertise-checkbox">
-                    <input id="English" type="checkbox" name="languages" value="English"  class="regular-checkbox"
+                  <div class="mb-2 expertise-checkbox">
+                    <input id="English" type="checkbox" name="languages" value="English" class="regular-checkbox"
                       {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
                     <span class="ml-2 margin-checkbox nt-f">English</span>
                   </div>
-                  <input id="French" type="checkbox" name="languages" value="French" />
-                  <label for="French">French</label>
-                  <br />
-                  <input id="German" type="checkbox" name="languages" value="German" />
-                  <label for="German">German</label>
-                  <br />
-                  <input id="Chinese" type="checkbox" name="languages" value="Chinese" />
-                  <label for="Chinese">Chinese</label>
+                  <div class="mb-2 expertise-checkbox">
+                    <input id="French" type="checkbox" name="languages" value="French" class="regular-checkbox"
+                      {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                    <span class="ml-2 margin-checkbox nt-f">French</span>
+                  </div>
+                  <div class="mb-2 expertise-checkbox">
+                    <input id="German" type="checkbox" name="languages" value="German" class="regular-checkbox"
+                      {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                    <span class="ml-2 margin-checkbox nt-f">German</span>
+                  </div>
+
+                </div>
+
+                <div class="col-6 mt-3 form-group">
+                  <h4>Includes</h4>
+
+                  <div class="mb-2 mt-4 expertise-checkbox">
+                    <input id="Drinks" type="checkbox" name="includes" value="Drinks" class="regular-checkbox"
+                      {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                    <span class="ml-2 margin-checkbox nt-f">Drinks </span>
+                  </div>
+
+                  <div class="mb-2  expertise-checkbox">
+                    <input id="Food" type="checkbox" name="includes" value="Food" class="regular-checkbox"
+                      {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                    <span class="ml-2 margin-checkbox nt-f">Food </span>
+                  </div>
+
+                  <div class="mb-2  expertise-checkbox">
+                    <input id="Snack" type="checkbox" name="includes" value="Snack" class="regular-checkbox"
+                      {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                    <span class="ml-2 margin-checkbox nt-f">Snack </span>
+                  </div>
+
+                  <div class="mb-2  expertise-checkbox">
+                    <input id="Equipment" type="checkbox" name="includes" value="Equipment" class="regular-checkbox"
+                      {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                    <span class="ml-2 margin-checkbox nt-f">Equipment </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <hr class="mb-5">
+                <h4 class="border-div-profile">Description</h4>
+                <h5 class="mb-3 nt-f profile-subtitle">Add some important reference description to your rute</h5>
+                <textarea type="text" name="description" placeholder="This information is completly usefull to your costumers and is important to fill it!"
+                  id="description-area" class="w-100 mt-2 nt-ipc" cols="40" rows="4" value="{{description}}">{{description}}</textarea>
+                {{#if errors.description}}
+                <div class="errors-div-form mb-5">
+                  <p><span class="fa fa-exclamation-circle nt-w mr-3"></span>{{ errors.description }}</p>
+                </div>
+                {{/if}}
+              </div>
+
+              <div class="form-group mt-5">
+                <h4 class="border-div-profile">What you should know?</h4>
+                <h5 class="mb-3 nt-f profile-subtitle">Something quite different from your experience</h5>
+                <textarea class="w-100 mt-2 nt-ipc" cols="40" rows="3" id="description-area" placeholder="This information is completly usefull to your costumers and is important to fill it!"
+                  class="form-control" name="anymore" rows=2>{{experience.anymore}}</textarea>
+              </div>
+
+              <section class="border-bottom pb-4 mt-5">
+                <hr class="mb-5">
+                <div class="form-group">
+                  <h2><span class="far fa-clock nt-c mr-3"></span>Duration</h2>
+                  <h5 class="mb-3 pt-2 nt-f profile-subtitle">Add the duration of your experiences if necesary. <strong>Write
+                      down in minutes!</strong></h5>
+                  <p class=" ml-0 profile-paragraph">This information is completly usefull to your costumers and is
+                    important to fill all fields correctly
+                    to make your experience more accesible and more especific.
+                  </p>
+                  <input type="Number" class="country-input nt-ipc mt-3" min="0" id="price" id="duration" name="duration"
+                    value="{{experience.duration}}">
                 </div>
               </section>
-              <div class="form-group">
-                <label for="duration">Duración</label>
-                <input type="Number" class="form-control" min="0" id="duration" name="duration" value="{{experience.duration}}">
-              </div>
 
-              <div class="form-group">
-                <label for="includes">¿Que incluye?</label>
-                <br />
-                <input id="Drinks" type="checkbox" name="includes" value="Drinks" />
-                <label for="Drinks">Drinks </label>
-                <br />
-                <input id="Food" type="checkbox" name="includes" value="Food" />
-                <label for="Food">Food</label>
-                <br />
-                <input id="Snack" type="checkbox" name="includes" value="Snack" />
-                <label for="Snack">Snack</label>
-                <br />
-                <input id="Equipment" type="checkbox" name="includes" value="Equipment" />
-                <label for="Equipment">Equipment</label>
-              </div>
-
-              <div class="form-group">
-                <label for="description">Descripción</label>
-                <textarea class="form-control" name="description" rows=3>{{description}}</textarea>
-                {{#if errors.description}}
-                <p>{{errors.description}}</p>
-                {{/if}}
-              </div>
-
-              <div class="form-group">
-                <label for="anymore">¿Que debes saber?</label>
-                <textarea class="form-control" name="anymore" rows=2>{{experience.anymore}}</textarea>
-              </div>
-
-              <div class="form-group">
-                <label for="photos">Fotos</label>
-                <input type="file" class="form-control" name="photo" placeholder="Picture" multiple />
-              </div>
-
-              <div class="form-group">
-                <h4 id="lugar">Lugar de la experiencia</h4>
-                <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
-
-                <div class="form-group" id="floating-panel">
-                  <input onclick="removeLine();" type=button value="Remove line">
-                  <input onclick="addLine();" type=button value="Restore line">
+              <section class="border-bottom pb-3 mt-5">
+                <div class="form-group pb-4 mt-5">
+                  <h2><span class="far fa-images nt-c mr-3"></span>Photos</h2>
+                  <h5 class="mb-3 pt-2 nt-f profile-subtitle">Add some amazing photos to your experience.<strong> 3
+                      will be enought!</strong></h5>
+                  <p class=" ml-0 profile-paragraph">This information is completly usefull to your costumers and is
+                    important to add photographs, <strong class="nt-c">that would make the difference!</strong>
+                  </p>
+                  <input id="input-image-profile" type="file" class="form-control  nt-ipc input-file-profile" name="photo"
+                    placeholder="Pictures" multiple />
                 </div>
+              </section>
 
+              <section class="border-bottom pb-4 mt-5">
                 <div class="form-group">
-                  <input id="address" class="form-control" type="textbox" placeholder="Introduce aquí el sitio que quieres buscar" />
-                  <label>Latitud: </label>
-                  <span id="x"></span>
-                  <label>Longitud: </label>
-                  <span id="y"></span>
-                  <button type="button" class="btn btn-primary mt-3" value="Localizar" onclick="codeAddress()">Buscar</button>
-                </div>
-                {{#if errors.bodyPath}}
-                <p>{{errors.bodyPath}}</p>
-                {{/if}}
-                <div id="map"></div>
+                  <h2><span class="far fa-map nt-c mr-3"></span>Experience Route</h2>
+                  <h5 class="mb-3 pt-2 nt-f profile-subtitle">Time to add a route to experience!</h5>
+                  <ol class="mb-5">
+                    <li class=""> Search some direction like city or place you know in the browser and click in the <strong class="nt-c">Search button</strong></li>
+                    <li class=""> Add some Points to your route! Specify an aproximated area where you and your costumers are going to walk by. Add some points by<strong class="nt-c"> Clicking in the map!</strong></li>
+                    <li class=""> Save your rout and your entire experience by clicking in the <strong class="nt-c">Save button</strong></li>
+                  </ol>
 
-              </div>
+                  <div class="form-group">
+                    <div style="display:none;">
+                    <label>Latitud: </label>
+                    <span id="x"></span>
+                    <label>Longitud: </label>
+                    <span id="y"></span>
+                    </div>
+                    <div class="row p-3">
+                    <input id="address" class="form-control col-12" type="textbox" placeholder="Introduce aquí el sitio que quieres buscar" />
+                     <button type="button" class="col-xl-6 col-md-6 col-12 btn btn-primary mt-3 w-50 btn-naturet nt-f" value="Localizar" onclick="codeAddress()">Search city</button>
+                    </div>
+                  </div>
+                  
+                  <div id="map"></div>
+
+                </div>
+              </section>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+              <button class="btn btn-primary btn-block p-3 mt-5 btn-naturet nt-f" type="submit">Save Experience <span class="fa fa-check nt-w ml-2"></span></button>
+
 </article>
 </form>
+{{!-- nav-menu-mobile--}}
+<div class="container nav-mobile mx-auto">
+  <div class="row mx-auto align-items-center h-100">
+    <div class="col-3 text-center menu-icon">
+      <a href="/" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">search</span>
+        <span class="icon-home icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/favorites" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Favourites</span>
+        <span class="icon-favorites icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="{{#if session.creator}}/experiences/create{{else}}/creator/create{{/if}}" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Create</span>
+        <span class="icon-new-rute icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text active">Profile</span>
+        <span class="icon-profile icon-nav active"></span>
+      </a>
+    </div>
+  </div>
+</div>
+{{!-- nav-menu-mobile--}}
 <script>
   jQuery(function ($) {
     function fixDiv() {

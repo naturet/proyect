@@ -214,7 +214,7 @@ module.exports.doCreate = (req, res, next) => {
         name: name ? undefined : 'Select one name for your experience',
         description: description ? undefined : 'Add some awesome description to your experience',
         price: price ? undefined : 'Select some price to your experience from 0 to your choice',
-        bodyPath: 'No hay ruta'
+        bodyPath: 'No route drawn!, add some points by clicking the map'
       }
     });
   } else {

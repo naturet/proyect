@@ -522,7 +522,6 @@ html {
 }
 
 
-
 .masthead {
   height: 70vh;
   min-height: 500px;
@@ -920,8 +919,9 @@ html {
     height: 20px;
     background-color: var(--category-bg-color);
     border-radius: 41px;
-    margin-left: -50px;
-    margin-top: 5px;
+    margin-left: 35px;
+
+    margin-top: 0px;
 }
 .profile-sidenav-inside a{
  line-height: 40px;
@@ -980,14 +980,24 @@ html {
     width: 34px;
 }
 
-
+.image-div-flex{
+  display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
 .profile-image{
   width: 100%;
-  max-width: 200px;
-  border-radius: 300px;
-  border: 8px solid white;
-
+    max-width: 150px;
+    border-radius: 300px;
+    border: 8px solid white;
+    max-height: 150px;
+    height: 206px;
+    background-size: cover !important;
+    background-position: center !important;
 }
+
+
 
 /*----end of session profile---*/
 
@@ -1525,7 +1535,7 @@ margin-top: 90px;
   }
 
   .footer {
-    margin-bottom: 50px;
+    margin-bottom: 58px;
   }
 
   .masthead {

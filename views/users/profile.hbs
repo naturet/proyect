@@ -26,31 +26,34 @@
       <section class="border-bottom pb-5">
         <div class="text-center mt-5">
           <div>
-            <img class="profile-image" src="{{#if session.pictures.[0]}}{{session.pictures.[0]}}{{else}}{{session.photo}}{{/if}}">
-            {{#if session.creator}}
-            <span class="creator-simbol"></span>
-            {{/if}}
+            <div class="image-div-flex">
+              <div class="profile-image" data-image="{{#if session.pictures.[0]}}{{session.pictures.[0]}}{{else}}{{session.photo}}{{/if}}"
+               style="background:url('{{#if session.pictures.[0]}}{{session.pictures.[0]}}{{else}}{{session.photo}}{{/if}}')">
+                {{#if session.creator}}
+                <span class="creator-simbol"></span>
+                {{/if}}
+              </div>
+            </div>
+            <h3 id="profile-name" class="mt-2">{{session.name}} - <span class="nt-c">{{#if session.creator}}
+                Creator</span> <span class="icon-030 nt-c"></span>
+              {{else}}
+              Adventurous</span>
+              {{/if}}</span></h3>
           </div>
-          <h3 id="profile-name" class="mt-2">{{session.name}} - <span class="nt-c">{{#if session.creator}}
-              Creator</span> <span class="icon-030 nt-c"></span>
-            {{else}}
-            Adventurous</span>
-            {{/if}}</span></h3>
-        </div>
       </section>
       {{#if session.creator}}
 
       {{else}}
       <section class="border-bottom pb-5 pt-5 " id="description">
-          <h2><span class="far fa-user nt-c mr-3"></span>Become a creator! </h2>
-          <div class="mb-2">
-            <h5 class="mb-3 pt-2 nt-f profile-subtitle">Some description to let everybody know about your adventurer
-              self.</h5>
-            <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
-              mattis urna sodales ornare semr adipiscing elit dis posuere,
-              mattis urna sper eros</p>
-              <a class="btn btn-primary p-2 btn-naturet w-100 nt-f p-3" href="creator/create">Become a creator</a>
-        </section>
+        <h2><span class="far fa-user nt-c mr-3"></span>Become a creator! </h2>
+        <div class="mb-2">
+          <h5 class="mb-3 pt-2 nt-f profile-subtitle">Some description to let everybody know about your adventurer
+            self.</h5>
+          <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
+            mattis urna sodales ornare semr adipiscing elit dis posuere,
+            mattis urna sper eros</p>
+          <a class="btn btn-primary p-2 btn-naturet w-100 nt-f p-3" href="creator/create">Become a creator</a>
+      </section>
       {{/if}}
       <section class="border-bottom pt-5 pb-4" id="categories">
         <h2><span class="far fa-heart nt-c mr-3"></span>Your liked categories </h2>
@@ -178,7 +181,8 @@
           <div class="mb-2 col-xl-6 col-md-6 col-12">
             <div class="border-div-profile">
               <h4>Enterprise:</h4>
-              <p class=" ml-0 profile-paragraph">{{#if session.enterpriseDescription}} {{session.enterpriseDescription}}{{else}}{{session.acreditation}}{{/if}}</p>
+              <p class=" ml-0 profile-paragraph">{{#if session.enterpriseDescription}}
+                {{session.enterpriseDescription}}{{else}}{{session.acreditation}}{{/if}}</p>
             </div>
           </div>
 
@@ -208,7 +212,7 @@
       <ul class="list-group mt-5">
         {{#each user.experiences as |experience|}}
 
-        <li class="list-group-item nt-bc d-flex justify-content-between align-items-center experience-item" data-id="{{experience.id}}">        
+        <li class="list-group-item nt-bc d-flex justify-content-between align-items-center experience-item" data-id="{{experience.id}}">
           <div>
             <i><a class="black experience-name-list" href="/experiences/{{ experience.id }}">{{experience.name}}</a></i>
           </div>
@@ -263,7 +267,7 @@
       var $cache = $('#getFixed');
       if ($(window).scrollTop() > 100 && $(window).width() >= 1080)
         $cache.css({
-         'top': '40px'
+          'top': '40px'
         });
       else
         $cache.css({
