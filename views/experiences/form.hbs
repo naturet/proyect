@@ -35,22 +35,6 @@
           </div>
         </section>
 
-
-
-        {{!-- <div class="form-group">
-          <label for="name">Nombre de la actividad</label>
-          <input type="text" class="form-control" id="name" name="name" value="{{name}}">
-          {{#if errors.name}}
-          <p>{{errors.name}}</p>
-          {{/if}}
-        </div>
-
-
-        --}}
-
-
-
-
         <form action="/experiences/create" class="mt-4" method="post" onsubmit="addPathToForm(this)" enctype="multipart/form-data">
 
           <section class=" pt-4 pb-5 border-bottom" id="description">
@@ -286,14 +270,14 @@
     </div>
     <div class="col-3 text-center menu-icon">
       <a href="{{#if session.creator}}/experiences/create{{else}}/creator/create{{/if}}" class="d-flex flex-column-reverse link-nav-mobile">
-        <span class="menu-icon-text">Create</span>
-        <span class="icon-new-rute icon-nav"></span>
+        <span class="menu-icon-text active">Create</span>
+        <span class="icon-new-rute icon-nav active"></span>
       </a>
     </div>
     <div class="col-3 text-center menu-icon">
       <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
-        <span class="menu-icon-text active">Profile</span>
-        <span class="icon-profile icon-nav active"></span>
+        <span class="menu-icon-text ">Profile</span>
+        <span class="icon-profile icon-nav "></span>
       </a>
     </div>
   </div>

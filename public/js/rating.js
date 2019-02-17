@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $('.success-box').hide()
   
   /* 1. Visualizing things on Hover - See next part for action on click */
   $('#stars li').on('mouseover', function(){
@@ -41,7 +42,7 @@ $(document).ready(function(){
         msg = "Thanks! You rated this " + ratingValue + " stars.";
     }
     else {
-        msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+        msg = "We'll improve theexperience... " + ratingValue + " star.";
     }
     
     responseMessage(msg);

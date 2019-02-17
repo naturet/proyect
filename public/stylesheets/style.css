@@ -353,6 +353,12 @@ p.category-name{
   max-width: 200px;
   max-height: 45px;
 }
+.image-photo-detail{
+  border: 2px solid white;
+  height: 200px;
+  background-size: cover !important;
+  background-position: center !important;
+}
 
 .category-name-text {
   margin-left: 18px;
@@ -609,6 +615,7 @@ html {
   background-position: center;
 }
 
+
 .session-info {
   padding: 15px;
   bottom: 0;
@@ -623,9 +630,9 @@ html {
   height: 50px;
   border-radius: 100px;
   border: 2px solid white;
-  -webkit-box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 0px 2px #00c98d;
+  -moz-box-shadow: 0px 0px 0px 2px #00c98d;
+  box-shadow: 0px 0px 0px 2px #00c98d;
 }
 
 .p-2 h5 {
@@ -965,6 +972,36 @@ html {
   margin-bottom: 0px;
   padding-bottom: 8px;
 }
+
+
+.image-detail-exp{
+  margin-top: 30px;
+  margin-bottom: 300px;
+}
+
+.back-image-experiences-detail{
+  width: 100%;
+  height: 300px;
+  background-size: cover !important;
+  border-radius: 5px;
+  background-position: center !important;
+  position: absolute;
+  z-index: -2;
+  flex-direction:column;
+}
+.back-image-experiences-detail h1{
+  text-shadow: 0px 0px 12px #000000;
+  margin-bottom: 0px;
+  padding-bottom: 8px;
+  text-align: center;
+}
+.back-image-experiences-detail p{
+  text-shadow: 0px 0px 12px #000000;
+  text-align: center;
+
+}
+
+
 
 .p-intro-new-experience{
   color: white;
@@ -1321,7 +1358,6 @@ body {
 }
 
 #map {
-
   border: 4px solid #2ec98b81 !important;
   border-radius: 4px !important;
   width: 100%;
@@ -1455,6 +1491,10 @@ input[type=file] {
 }
 
 @media (max-width: 768px) {
+
+  .back-image-experiences-detail h1{
+font-size: 1.7rem;
+  }
   .expertise-checkbox{
     align-items: unset !important;
 
@@ -1659,7 +1699,7 @@ margin-top: 90px;
 
 
 /* rating */
-/* 
+
 *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1743,7 +1783,7 @@ margin-top: 90px;
   }
   
   .success-box {
-    margin:50px 0;
+    margin:2px 0;
     padding:10px 10px;
     border:1px solid #eee;
     background:#f9f9f9;
@@ -1760,11 +1800,16 @@ margin-top: 90px;
     display:inline-block;
     color:#888;
   }
-   */
+   
 
 
 /* Rating Star Widgets Style */
+
+.rating-stars{
+  text-align: left;
+}
 .rating-stars ul {
+
   list-style-type: none;
   padding: 0;
 
@@ -1773,6 +1818,7 @@ margin-top: 90px;
 }
 
 .rating-stars ul>li.star {
+  cursor: pointer;
   display: inline-block;
 
 }
@@ -1780,8 +1826,8 @@ margin-top: 90px;
 
 
 /* Idle State of the stars */
-/* .rating-stars ul > li.star > i.fa {
-    font-size:2.5em; 
+ .rating-stars ul > li.star > i.fa {
+    font-size:2em; 
     color:#ccc; 
   } 
   
@@ -1793,4 +1839,4 @@ margin-top: 90px;
   
   .rating-stars ul > li.star.selected > i.fa {
     color:#FF912C;
-  } /*
+  } 

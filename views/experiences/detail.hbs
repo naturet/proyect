@@ -1,147 +1,193 @@
+{{> searchmobile}}
+
 <div class="container-slider mx-auto profile-container mt-6">
   <div class="row pb-5 pt-5">
 
- <div class="col-xl-4 col-md-12 col-12 row mx-auto nav-intro-profile" id="responsive-menu-tag">
-        <div class="profile-sidenav d-flex flex-column mx-auto nav-intro-profile mb-5 " id="getFixed">
-          <div class="profile-sidenav-inside d-flex flex-column mt-4">
-            <h4 class="nt-fb"><span class="far fa-map nt-c mr-3"></span>Creating experiences</h4>
-            <a href="#categories">Categories</a>
-            <a href="#price">Price EUR</a>
-            <a href="#description-exp">Description</a>
-            <a href="#route">Route</a>
-           
-        {{#theCreator experience session}}
-        <h6>creator</h6>
-        {{else}}
-        <button class="btn btn-success fav-btn  {{#isfollow ../experience ../session}}{{else}}unfollow{{/isfollow}}"
-          type="button" value="{{../experience.id}}" id="fav-btn">
-          {{#isfollow ../experience ../session}}
-          <i class="fav-btn fas fa-star "></i>
+    <div class="col-xl-4 col-md-12 col-12 row mx-auto nav-intro-profile" id="responsive-menu-tag">
+      <div class="profile-sidenav d-flex flex-column mx-auto nav-intro-profile mb-5 " id="getFixed">
+        <div class="profile-sidenav-inside d-flex flex-column mt-0">
+          <h4 class="nt-fb"><span class="far fa-map nt-c mr-3"></span>Experience Detail</h4>
+          <a href="#categories">Categories</a>
+          <a href="#description-exp">Description</a>
+          <a href="#price">Experience data</a>
+          <a href="#route">Route</a>
+
+          {{#theCreator experience session}}
+          <div class="div-help-create">
+            <p class="nt-f"> You are the owner of this experience </p>
+          </div>
           {{else}}
-          <i class="fav-btn far fa-star "></i>
-          {{/isfollow}}
-        </button>
-        {{#ispurchasedexp ../experience ../session}}   
-        {{else}}
-        <form action="/experiences/{{../experience.id}}/paypage" class="mt-1" method="get">
-          <div class="form-actions">
-            <button class="btn btn-danger" type="submit">
-              <i class="fas fa-shopping-cart"></i>
-            </button>
-          </div>
-        </form>
-        {{/ispurchasedexp}}
-        {{/theCreator}}
-          </div>
+          
+          <button class="btn btn-naturet fav-btn  p-3 mt-3{{#isfollow ../experience ../session}}{{else}}unfollow{{/isfollow}}"
+            type="button" value="{{../experience.id}}" id="fav-btn">
+            
+            {{#isfollow ../experience ../session}}
+             <i class="fav-btn fas fa-star" style="color:white"></i>
+            {{else}}
+            
+            <i class="fav-btn far fa-star " style="color:white" ></i>
+            {{/isfollow}}
+          </button>
+          {{#ispurchasedexp ../experience ../session}}
+          {{else}}
+          <form action="/experiences/{{../experience.id}}/paypage" class="mt-1" method="get">
+            <div class="form-actions">
+              <button class="btn btn-danger w-100 p-3 mt-2" type="submit">
+                <span><strong>Buy</strong> this Experience </span><i class="fas fa-shopping-cart"></i>
+              </button>
+            </div>
+          </form>
+          {{/ispurchasedexp}}
+          {{/theCreator}}
         </div>
       </div>
+    </div>
+
+    
 
 
-
-
-
-
-
-
-
-
-
-
-    <div class="col-xl-8 col-md-8 col-12">
-      <div class="text-center">
-        <img class="profile-image" src="http://prpop.org/wp-content/plugins/ajax-search-pro/img/default.jpg" width="250px">
-        <h3>{{experience.name}}</h3>
-
-        <h4>{{#rating experience}} {{/rating}}<i class='fa fa-star fa-fw'></i></h4>
-      </div>
-
-      <hr>
-      <h1>categories</h1>
-      <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
-      <p class="mb-5">Lit amet, consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet,
-        consectetur adipiscing elit, sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor inLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</p>
-      <div class="row">
-        {{#each allCategories as |category| }}
-
-        <div class="col-xl-2 col-md-3 col-6 noevent not-shown" style="display:{{#containCategoryexp ../experience category ../categories }}{{/containCategoryexp}}">
-
-          <div class="category-card noevent">
-            <span class='icon-{{category.fontnum}}'></span>
-            <!-- descomentar esto par añadir estilo -->
-            <p class="category-name">{{ category.name }} </p>
+    <div class="col-xl-8 col-md-12 col-12">
+      <div class="row pb-5 image-detail-exp">
+          <div class="back-image-experiences-detail d-flex align-items-center justify-content-center d-column mb-5" style="background:linear-gradient(rgba(0, 201, 141, 0.7), rgba(0, 201, 141, 0.7)),url('{{#if experience.photos.[0]}}{{experience.photos.[0]}}{{else}}{{session.photo}}{{/if}}')">
+            <h1 class="nt-fb nt-w">{{experience.name}}</h1>
+            <hr class="hr-new-experience">
+            <p class="p-intro-new-experience">{{#rating experience}} {{/rating}}</p>
+                
           </div>
         </div>
-        </input>
+ 
 
-        {{/each}}
+      
+      <div class="mt-5" id="categories">
+        <h2><span class="far fa-heart nt-c mr-3"></span>Experience categories </h2>
+        <h5 class="mb-3 pt-2 nt-f profile-subtitle">Categories selected for this experience</h5>
+        <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
+          mattis urna sodales ornare semattis urna sodales ornare semper erosper eros</p>
+        <div class="row">
+          {{#each allCategories as |category| }}
+          <div class="col-xl-2 col-md-3 col-6 noevent not-shown" style="display:{{#containCategoryexp ../experience category ../categories }}{{/containCategoryexp}}">
+            <div class="category-card noevent">
+              <span class='icon-{{category.fontnum}}'></span>
+              <!-- descomentar esto par añadir estilo -->
+              <p class="category-name">{{ category.name }} </p>
+            </div>
+          </div>
+          </input>
+          {{/each}}
 
+        </div>
       </div>
       <hr>
       <div class="form-group">
-        <h1>Some description</h1>
+        <section class="mt-5 pb-4" id="description-exp">
+          <h2><span class="fa fa-book nt-c mr-3"></span>Description</h2>
+          <h5 class="mb-3 pt-2 nt-f profile-subtitle">Some important reference points to your rute</h5>
+          <p class="mb-2 ml-0 profile-paragraph">This information is completly usefull to you, and the creator made
+            some description to sumarize the
+            experience as best as possible.
+          </p>
+        </section>
 
-        <div class="mb-2">
-          <h5 class="mb-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in</h5>
-          <h3>{{experience.description}}</h3>
-          <hr>
+        <div class="mb-2 w-100 p-2">
+          <p><i>"{{experience.description}}"</i></p>
         </div>
+        <hr>
 
-        <div class="mb-2">
-          <h3>¿Que incluye?</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-          <h4>{{experience.includes}}</h4>
-          <hr>
-        </div>
+        <section class="mt-5 pb-4 " id="price">
+          <h2><span class="fa fa-question-circle  nt-c mr-3"></span>Additional info</h2>
+           <p class="mb-3 ml-0 profile-paragraph">Some description that is important</p>
+        </section>
 
-        <div class="mb-2">
-          <h3>Idiomas</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</small>
-          <h4>{{experience.languages}}</h4>
-          <hr>
-        </div>
-        <div class="mb-2">
-          <h3>Precio</h3><small></small>
-          <h4>{{experience.price}}€</h4>
-          <hr>
-        </div>
-        <div class="mb-2">
-          <h3>Duracion</h3><small>El tiempo de duración una vez comienza la actividad, siempre en minutos</small>
-          <h4>{{experience.duration}} minutos</h4>
-          <hr>
-        </div>
+        <section class="border-bottom pb-4">
+          <div class="row">
+            <div class="mb-2 col-xl-6 col-md-6 col-12">
+              <div class="border-div-profile">
+                <h4>Includes</h4>
+                <p class=" ml-0 profile-paragraph">{{#each experience.includes}}{{this}}. {{/each}}</p>
+              </div>
+            </div>
 
-        <div class="mb-2">
-          <h3>¿Que debes saber?</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit</small>
-          <h4>{{experience.anymore}}</h4>
-          <hr>
+            <div class="mb-2 col-xl-6 col-md-6 col-12">
+              <div class="border-div-profile">
+                <h4>Languages</h4>
+                <p class=" ml-0 profile-paragraph">{{#each experience.languages}}{{this}}. {{/each}}</p>
+              </div>
+            </div>
+
+            {{#if experience.anymore}}
+            <div class="mb-2 col-xl-12 col-md-12 col-12">
+              <div class="border-div-profile">
+                <h4>Addiotional info for route</h4>
+                <p class=" ml-0 profile-paragraph">{{experience.anymore}}</p>
+              </div>
+            </div>
+            {{/if}}
+          </div>
+        </section>
+
+      <div class="pt-5 pb-5 border-bottom mb-2">
+        <h2><span class="far fa-images nt-c mr-3"></span>Photos</h2>
+          <h5 class="mb-3 pt-2 nt-f profile-subtitle">Some amazing photos of this experience</h5>
+          <p class="mb-4 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
+          mattis urna sodales ornare semattis urna sodales ornare semper erosper ero</p>
+        <div class="row mx-auto p-2">
+        {{#each_upto experience.photos 4}}
+        <div class="col-xl-3 col-md-6 col-12 p-2 image-photo-detail" style="background:url('{{this}}')">
         </div>
-        <div class="mb-2">
-          <h3>Mapa actividad</h3><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit</small>
+        {{/each_upto}}
+        </div>
+       
+      </div>
+
+
+        <div class=" border-bottom mb-5 pb-3 mt-5">
+          <h2><span class="far fa-file-alt  nt-c mr-3"></span>Experience data </h2>
+          <p class="mb-4 ml-0 profile-paragraph">The price is written in numbers, and the
+              currency will be displayed in <strong class="nt-c">Euros.</strong></p>
+
+          <div class="row">
+            <div class="mb-2 col-xl-6 col-md-6 col-12">
+              <div class="border-div-profile">
+                <h4>Price</h4>
+                <h3 class=" ml-0 "><strong class="nt-fb">{{experience.price}}€ </strong><span class=" profile-paragraph"> per peson</span></h3>
+              </div>
+            </div>
+
+            <div class="mb-4 col-xl-6 col-md-6 col-12">
+              <div class="border-div-profile">
+                <h4>Duration</h4>
+                <h3 class=" ml-0 "><strong class="nt-fb">{{experience.duration}} </strong><span class=" profile-paragraph"> minutes</span></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+   
+        <div class="mb-5" id="route">
+        <h2><span class="fa fa-map-pin  nt-c mr-3"></span>Route Map </h2>
+          <h5 class="mb-3 pt-2 nt-f profile-subtitle">The rout of this experience will display some important points of trekking</h5>
+        <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
+          mattis urna sodales ornare semattis urna sodales ornare semper erosper eros</p>
           <div id="map" style="pointer-events: none;"></div>
-          <hr>
+         
         </div>
+        <hr>
       </div>
 
-      <div class=" mb-2">
-        <h4> <span class="input-group-text"> <i class="fas fa-image"></i> </span>Fotos</h4>
-        {{#each experience.photos}}
-        <img src="{{this}}" style="max-width: 200px;">
-        {{/each}}
-      </div>
       <!--- Comments experience -->
 
 
       {{#ispurchased experience session}}
       <form action="/experiences/{{../experience.id}}/docomment" class="mt-1" method="post">
-        <div class="form-actions">
+        <div class="form-actions pt-4">
 
           <!--- rating experience -->
-          <h2>Puntua la experiencia</h2>
+           <h2><span class="fa fa-users  nt-c mr-3"></span>Comment and Rate</h2>
+            <p class=" ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
+          mattis urna sodales ornare semattis urna sodales ornare semper erosper eros</p> 
           <section class='rating-widget'>
-
+              Rate the experience:
             <!-- Rating Stars Box -->
-            <div class='rating-stars text-center'>
+            <div class='rating-stars p-2 pb-0'>
               <ul id='stars'>
                 <li class='star' title='Poor' data-value='1'>
                   <i class='fa fa-star fa-fw'></i>
@@ -163,7 +209,6 @@
 
             <div class='success-box'>
               <div class='clearfix'></div>
-              <img alt='tick image' width='32' src='data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MjYuNjY3IDQyNi42NjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQyNi42NjcgNDI2LjY2NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiM2QUMyNTk7IiBkPSJNMjEzLjMzMywwQzk1LjUxOCwwLDAsOTUuNTE0LDAsMjEzLjMzM3M5NS41MTgsMjEzLjMzMywyMTMuMzMzLDIxMy4zMzMgIGMxMTcuODI4LDAsMjEzLjMzMy05NS41MTQsMjEzLjMzMy0yMTMuMzMzUzMzMS4xNTcsMCwyMTMuMzMzLDB6IE0xNzQuMTk5LDMyMi45MThsLTkzLjkzNS05My45MzFsMzEuMzA5LTMxLjMwOWw2Mi42MjYsNjIuNjIyICBsMTQwLjg5NC0xNDAuODk4bDMxLjMwOSwzMS4zMDlMMTc0LjE5OSwzMjIuOTE4eiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K' />
               <div class='text-message'></div>
               <div class='clearfix'></div>
             </div>
@@ -174,50 +219,88 @@
             <input type="Number" class="form-control" id="rate" name="rate" style="display: none;">
           </div>
           {{#if ../errors.rate }}
-          <h2>{{ ../errors.rate }}</h2>
+          <div class="errors-div-form mt-4">
+                <p><span class="fa fa-exclamation-circle nt-w mr-3"></span>{{ ../errors.rate }}</p>
+              </div>
           {{/if}}
 
-          <h2 for="docomment">Escribe tu comentario</h2>
-          
+          <h4 for="docomment">Write a comment</h4>
+            <p class=" ml-0 profile-paragraph">Don't leave this section empty, write something to the owner!</p> 
+
           <textarea class="form-control mb-4" name="message" rows=2>{{../message}}</textarea>
           {{#if ../errors.message }}
-          <h2>{{ ../errors.message }}</h2>
+          <div class="errors-div-form mt-4">
+                <p><span class="fa fa-exclamation-circle nt-w mr-3"></span>{{ ../errors.message }}</p>
+              </div>
           {{/if}}
 
-          <button class="btn btn-primary btn-lg mb-2 " type="submit">enviar</button>
+          <button class="btn btn-primary btn-lg mb-2 btn-naturet w-100" type="submit">Post Comment</button>
         </div>
       </form>
 
       {{else}}
+      <section class="mt-5">
+         <h2><span class="far fa-comments   nt-c mr-3"></span>Comments </h2>
+          <p class="mb-4 ml-0 profile-paragraph">You only will be able tu comment and rate this experience <strong >one time</strong>,
+          onle if you buy this experience or you aren't his owner.</p>
+          </section>
 
-      <h1>Comentarios</h1>
-      <small>Solo podras comentar y puntuar <strong>una vez</strong>, si compras la experiencia o no eres su creador/a</small>
       {{/ispurchased}}
 
 
 
       <hr>
-      {{#each experience.comments}}
+      {{#each_upto experience.comments 9}}
       <div>
         <div class="flex-row align-items-center mb-3">
           <div class="image-slide-owner" style="background:url('{{this.user.photo}}')"></div>
           <divclass="column">
-            <h6 class="ml-3 p-0 mb-0"><strong>{{this.user.name}}</strong></h6>
+            <h6 class="ml-3 p-0 mb-0 nt-f"><strong>{{this.user.name}}</strong></h6>
             <span class="ml-3 p-0 date-comment">
               {{#formatDate this.createdAt}}
               {{/formatDate}}
             </span>
-            <span class="ml-3 p-0 mb-0">{{this.rate}}<i class='fa fa-star fa-fw'></i></span>
+            <span class="ml-3 p-0 mb-0 nt-f">{{this.rate}}<i class='fa fa-star fa-fw nt-c'></i></span>
         </div>
         <div class="flex-row">
-          <h5>{{this.message}}</h5>
+          <p><i>"{{this.message}}"</i></p>
         </div>
       </div>
       <hr>
-      {{/each}}
+      {{/each_upto}}
     </div>
   </div>
 </div>
+{{!-- nav-menu-mobile--}}
+<div class="container nav-mobile mx-auto">
+  <div class="row mx-auto align-items-center h-100">
+    <div class="col-3 text-center menu-icon">
+      <a href="/" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text active">search</span>
+        <span class="icon-home icon-nav active"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/favorites" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Favourites</span>
+        <span class="icon-favorites icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="{{#if session.creator}}/experiences/create{{else}}/creator/create{{/if}}" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Create</span>
+        <span class="icon-new-rute icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text ">Profile</span>
+        <span class="icon-profile icon-nav "></span>
+      </a>
+    </div>
+  </div>
+</div>
+{{!-- nav-menu-mobile--}}
 <script>
   jQuery(function ($) {
     function fixDiv() {
