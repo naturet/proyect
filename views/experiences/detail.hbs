@@ -48,7 +48,7 @@
 
     <div class="col-xl-8 col-md-12 col-12">
       <div class="row pb-5 image-detail-exp">
-          <div class="back-image-experiences-detail d-flex align-items-center justify-content-center d-column mb-5" style="background:linear-gradient(rgba(0, 201, 141, 0.7), rgba(0, 201, 141, 0.7)),url('{{#if experience.photos.[0]}}{{experience.photos.[0]}}{{else}}{{session.photo}}{{/if}}')">
+          <div class="back-image-experiences-detail d-flex align-items-center justify-content-center d-column mb-5" style="background:linear-gradient(rgba(0, 201, 141, 0.7), rgba(0, 201, 141, 0.7)),url('{{#if experience.photos.[0]}}{{experience.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1550418585/test/lukasz-szmigiel-33891-unsplash%20(1).jpg.jpg{{/if}}')">
             <h1 class="nt-fb nt-w">{{experience.name}}</h1>
             <hr class="hr-new-experience">
             <p class="p-intro-new-experience">{{#rating experience}} {{/rating}}</p>
@@ -276,8 +276,8 @@
   <div class="row mx-auto align-items-center h-100">
     <div class="col-3 text-center menu-icon">
       <a href="/" class="d-flex flex-column-reverse link-nav-mobile">
-        <span class="menu-icon-text active">search</span>
-        <span class="icon-home icon-nav active"></span>
+        <span class="menu-icon-text">search</span>
+        <span class="icon-home icon-nav"></span>
       </a>
     </div>
     <div class="col-3 text-center menu-icon">

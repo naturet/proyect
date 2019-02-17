@@ -1000,6 +1000,20 @@ html {
   text-align: center;
 
 }
+.border-category-filtered{
+  /* border: 3px solid #00c98d9f; */
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 22px -4px rgba(0,0,0,0.3);
+-moz-box-shadow: 0px 0px 22px -4px rgba(0,0,0,0.3);
+box-shadow: 0px 0px 22px -4px rgba(0,0,0,0.3);
+transition: 0.3s;
+}
+
+.border-category-filtered:hover{
+  -webkit-box-shadow: 0px 0px 22px -4px rgba(0,0,0,0.74);
+-moz-box-shadow: 0px 0px 22px -4px rgba(0,0,0,0.74);
+box-shadow: 0px 0px 22px -4px rgba(0,0,0,0.74);
+}
 
 
 
@@ -1588,6 +1602,10 @@ margin-top: 90px;
 
   .nav-mobile {
     display: block;
+  }
+
+  .container-mobile-results{
+    margin-top:125px !important;
   }
 
   .search-mobile {

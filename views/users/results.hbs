@@ -1,35 +1,83 @@
+{{> searchmobile}}
 
-<div class="container">
+<div class="container-slider mx-auto mt-5 mb-5 container-mobile-results">
+  <hr>
+  <h2 id="looking-for-name" class=" mt-5">These are the results filtered by: <span class="nt-c"> {{category}}{{name}}</span>
+  </h2>
+  <p>Find more experiences searching in all our categories</p>
 
-<div class="row">
-    {{#each_upto experiences 9 }}
-
-    <div class="col-lg-4 col-md-6 col-12 mb-3 mt-5 ">
-      <a href="/experiences/{{this.id}}">
-      <div class="border rounded-top">
-
- 
-        <div class="image-filter rounded-top" style="background: url('{{#if this.photos.[0]}}{{this.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1549223454/test/background-intro.jpg.jpg{{/if}}')">
+  <section class="costumer-categories slider mb-5">
+    {{#each_upto allCategories 15 }}
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 categorie-box row ">
+      <div class="category-name-home" data-category="{{this.name}}">
+        <div class="image-category">
+          <span class='icon-{{this.fontnum}} search-category-icon'></span>
         </div>
-      </a>
-      <div class="p-2">
-
-        <h5>{{this.name}}</h5>
-        <p class="experience-card-description">{{this.description}}</p>
-        <p><strong>{{this.price}}</strong></p>
-        <small class="category-tag" data-category="{{this.categories.[0]}}">#{{this.categories.[0]}}</small>
-        <small class="category-tag" data-category="{{this.categories.[2]}}">#{{this.categories.[2]}}</small>
-        <small class="category-tag" data-category="{{this.categories.[3]}}">#{{this.categories.[3]}}</small>
-        <div>{{this.user.name}}</div>
-             </div>
-
+        <h6 class="category-name-text">{{this.name}}</h6>
       </div>
     </div>
-
     {{/each_upto}}
+  </section>
+
+  <hr>
+
+  <div class="row">
+    {{#each_upto experiences 9 }}
+    <div class="col-lg-4 col-md-6 col-12 mb-3 mt-5 mb-4 container ">
+      <a href="/experiences/{{this.id}}">
+        <div class="border-category-filtered rounded-top">
+          <div class="image-filter rounded-top" style="background: url('{{#if this.photos.[0]}}{{this.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1550007271/test/default-preview.jpg{{/if}}')">
+            <p class="rate-slider-sort"><span class="nt-f nt-w ml-4">{{#if this.rating}}{{this.rating}}/5<i style="width: 37px;"
+                  class='fas fa-star fa-fw rating-home-star mr-0'></i>{{/if}}</span></p>
+          </div>
+      </a>
+      <div class="p-2">
+        <div class="p-2">
+          <h5>{{this.name}}</h5>
+          <p class="experience-card-description ml-0 mb-1">{{this.description}}</p>
+          <p class="ml-0 mt-0 mb-0 nt-c"><strong><span class="price-slider-exp">{{this.price}}</strong> €</span></p>
+          <small class="category-tag" data-category="{{this.categories.[0]}}">#{{this.categories.[0]}}</small>
+          <small class="category-tag" data-category="{{this.categories.[2]}}">#{{this.categories.[2]}}</small>
+          <small class="category-tag" data-category="{{this.categories.[3]}}">#{{this.categories.[3]}}</small>
+          <div>
+            <p class="experience-card-description ml-0"><strong>Owner:</strong> <i><a class="nt-c" href="/{{this.user.id}}">{{this.user.name}}</a></i></p>
+          </div>
+        </div>
+      </div>
     </div>
-
-
-
-
   </div>
+  {{/each_upto}}
+
+</div>
+<p class="mt-4"><i>{{experiences.length}} experiences filtered by : <span class="nt-c nt-fb">{{category}}{{name}}</span></i></p>
+</div>
+{{!-- nav-menu-mobile--}}
+<div class="container nav-mobile mx-auto">
+  <div class="row mx-auto align-items-center h-100">
+    <div class="col-3 text-center menu-icon">
+      <a href="/" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">search</span>
+        <span class="icon-home icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/favorites" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Favourites</span>
+        <span class="icon-favorites icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="{{#if session.creator}}/experiences/create{{else}}/creator/create{{/if}}" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Create</span>
+        <span class="icon-new-rute icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text ">Profile</span>
+        <span class="icon-profile icon-nav "></span>
+      </a>
+    </div>
+  </div>
+</div>
+{{!-- nav-menu-mobile--}}

@@ -59,9 +59,12 @@ module.exports.results = (req, res, next) => {
   }
 
   Experience.find(criteria)
+    .populate('user')
     .then(experiences =>
       res.render('users/results', {
-        experiences
+        experiences,
+        category,
+        name
       })
     ).catch(error => next(error));
 }
