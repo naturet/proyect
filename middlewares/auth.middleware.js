@@ -27,6 +27,10 @@ module.exports.isCreator = (req, res, next) => {
   }
 }
 
+
+
+
+
 module.exports.userIsCreator = (req, res, next) => {
   if (req.user.creator) {
     next();

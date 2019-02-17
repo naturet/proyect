@@ -305,7 +305,9 @@ let id = req.params.id
       console.log(user)
       if (!user) {
         next(createError(404, 'User not found'));
-      } else {  
+      } else if(user.id == req.user.id) {  
+        res.redirect('/profile')
+      } else {
         res.render('users/detail', {
           user
         });

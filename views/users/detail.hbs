@@ -1,4 +1,232 @@
-{{user.email}}
-{{#each user.experiences}}
- {{this.name}}
-{{/each}}
+{{> searchmobile}}
+
+
+<div class="container-slider mx-auto profile-container mt-6">
+  <div class="row pb-5 mt-5">
+    <div class="col-xl-4 col-md-12 col-12 row mx-auto nav-intro-profile" id="responsive-menu-tag">
+      <div class="profile-sidenav d-flex flex-column mx-auto  mb-5 " id="getFixed">
+        <div class="profile-sidenav-inside d-flex flex-column mt-4">
+          <a href="#categories">Categories</a>
+          <a href="#description">Some description</a>
+           {{#if user.creator}}<a href="#role">User role</a>{{/if}}
+          <a href="#experiences">Experiences</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-8 col-md-12 col-12">
+      <div class="row">
+        <div class="back-image-profile">
+        </div>
+      </div>
+      <section class="border-bottom pb-5">
+        <div class="text-center mt-5">
+          <div>
+            <div class="image-div-flex">
+              <div class="profile-image" data-image="{{#if user.pictures.[0]}}{{user.pictures.[0]}}{{else}}{{user.photo}}{{/if}}"
+               style="background:url('{{#if user.pictures.[0]}}{{user.pictures.[0]}}{{else}}{{user.photo}}{{/if}}')">
+                {{#if user.creator}}
+                <span class="creator-simbol"></span>
+                {{/if}}
+              </div>
+            </div>
+            <h3 id="profile-name" class="mt-2">{{user.name}} - <span class="nt-c">{{#if user.creator}}
+                Creator</span> <span class="icon-030 nt-c"></span>
+              {{else}}
+              Adventurous</span>
+              {{/if}}</span></h3>
+              <p class="p-0 m-0"><i>User since {{#formatDate user.createdAt}}
+              {{/formatDate}}</i></p>
+          </div>
+      </section>
+      {{#if user.creator}}
+
+      {{else}}
+      <section class="border-bottom pb-5 pt-5 " id="description">
+        <h2><span class="far fa-user nt-c mr-3"></span>Become a creator! </h2>
+        <div class="mb-2">
+          <h5 class="mb-3 pt-2 nt-f profile-subtitle">Some description to let everybody know about your adventurer
+            self.</h5>
+          <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
+            mattis urna sodales ornare semr adipiscing elit dis posuere,
+            mattis urna sper eros</p>
+          <a class="btn btn-primary p-2 btn-naturet w-100 nt-f p-3" href="creator/create">Become a creator</a>
+      </section>
+      {{/if}}
+      <section class="border-bottom pt-5 pb-4" id="categories">
+        <h2><span class="far fa-heart nt-c mr-3"></span> {{#formatName user.name}}{{/formatName}} liked categories </h2>
+        <h5 class="mb-3 pt-2 nt-f profile-subtitle">Categories are really important for naturapp, choose wisely.</h5>
+        <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
+          mattis urna sodales ornare semper eros
+          dictum ultricies vestibulum, tempus at erat venenatis id odio non facilisi. Rhoncus sem congue volutpat
+          fringilla porttitor tellus netus per facilisis habitant risus tristique.</p>
+
+        <form class="" method="POST" enctype="multipart/form-data">
+          <div class="row">
+            {{#each allCategories as |category| }}
+            <div class="col-xl-2 col-md-2 col-6 noevent not-shown" style="display:{{#containCategory ../user category ../categories }}{{/containCategory}}">
+              <input type='checkbox' name="categories" class="input-category no-event" id="{{ category.id }}" value="{{ category.id }}"
+                {{#isCategorySelected ../user category ../categories }} {{/isCategorySelected}}>
+              <div class="category-card noevent">
+                <span class='icon-{{category.fontnum}}'></span>
+                <p class="category-name">{{ category.name }} </p>
+              </div>
+            </div>
+            </input>
+            {{/each}}
+          </div>
+      </section>
+
+
+      <div class="form-group">
+        <section class=" pt-5 " id="description">
+          <h2><span class="far fa-comments nt-c mr-3"></span>Some description </h2>
+          <div class="mb-2">
+            <h5 class="mb-3 pt-2 nt-f profile-subtitle">Some description to let everybody know about your adventurer
+              self.</h5>
+            <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
+              mattis urna sodales ornare semper eros
+              dictum ultricies vestibulum, tempus at erat venenatis id odio non facilisi. Rhoncus sem congue volutpat
+              fringilla porttitor tellus netus per facilisis habitant risus tristique, consequat a neque vulputate
+              taciti
+              mattis at suspendisse malesuada justo potenti. Placerat porttitor.</p>
+        </section>
+
+        <section class="border-bottom pb-4">
+          <div class="row">
+            <div class="mb-2 col-xl-6 col-md-6 col-12">
+              <div class="border-div-profile">
+                <h4>About {{#formatName user.name}}{{/formatName}}:</h4>
+                <p class=" ml-0 profile-paragraph">{{user.about}}</p>
+              </div>
+            </div>
+
+            <div class="mb-2 col-xl-6 col-md-6 col-12">
+              <div class="border-div-profile">
+                <h4>Birth Date:</h4>
+                <p class=" ml-0 profile-paragraph">{{user.birth}}</p>
+              </div>
+            </div>
+
+            <div class="mb-2 col-xl-6 col-md-6 col-12">
+              <div class="border-div-profile">
+                <h4>{{#formatName user.name}}{{/formatName}} is from:</h4>
+                <p class=" ml-0 profile-paragraph">{{user.country}}</p>
+              </div>
+            </div>
+
+            <div class="mb-2 col-xl-6 col-md-6 col-12">
+              <div class="border-div-profile">
+                <h4>Phone number:</h4>
+                <p class=" ml-0 profile-paragraph">{{user.phone}}</p>
+              </div>
+            </div>
+          </div>
+      </section>
+
+      {{#if user.creator}}
+      <section class="pt-5" id="role">
+        <h2><span class="far fa-address-card nt-c mr-3"></span>{{#formatName user.name}}{{/formatName}} creator data </h2>
+        <div class="mb-2">
+          <h5 class="mb-3 pt-2 nt-f profile-subtitle">Some description to let everybody know about your adventurer
+            self.</h5>
+          <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
+            mattis urna sodales ornare semper eros
+            dictum ultricies vestibulum, tempus at erat venenatis id odio non facilisi.</p>
+      </section>
+
+      <section class="border-bottom pb-4">
+        <div class="row">
+          <div class="mb-2 col-xl-6 col-md-6 col-12">
+            <div class="border-div-profile">
+              <h4>Expertise:</h4>
+              <p class=" ml-0 profile-paragraph">{{user.expertise}}</p>
+            </div>
+          </div>
+
+          <div class="mb-2 col-xl-6 col-md-6 col-12">
+            <div class="border-div-profile">
+              <h4>Creator email:</h4>
+              <p class=" ml-0 profile-paragraph">{{user.enterpriseEmail}}</p>
+            </div>
+          </div>
+
+          <div class="mb-2 col-xl-12 col-md-12 col-12">
+            <div class="border-div-profile">
+              <h4>Enterprise:</h4>
+              <p class=" ml-0 profile-paragraph">{{#if user.enterpriseDescription}}
+                {{user.enterpriseDescription}}{{else}}{{user.acreditation}}{{/if}}</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      {{/if}}
+
+      {{#if user.creator}}
+      <section class="pt-5" id="experiences">
+        <h2><span class="far fa-map nt-c mr-3"></span>{{#formatName user.name}}{{/formatName}} experiences </h2>
+        <div class="mb-2">
+          <h5 class="mb-3 pt-2 nt-f profile-subtitle">Some description to let everybody know about your adventurer
+            self.</h5>
+          <p class="mb-5 ml-0 profile-paragraph">Lorem ipsum dolor sit amet consectetur adipiscing elit dis posuere,
+            mattis urna sodales ornare semper eros
+            dictum ultricies vestibulum, tempus at erat venenatis id odio non facilisi.</p>
+      </section>
+      {{/if}}
+ {{> ownerexperiences}}
+      </form>
+     
+    </div>
+  </div>
+</div>
+</div>
+
+{{!-- nav-menu-mobile--}}
+<div class="container nav-mobile mx-auto">
+  <div class="row mx-auto align-items-center h-100">
+    <div class="col-3 text-center menu-icon">
+      <a href="/" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">search</span>
+        <span class="icon-home icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/favorites" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Favourites</span>
+        <span class="icon-favorites icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="{{#if user.creator}}/experiences/create{{else}}/creator/create{{/if}}" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Create</span>
+        <span class="icon-new-rute icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text active">Profile</span>
+        <span class="icon-profile icon-nav active"></span>
+      </a>
+    </div>
+  </div>
+</div>
+{{!-- nav-menu-mobile--}}
+
+<script>
+  jQuery(function ($) {
+    function fixDiv() {
+      var $cache = $('#getFixed');
+      if ($(window).scrollTop() > 100 && $(window).width() >= 1080)
+        $cache.css({
+          'top': '40px'
+        });
+      else
+        $cache.css({
+          'top': 'auto'
+        });
+    }
+    $(window).scroll(fixDiv);
+    fixDiv();
+  });
+</script>
