@@ -665,6 +665,10 @@ html {
   line-height: 1.6rem
 }
 
+.container-favourites-experiences{
+  margin-top:100px;
+}
+
 
 .experience-card-description {
   white-space: nowrap;
@@ -705,7 +709,7 @@ html {
 }
 
 .rating-home-star{
-  width: 70px;
+  width: 95px;
   margin-bottom: 10px;
   margin-left: 0px;
   justify-content: flex-start!important;
@@ -882,6 +886,11 @@ html {
 
 
 /*--end home --*/
+/*----id profile---*/
+.basic-info-user{
+  padding-left: 20px;
+  word-wrap: break-word;
+}
 
 /*---session profile ---*/
 #getFixed{
@@ -1563,6 +1572,10 @@ font-size: 1.7rem;
     background-color: rgba(0, 0, 0, 0);
     padding: 30px;
   }
+  .container-favourites-experiences{
+    margin-top:150px !important;
+  }
+  
 }
 
 

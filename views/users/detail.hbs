@@ -14,10 +14,11 @@
             <h3 class="nt-w nt-fb pb-2"> Contact {{#formatName user.name}}{{/formatName}}</h3>
             <p class="nt-f">
 
-              <ul class="nt-w">
+              <ul class="nt-w basic-info-user">
                 <li>{{user.name}}</li>
-                <li>Email:{{user.email}}</li>
-                 <li>Expertise: {{user.expertise}}</li>
+                <li>{{user.email}}</li>
+                 <li>{{user.expertise}}</li>
+                 <li>{{#if user.creator}}Creator{{else}}Adventurer{{/if}}</li>
                 <li>{{user.phone}}</li>
               </ul>
             </p>
@@ -205,7 +206,7 @@
       </a>
     </div>
     <div class="col-3 text-center menu-icon">
-      <a href="/favorites" class="d-flex flex-column-reverse link-nav-mobile">
+      <a href="/favourites" class="d-flex flex-column-reverse link-nav-mobile">
         <span class="menu-icon-text">Favourites</span>
         <span class="icon-favorites icon-nav"></span>
       </a>
@@ -218,8 +219,8 @@
     </div>
     <div class="col-3 text-center menu-icon">
       <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
-        <span class="menu-icon-text active">Profile</span>
-        <span class="icon-profile icon-nav active"></span>
+        <span class="menu-icon-text">Profile</span>
+        <span class="icon-profile icon-nav"></span>
       </a>
     </div>
   </div>

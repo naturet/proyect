@@ -8,6 +8,21 @@ const Payment = require("../models/payment.model");
 const transporter = require('../configs/nodemailer.config');
 const hbs = require('nodemailer-express-handlebars');
 
+module.exports.favourites = (req, res, next) => {
+  User.findById(req.user.id)
+    .populate('user')
+    .populate('experiences')
+    .populate('following')
+    .populate('purchased')  
+    .then(user =>
+      res.render('users/favourites', {
+        user
+      })
+    ).catch(error => next(error));
+}
+
+
+
 module.exports.subscribe = (req, res, next) => {
 
   transporter.use('compile',hbs({

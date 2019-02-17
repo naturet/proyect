@@ -1,0 +1,83 @@
+
+{{> searchmobile}}
+<div class="container-slider mx-auto mb-4 container-favourites-experiences">
+   <h2><span class="far fa-heart nt-c mr-3"></span>Your liked experiences </h2>
+  <p class="nt-c nt-f">Find <span class="nt-fb">{{session.following.length}}</span> experiences in your favourites list</p>
+
+  <hr>
+  <section class="customer-favourites slider mt-4 mb-0">
+    {{#each_upto session.following 10 }}
+    <div class="slide slide1">
+      <a href="/experiences/{{this.id}}">
+        <div class="image-slide-favourites" style="height:300px;background: url('{{#if this.photos.[0]}}{{this.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1550007271/test/default-preview.jpg{{/if}}')">
+          <p class="rate-slider-sort">{{#if this.rating}}<i class='fas fa-star fa-fw rating-home-star'> <span class="nt-f nt-w">{{this.rating}}/5</span></i>{{else}}{{/if}}</p>
+        </div>
+      </a>
+      <div class="p-2">
+        <h5>{{this.name}}</h5>
+        <p class="experience-card-description ml-0 mb-1">{{this.description}}</p>
+        <small class="category-tag" data-category="{{this.categories.[0]}}">#{{this.categories.[0]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[2]}}">#{{this.categories.[2]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[3]}}">#{{this.categories.[3]}}</small>
+      </div>
+    </div>
+    {{/each_upto}}
+  </section>
+
+
+</div>
+<div class="container-slider mx-auto mb-5 mt-5">
+<h2><span class="far fa-credit-card nt-c mr-3"></span>Your purchased experiences </h2>
+  <p class="nt-c nt-f">Find <span class="nt-fb">{{session.purchased.length}}</span> experiences in your favourites list</p>
+  <hr>
+  <section class="customer-favourites slider mt-4 mb-5">
+    {{#each_upto user.purchased 10 }}
+    <div class="slide slide1">
+      <a href="/experiences/{{this.id}}">
+        <div class="image-slide-favourites" style="height:300px;background: url('{{#if this.photos.[0]}}{{this.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1550007271/test/default-preview.jpg{{/if}}')">
+          <p class="rate-slider-sort">{{#if this.rating}}<i class='fas fa-star fa-fw rating-home-star'> <span class="nt-f nt-w">{{this.rating}}/5</span></i>{{else}}{{/if}}</p>
+
+        </div>
+      </a>
+      <div class="p-2">
+        <h5>{{this.name}}</h5>
+        <p class="experience-card-description ml-0 mb-1">{{this.description}}</p>
+        <small class="category-tag" data-category="{{this.categories.[0]}}">#{{this.categories.[0]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[2]}}">#{{this.categories.[2]}}</small>
+        <small class="category-tag" data-category="{{this.categories.[3]}}">#{{this.categories.[3]}}</small>
+      </div>
+    </div>
+    {{/each_upto}}
+  </section>
+</div>
+
+{{!-- nav-menu-mobile--}}
+<div class="container nav-mobile mx-auto">
+  <div class="row mx-auto align-items-center h-100">
+    <div class="col-3 text-center menu-icon">
+      <a href="/" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">search</span>
+        <span class="icon-home icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/favourites" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text active">Favourites</span>
+        <span class="icon-favorites icon-nav active"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="{{#if session.creator}}/experiences/create{{else}}/creator/create{{/if}}" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Create</span>
+        <span class="icon-new-rute icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Profile</span>
+        <span class="icon-profile icon-nav "></span>
+      </a>
+    </div>
+  </div>
+</div>
+{{!-- nav-menu-mobile--}}

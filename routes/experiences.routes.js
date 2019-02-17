@@ -6,6 +6,7 @@ const uploadCloud = require('../configs/cloudinary.config.js');
 
 router.get('/results', authMiddleware.isAuthenticated, authMiddleware.isProfileCompleted, experienceController.results);
 
+
 router.get('/create',  authMiddleware.isAuthenticated, authMiddleware.userIsCreator, experienceController.create);
 router.post('/create', authMiddleware.isAuthenticated, authMiddleware.userIsCreator, uploadCloud.array('photo'), experienceController.doCreate);
 

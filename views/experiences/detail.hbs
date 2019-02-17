@@ -18,7 +18,7 @@
           </div>
           {{else}}
           
-          <button class="btn btn-naturet fav-btn  p-3 mt-3{{#isfollow ../experience ../session}}{{else}}unfollow{{/isfollow}}"
+          <button class="btn btn-naturet mt-4 p-3 fav-btn   {{#isfollow ../experience ../session}}{{else}}unfollow{{/isfollow}}"
             type="button" value="{{../experience.id}}" id="fav-btn">
             
             {{#isfollow ../experience ../session}}
@@ -49,7 +49,7 @@
     <div class="col-xl-8 col-md-12 col-12">
       <div class="row pb-5 image-detail-exp">
           <div class="back-image-experiences-detail d-flex align-items-center justify-content-center d-column mb-5" style="background:linear-gradient(rgba(0, 201, 141, 0.7), rgba(0, 201, 141, 0.7)),url('{{#if experience.photos.[0]}}{{experience.photos.[0]}}{{else}}https://res.cloudinary.com/dwta0wgpp/image/upload/v1550418585/test/lukasz-szmigiel-33891-unsplash%20(1).jpg.jpg{{/if}}')">
-            <h1 class="nt-fb nt-w">{{experience.name}}</h1>
+            <h1 class="nt-fb nt-w" style="padding: 25px;">{{experience.name}}</h1>
             <hr class="hr-new-experience">
             <p class="p-intro-new-experience">{{#rating experience}} {{/rating}}</p>
                 
@@ -66,7 +66,7 @@
         <div class="row">
           {{#each allCategories as |category| }}
           <div class="col-xl-2 col-md-3 col-6 noevent not-shown" style="display:{{#containCategoryexp ../experience category ../categories }}{{/containCategoryexp}}">
-            <div class="category-card noevent">
+            <div class="category-card noevent category-selected">
               <span class='icon-{{category.fontnum}}'></span>
               <!-- descomentar esto par añadir estilo -->
               <p class="category-name">{{ category.name }} </p>
@@ -149,7 +149,7 @@
             <div class="mb-2 col-xl-6 col-md-6 col-12">
               <div class="border-div-profile">
                 <h4>Price</h4>
-                <h3 class=" ml-0 "><strong class="nt-fb">{{experience.price}}€ </strong><span class=" profile-paragraph"> per peson</span></h3>
+                <h3 class=" ml-0 "><strong class="nt-fb">{{experience.price}}€ </strong><span class=" profile-paragraph"> per person</span></h3>
               </div>
             </div>
 
@@ -281,7 +281,7 @@
       </a>
     </div>
     <div class="col-3 text-center menu-icon">
-      <a href="/favorites" class="d-flex flex-column-reverse link-nav-mobile">
+      <a href="/favourites" class="d-flex flex-column-reverse link-nav-mobile">
         <span class="menu-icon-text">Favourites</span>
         <span class="icon-favorites icon-nav"></span>
       </a>
