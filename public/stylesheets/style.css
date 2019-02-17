@@ -23,6 +23,7 @@ input, input:before, input:after, textarea {
 }
 
 
+
 .nt-f{
   font-family: 'Circular Std Book';
   font-weight: normal;
@@ -1320,6 +1321,9 @@ body {
 }
 
 #map {
+
+  border: 4px solid #2ec98b81 !important;
+  border-radius: 4px !important;
   width: 100%;
   height: 400px;
   margin-top: 20px;

@@ -8,9 +8,9 @@
           <div class="profile-sidenav-inside d-flex flex-column mt-4">
             <h4 class="nt-fb"><span class="far fa-map nt-c mr-3"></span>Creating experiences</h4>
             <a href="#categories">Categories</a>
-            <a href="#description">Some description</a>
-            <a href="#role">User role</a>
-            <a href="#experiences">Experiences</a>
+            <a href="#price">Price EUR</a>
+            <a href="#description-exp">Description</a>
+            <a href="#route">Route</a>
             <a class="btn btn-danger mt-3" id="edit-profile-button" href="/profile/edit">Edit Profile</a>
             {{#if session.creator}}
             <a class="btn btn-default" href="/creator/edit">Edit Creator Profile</a>
@@ -72,7 +72,7 @@
               {{/if}}
           </section>
 
-          <section class="mt-5 pb-4 border-bottom">
+          <section class="mt-5 pb-4 border-bottom" id="categories">
             <h2><span class="far fa-heart nt-c mr-3"></span>Experience categories </h2>
             <h5 class="mb-3 pt-2 nt-f profile-subtitle">Choose your categories
               wisely to match with your costumers.<strong> At least 4 categories!</strong></h5>
@@ -101,7 +101,7 @@
             </div>
           </section>
 
-          <section class="mt-5 pb-5 border-bottom">
+          <section class="mt-5 pb-5 border-bottom" id="price">
             <div class="form-group">
               <h2><span class="fa fa-euro-sign nt-c mr-3"></span>Experience price </h2>
               <h5 class="mb-3 pt-2 nt-f profile-subtitle">Choose your best price in a normal range</h5>
@@ -187,7 +187,7 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group" id="description-exp">
                 <hr class="mb-5">
                 <h4 class="border-div-profile">Description</h4>
                 <h5 class="mb-3 nt-f profile-subtitle">Add some important reference description to your rute</h5>
@@ -235,7 +235,7 @@
                 </div>
               </section>
 
-              <section class="border-bottom pb-4 mt-5">
+              <section class="border-bottom pb-4 mt-5" id="route">
                 <div class="form-group">
                   <h2><span class="far fa-map nt-c mr-3"></span>Experience Route</h2>
                   <h5 class="mb-3 pt-2 nt-f profile-subtitle">Time to add a route to experience!</h5>
@@ -258,16 +258,17 @@
                     </div>
                   </div>
                   
-                  <div id="map"></div>
+                  <div id="map" class="border-map"></div>
 
                 </div>
               </section>
             </div>
           </div>
-              <button class="btn btn-primary btn-block p-3 mt-5 btn-naturet nt-f" type="submit">Save Experience <span class="fa fa-check nt-w ml-2"></span></button>
+            <button class="btn btn-primary btn-block p-3 mt-5 btn-naturet nt-f" type="submit">Save Experience <span class="fa fa-check nt-w ml-2"></span></button>
 
 </article>
 </form>
+
 {{!-- nav-menu-mobile--}}
 <div class="container nav-mobile mx-auto">
   <div class="row mx-auto align-items-center h-100">

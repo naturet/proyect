@@ -46,7 +46,7 @@ $(document).ready(function () {
     }, {
       breakpoint: 520,
       settings: {
-        arrows: false,
+        arrows: true,
         slidesToShow: 1
       }
     }, {
@@ -80,7 +80,7 @@ $(document).ready(function () {
       breakpoint: 520,
       settings: {
         swipe: true,
-        arrows: false,
+        arrows: true,
         slidesToShow: 1
       }
     }, {
