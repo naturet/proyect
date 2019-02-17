@@ -10,6 +10,19 @@
           <a href="#description">Some description</a>
            {{#if user.creator}}<a href="#role">User role</a>{{/if}}
           <a href="#experiences">Experiences</a>
+           <div class="div-help-create">
+            <h3 class="nt-w nt-fb pb-2"> Contact {{#formatName user.name}}{{/formatName}}</h3>
+            <p class="nt-f">
+
+              <ul class="nt-w">
+                <li>{{user.name}}</li>
+                <li>Email:{{user.email}}</li>
+                 <li>Expertise: {{user.expertise}}</li>
+                <li>{{user.phone}}</li>
+              </ul>
+            </p>
+            
+          </div>
         </div>
       </div>
     </div>

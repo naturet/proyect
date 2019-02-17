@@ -337,7 +337,8 @@ module.exports.thankyou = (req, res, next) => {
     .then(experience => {
       if (experience) {
         res.render('experiences/thankyou', {
-          experience
+          experience,
+          pointsJSON: encodeURIComponent(JSON.stringify(experience.location.coordinates))
         })
       }
     })

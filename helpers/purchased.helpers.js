@@ -21,7 +21,7 @@ module.exports = (hbs) => {
     if(!rating){
       return "This experience doesn't have any rating " 
     } else { 
-      return `${rating}/5`
+      return `${rating}/5 <i class='fa fa-star fa-fw'></i>`
     }
   })
 }

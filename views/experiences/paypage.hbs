@@ -1,51 +1,92 @@
-<div class="container profile-container">
-  <div class="row pb-5">
+{{> searchmobile}}
 
-    <div class="col-xl-3 col-md-3 col-12 ">
-      <div class=" profile-navigation d-flex flex-column mx-auto ">
-        <a href="">Categories</a>
-        <a href="">Some description</a>
-        <a href="/">Home</a>
-        <a href="/profile">profile</a>
-      </div>
-    </div>
-
-    <div class="col-xl-9 col-md-9 col-12">
-      <div class="text-center">
-        <h5>Experiencia</h5>
-        <h6>{{experience.name}}</h6>
-        <hr>
-        <h5>Políticas de cancelación</h5>
-        <h6>{{experience.user.politic}}</h6>
-      </div>
-      <hr>
-      <div class="text-center">
-        <h5>Tus datos</h5>
-        <hr>
-        <h6>Nombre: {{session.name}}</h6>
-        <h6>Fecha de nacimiento: {{session.birth}}</h6>
-        <h6>Tlfn: {{session.phone}}</h6>
-        <hr>
-        <div class="product" id="line">
-          <div class="price-und">
-            <span class="price-span">{{experience.price}}</span>€
-            <span> x </span>
-            <input id="qty" type="number" value="1" placeholder="1" min="1" name="qty">
-            <label for="">Persons</label>
-            <span>
-              <h2>Total: <span class="total-span">{{experience.price}}</span>€</h2>
-            </span>
+<article id="create-user">
+  <div class="container-slider mx-auto mt-6 profile-container">
+    <div class="row pb-5 pt-5">
+      <div class="col-xl-4 col-md-12 col-12 row mx-auto nav-intro-profile" id="responsive-menu-tag">
+        <div class="profile-sidenav d-flex flex-column mx-auto nav-intro-profile mb-5 " id="getFixed">
+          <div class="profile-sidenav-inside d-flex flex-column mt-4">
+            <h4 class="nt-fb"><span class="far fa-map nt-c mr-3"></span>Payment experience</h4>
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
           </div>
         </div>
-        <input type="checkbox" class="regular-checkbox" id="checked">Acepto las Condiciones Generales de Contratación y
-        la Política
-        de Privacidad y de Cookies
-          <form action="/experiences/{{experience.id}}/charge" method="POST" class="mt-2" id="stripe-form" style="display:none;">
-            <div id="paybtn"></div>
-          </form>
-        </div>
       </div>
-    </div>
-  </div>
-</div>
+
+      <div class="col-xl-8 col-md-12 col-12">
+
+
+        <div class="row pb-5 mb-5">
+          <div class="back-image-experiences d-flex align-items-center justify-content-center d-column">
+            <h1 class="nt-fb ml-4 nt-w">Experience´s payment page</h1>
+            <hr class="hr-new-experience">
+            
+          </div>
+        </div>
+
+        <section class="pb-5 pt-5">
+          <div class="text-center mt-5">
+          </div>
+        </section>
+
+
+          <section class=" pt-4 pb-5 border-bottom" id="description">
+            <h2><span class="fa fa-signature nt-c mr-3"></span>Experience</h2>
+            <h3 class="mb-3 pt-2 nt-f profile-subtitle">{{experience.name}}</h3>
+            <h3 class="mb-3 pt-2 nt-f profile-subtitle">Price for experience {{experience.price}} €</h3>
+
+
+            <section class="mt-5 pb-5 border-bottom">
+              <div class="form-group">
+                <h2><span class="fa fa-shopping-cart nt-c mr-3"></span>Experience shopping cart </h2>
+                  <div class="price-und mt-3 ml-2 margin-checkbox nt-f">
+                    <span>Please, to buy the experience, you must first indicate the number of people for whom you want the experience and then accept
+                          the General Contracting Conditions and the Privacy and Cookies Policy.</span>
+                    <div class="product mt-5 ml-2 margin-checkbox nt-f" id="line">
+                    <span class="price-span">{{experience.price}}</span>€
+                    <span> x </span>
+                    <input id="qty" type="number" value="1" placeholder="1" min="1" name="qty" class="country-input nt-ipc" style="width: 50px;">
+                    <label for="">Persons</label>
+                    </div>
+                    <span class="product ml-2 margin-checkbox nt-f">
+                      <h2>Total: <span name="total" class="total-span">{{experience.price}}</span>€</h2>
+                    </span>
+                  </div>
+                    <div class="mb-2 expertise-checkbox">
+                      <input type="checkbox" class="ml-2 margin-checkbox nt-f" id="checked"
+                        {{#ifCond "proffesional" expertise}} {{/ifCond}}> <span class="checkmark"></span>
+                      <span class="ml-2 margin-checkbox nt-f">I accept the General Contracting Conditions and the Privacy and Cookies Policy.</span>
+                    </div>
+                    <form action="/experiences/{{experience.id}}/charge" method="POST" class="mt-2" id="stripe-form" style="display:none;">
+                      <div id="paybtn"></div>
+                    </form>
+                  </div>
+              </div>
+            </section>
+          </section>
+
+  </article>
+                    
+<script>
+  var decodedJson = decodeURIComponent("{{{pointsJSON}}}");
+  var jsonObj = JSON.parse(decodedJson);
+  window.points = jsonObj;
+</script>
 <script src="/js/axios.js" type="text/javascript"></script>
+<script>
+  jQuery(function ($) {
+    function fixDiv() {
+      var $cache = $('#getFixed');
+      if ($(window).scrollTop() > 100 && $(window).width() >= 1080)
+        $cache.css({
+          'top': '40px'
+        });
+      else
+        $cache.css({
+          'top': 'auto'
+        });
+    }
+    $(window).scroll(fixDiv);
+    fixDiv();
+  });
+</script>

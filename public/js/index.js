@@ -39,7 +39,7 @@ function initMap() {
     window.points.forEach(function (location) {
       var position = new google.maps.LatLng(location[1], location[0])
       new google.maps.Marker({
-        icon: '../img/icon.png',
+        icon: '/img/icon.png',
         position: position,
         map: map
       })
