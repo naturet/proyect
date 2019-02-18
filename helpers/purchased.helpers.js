@@ -16,8 +16,7 @@ module.exports = (hbs) => {
        return  creator  ? options.fn(this) : options.inverse(this);
   })
   hbs.registerHelper('rating', (experience, options) => {
-    const numComment = experience.comments.length;
-    const rating = experience.comments.map(comment => comment.rate).reduce((a,b) => a + b, 0)/ numComment
+    const rating = experience.rating
     if(!rating){
       return "This experience doesn't have any rating " 
     } else { 

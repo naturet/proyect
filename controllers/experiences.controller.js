@@ -14,12 +14,8 @@ const transporter = require('../configs/nodemailer.config');
 const hbs = require('nodemailer-express-handlebars');
 
 
-//nodemailer.../
-
-
 module.exports.send = (req, res, next) => {
   
-
   transporter.use('compile',hbs({
     viewPath: 'views/email',
     extName: '.hbs'
@@ -40,10 +36,7 @@ module.exports.send = (req, res, next) => {
         console.log('Email sent: ' + info.response);  
     }
   }) 
-
 }
-
-
 
 
 module.exports.results = (req, res, next) => {
@@ -126,8 +119,10 @@ module.exports.doComment = (req, res, next) => {
           })
           .then(experience => {
             const numComment = experience.comments.length;
-            const finalRating = experience.comments.map(comment => comment.rate).reduce((a,b) => a + b, 0)/ numComment
-            experience.set('rating', finalRating);
+            const finalRating = experience.comments.map(comment => comment.rate).reduce((a,b) => a + b, 0)/ numComment;
+            const totalRating = finalRating.toFixed(1)
+            console.log(totalRating)
+            experience.set('rating', totalRating);
             experience.save()
             .then(() =>
             res.redirect(`/experiences/${commentData.experience}`)
@@ -330,7 +325,6 @@ module.exports.purchased = (req, res, next) => {
     })
     .catch(error => next(error));
 }
-
 
 module.exports.thankyou = (req, res, next) => {
   Experience.findById(req.params.id)
