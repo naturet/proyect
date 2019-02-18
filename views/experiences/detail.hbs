@@ -343,9 +343,10 @@ var modalImg = $("#img01");
 var captionText = $("#caption");
 console.log(img.data('id'))
 img.click(function(){
+  console.log($(this))
   modal.show();
   console.log(modalImg.attr('src'))
-  modalImg.attr("src", img.data('id')) 
+  modalImg.attr("src", $(this).data('id')) 
    console.log(modalImg.attr('src'))
 
 })
@@ -356,7 +357,6 @@ var span = $(".close");
 
 // When the user clicks on <span> (x), close the modal
   span.click(function() { 
-    console.log('entra')
   modal.hide()
 })
 
