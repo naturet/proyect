@@ -131,7 +131,8 @@
           mattis urna sodales ornare semattis urna sodales ornare semper erosper ero</p>
         <div class="row mx-auto p-2">
         {{#each_upto experience.photos 4}}
-        <div class="col-xl-3 col-md-6 col-12 p-2 image-photo-detail" style="background:url('{{this}}')">
+
+        <div data-id="{{this}}" class=" modalimage col-xl-3 col-md-6 col-12 p-2 image-photo-detail" style="background:url('{{this}}')">
         </div>
         {{/each_upto}}
         </div>
@@ -270,6 +271,20 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+
 {{!-- nav-menu-mobile--}}
 <div class="container nav-mobile mx-auto">
   <div class="row mx-auto align-items-center h-100">
@@ -318,6 +333,34 @@
   });
 </script>
 
+<script>
+// Get the modal
+var modal = $('#myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = $('.modalimage');
+var modalImg = $("#img01");
+var captionText = $("#caption");
+console.log(img.data('id'))
+img.click(function(){
+  modal.show();
+  console.log(modalImg.attr('src'))
+  modalImg.attr("src", img.data('id')) 
+   console.log(modalImg.attr('src'))
+
+})
+
+
+// Get the <span> element that closes the modal
+var span = $(".close");
+
+// When the user clicks on <span> (x), close the modal
+  span.click(function() { 
+    console.log('entra')
+  modal.hide()
+})
+
+</script>
 
 
 <script>
