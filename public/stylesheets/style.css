@@ -16,6 +16,13 @@ input, input:before, input:after, textarea {
   color: rgba(0,0,0,0.8);
 }
 
+.border-nt{
+border: 4px solid  #00c98d17;
+}
+.rounded-nt{
+border-radius: 5px;
+}
+
 .nt-c,
 .nt-c:hover {
   text-decoration: none;

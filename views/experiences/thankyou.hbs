@@ -3,65 +3,78 @@
 <article id="create-user">
   <div class="container-slider mx-auto mt-6 profile-container">
     <div class="row pb-5 pt-5">
-      <div class="col-xl-4 col-md-12 col-12 row mx-auto nav-intro-profile" id="responsive-menu-tag">
-        <div class="profile-sidenav d-flex flex-column mx-auto nav-intro-profile mb-5 " id="getFixed">
-          <div class="profile-sidenav-inside d-flex flex-column mt-4">
-            <h4 class="nt-fb"><span class="far fa-map nt-c mr-3"></span>Purchase experience</h4>
-            <a href="/">Home</a>
-            <a href="/profile">Profile</a>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-xl-8 col-md-12 col-12">
+      <div class="col-xl-12 col-md-12 col-12 ">
+        <section class=" pt-4 pb-5 row d-flex justify-content-center " id="description">
+          <h1 class="nt-fb text-center p-2 mb-4">Your purchase is <span class="nt-c">completed!</span></h1>
+          <div class="row col-12 d-flex justify-content-center ">
+            <div class="p-4 col-xl-6 col-md-6 col-12 border-nt rounded-nt">
+              <h5>Thank you <span class="nt-c">{{session.name}}</span> </h5>
+              <hr>
+              <span class="">You just bought the experience <strong>{{experience.name}}</strong>,
+                just for remind you, we show you the experience's rout and some information :</span>
+              <hr>
+              <h6><span class="mt-0 ml-2 pt-2 far fa-map nt-c mr-3"></span>Experience's route</h6>
+              <div id="map" class="mb-4" style="pointer-events: none; height: 200px;"></div>
+              <hr>
+
+              <h6><span class="mt-0 ml-2 pt-2 fa fa-info-circle nt-c mr-3"></span>We remind you the cancellation
+                policy:</h6>
+              <div class="p-2"><span class="nt-f nt-g">{{experience.user.politic}}</span></div>
 
 
-        <div class="row pb-5 mb-5">
-          <div class="back-image-experiences d-flex align-items-center justify-content-center d-column">
-            <h1 class="nt-fb nt-w">Your purchase!!!</h1>
-            <hr class="hr-new-experience">
-
-          </div>
-        </div>
-
-        <section class="pb-5 pt-5">
-          <div class="text-center mt-5">
-          </div>
-        </section>
-        <section class=" pt-4 pb-5 border-bottom" id="description">
-          <div class="form-group">
-            <h2><span class="fa fa-credit-card nt-c mr-3"></span>Thank you {{session.name}} </h2>
-            <span class="ml-2 margin-checkbox nt-f">You just bought the experience <strong>{{experience.name}}</strong>,
-              we detail the details of it:</span>
-            <h6><span class="mt-2 ml-2 pt-2 fa fa-signature nt-c mr-3"></span>Place of experience</h6>
-            <div id="map" style="pointer-events: none; height: 200px;"></div>
-            <div class="price-und mt-3 ml-2 margin-checkbox nt-f">
-              <span>We remind you about the cancellation policies on this experience:</span>
-            </div>
-            <div class="mt-2 expertise-checkbox">
-              <h5 class="ml-2 margin-checkbox nt-f">{{experience.user.politic}}</h5>
-            </div>
-            <span class="ml-2 margin-checkbox nt-f">If you want to send it to the mail</span>
-
-            <button class="btn btn-default btn-sm news-letter-button" type="submit" id="sendpolitics">click here</button>
-
-            <div>
-              <h5 class="mt-2 ml-2 margin-checkbox nt-f">Please don't forget to comment and rate the experience once it
-                has been done,
-                it will serve other users to find out about this <a class="ml-2 margin-checkbox nt-f" href="/experiences/{{experience.id}}#comment">experience</a></h5>
-            </div>
-            <hr>
-            <div class="text-center mt-4">
-              <h5 class="text-center nt-f mt-5">Keep enjoying NATURAPP!!!</h6>
+              <button class="btn btn-default btn-sm btn-naturet w-100 p-2 mb-2 news-letter-button" type="submit" id="sendpolitics">Send
+                me the invoice</button>
+              <hr>
+              <div class="p-2 pb-0 mb-0"><span class="nt-f ">Please don't forget to comment and rate
+                  the experience once it
+                  has been done, it will serve other users to find out about this<a class="ml-2 nt-f nt-c"
+                    href="/experiences/{{experience.id}}#comment">experience</a></span>
+              </div>
+              <div class="text-center mt-4">
                 <a class="" href="/">
-                  <img src="/img/logo-verde.svg" width="50" height="50" class="" alt="">
+                  <img src="/img/logo-verde.svg" width="50" height="50" class="mt-0 pt-0" alt="">
                   <span id="nav-logo-name">Natur<span id="nav-logo-name-app">app</span></span>
                 </a>
+              </div>
+
             </div>
           </div>
 
         </section>
 </article>
+
+{{!-- nav-menu-mobile--}}
+<div class="container nav-mobile mx-auto">
+  <div class="row mx-auto align-items-center h-100">
+    <div class="col-3 text-center menu-icon">
+      <a href="/" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">search</span>
+        <span class="icon-home icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/favourites" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Favourites</span>
+        <span class="icon-favorites icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="{{#if session.creator}}/experiences/create{{else}}/creator/create{{/if}}" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Create</span>
+        <span class="icon-new-rute icon-nav"></span>
+      </a>
+    </div>
+    <div class="col-3 text-center menu-icon">
+      <a href="/profile" class="d-flex flex-column-reverse link-nav-mobile">
+        <span class="menu-icon-text">Profile</span>
+        <span class="icon-profile icon-nav"></span>
+      </a>
+    </div>
+  </div>
+</div>
+{{!-- nav-menu-mobile--}}
+
 
 <script>
   var decodedJson = decodeURIComponent("{{{pointsJSON}}}");
