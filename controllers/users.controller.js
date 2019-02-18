@@ -58,9 +58,9 @@ module.exports.subscribe = (req, res, next) => {
 
 module.exports.getHome = (req, res, next) => {  
   Promise.all([
-    Experience.find().limit(10).sort({ price: 1 }).populate("user"), 
-    Experience.find().limit(10).sort({ createdAt: -1 }).populate("user"),
-    Experience.find().limit(10).sort({ rating: -1 }).populate("user")
+    Experience.find().limit(20).sort({ price: 1 }).populate("user"), 
+    Experience.find().limit(20).sort({ createdAt: -1 }).populate("user"),
+    Experience.find().limit(20).sort({ rating: -1 }).populate("user")
   ]).then(([sortPriceExp, experiences, sortRateExp]) =>
       res.render("users/index", {
         experiences,
