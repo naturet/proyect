@@ -13,7 +13,7 @@ module.exports = [
     image:'https://source.unsplash.com/1600x900/?nature'
   },
   {
-    id: 'ownbag',
+    id: 'your bag',
     name: 'Your Bag',
     fontnum: '003'
   },
@@ -23,12 +23,12 @@ module.exports = [
     fontnum: '004'
   },
   {
-    id: 'walk',
+    id: 'walking',
     name: 'Walking',
     fontnum: '005'
   },
   {
-    id: 'controlled-activities',
+    id: 'controlled areas',
     name: 'Controlled areas',
     fontnum: '006'
   },
@@ -43,7 +43,7 @@ module.exports = [
     fontnum: '008'
   },
   {
-    id: 'night-activities',
+    id: 'night activities',
     name: 'Night Activities',
     fontnum: '009'
   },
@@ -53,7 +53,7 @@ module.exports = [
     fontnum: '010'
   },
   {
-    id: 'nature-care',
+    id: 'nature care',
     name: 'Nature Care',
     fontnum: '011'
   },
@@ -68,7 +68,7 @@ module.exports = [
     fontnum: '013'
   },
   {
-    id: 'snow',
+    id: 'snow activities',
     name: 'Snow Activities',
     fontnum: '014'
   },
@@ -83,7 +83,7 @@ module.exports = [
     fontnum: '016'
   },
   {
-    id: 'children-activities',
+    id: 'child activities',
     name: 'Child Activities',
     fontnum: '017'
   },
@@ -123,7 +123,7 @@ module.exports = [
     fontnum: '024'
   },
   {
-    id: 'water-sports',
+    id: 'water sports',
     name: 'Water Sports',
     fontnum: '025'
   },
@@ -138,7 +138,7 @@ module.exports = [
     fontnum: '027'
   },
   {
-    id: 'extreme-sports',
+    id: 'extreme sports',
     name: 'Extreme Sports',
     fontnum: '028'
   },
@@ -168,7 +168,7 @@ module.exports = [
     fontnum: '033'
   },
   {
-    id: 'air-sports',
+    id: 'air sports',
     name: 'Air Sports',
     fontnum: '034'
   },
