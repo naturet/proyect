@@ -110,7 +110,7 @@ module.exports.doCreate = (req, res, next) => {
         if (!user) {
           next(createError(404, 'User not found'));
         } else {
-          res.redirect('/profile')
+          res.redirect('/')
         }
       })
       .catch(error => next(error));
