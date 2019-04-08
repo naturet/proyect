@@ -302,7 +302,7 @@ module.exports.purchased = (req, res, next) => {
             })
           })
           .then(charge => {
-            console.log(charge)
+            console.log("charge => ",charge)
             const paymentData = {
               user: req.user.id,
               experience: req.params.id,
